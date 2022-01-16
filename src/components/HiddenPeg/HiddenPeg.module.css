@@ -1,0 +1,16 @@
+.hiddenPeg {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.hiddenIcon {
+    height: 2rem;
+    width: 2rem;
+    background-color: grey;
+    border-radius: 2rem;
+}

@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { PegRow } from "./PegRow";
-import { Color } from "../../models";
+import { PegColor } from "../../models";
 
 export default {
   title: "PegRow",
@@ -13,29 +13,39 @@ const Template: ComponentStory<typeof PegRow> = (args) => <PegRow {...args} />;
 export const Colours = Template.bind({});
 Colours.args = {
   slots: [
-    { color: Color.Red },
-    { color: Color.Red },
-    { color: Color.Red },
-    { color: Color.Red },
+    { color: PegColor.Red },
+    { color: PegColor.Red },
+    { color: PegColor.Red },
+    { color: PegColor.Red },
   ],
 };
 
 export const Empty = Template.bind({});
 Empty.args = {
   slots: [
-    { color: Color.Blank },
-    { color: Color.Blank },
-    { color: Color.Blank },
-    { color: Color.Blank },
+    { color: PegColor.Blank },
+    { color: PegColor.Blank },
+    { color: PegColor.Blank },
+    { color: PegColor.Blank },
   ],
 };
 
 export const ColorsAndEmpty = Template.bind({});
 ColorsAndEmpty.args = {
   slots: [
-    { color: Color.Red },
-    { color: Color.Blue },
-    { color: Color.Blank },
-    { color: Color.Blank },
+    { color: PegColor.Red },
+    { color: PegColor.Blue },
+    { color: PegColor.Blank },
+    { color: PegColor.Blank },
+  ],
+};
+
+export const Hidden = Template.bind({});
+Hidden.args = {
+  slots: [
+    { color: PegColor.Hidden },
+    { color: PegColor.Hidden },
+    { color: PegColor.Hidden },
+    { color: PegColor.Hidden },
   ],
 };

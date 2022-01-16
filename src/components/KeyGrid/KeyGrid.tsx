@@ -1,4 +1,5 @@
-import { Color, Key, PegSlot } from "../../models";
+import { PegColor, Key, PegSlot } from "../../models";
+import { EmptyPeg } from "../EmptyPeg/EmptyPeg";
 import { Peg } from "../Peg/Peg";
 import styles from "./KeyGrid.module.css";
 
@@ -10,20 +11,27 @@ export const KeyGrid = ({ keys }: KeyGridProps) => {
   return (
     <div className={styles.keyGrid}>
       {keys.map((key, index) => {
-        let keyColor: Color =
+        let keyColor: PegColor =
           key === Key.RightColorRightSlot
-            ? Color.Red
+            ? PegColor.Red
             : key === Key.RightColorWrongSlot
-            ? Color.White
-            : Color.Blank;
+            ? PegColor.White
+            : PegColor.Blank;
 
         let peg: PegSlot = { color: keyColor };
+
+        if (peg.color === PegColor.Blank) {
+          return (
+            <EmptyPeg key={index} className={styles.keyGridPeg} size="small" />
+          );
+        }
+
         return (
           <Peg
             key={index}
             className={styles.keyGridPeg}
             size="small"
-            {...peg}
+            color={peg.color}
           />
         );
       })}

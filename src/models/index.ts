@@ -1,4 +1,4 @@
-export enum Color {
+export enum PegColor {
   Red = "Red",
   Green = "Green",
   Yellow = "Yellow",
@@ -6,6 +6,7 @@ export enum Color {
   Black = "Black",
   White = "White",
   Blank = "Blank",
+  Hidden = "Hidden"
 }
 
 export enum Key {
@@ -15,7 +16,7 @@ export enum Key {
 }
 
 export type PegSlot = {
-  color: Color;
+  color: PegColor;
 };
 
 export type Guess = {

@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { GuessPegRow } from "./GuessPegRow";
-import { Color, Key } from "../../models";
+import { PegColor, Key } from "../../models";
 
 export default {
   title: "GuessPegRow",
@@ -15,10 +15,10 @@ const Template: ComponentStory<typeof GuessPegRow> = (args) => (
 export const GuessPegRowCorrect = Template.bind({});
 GuessPegRowCorrect.args = {
   slots: [
-    { color: Color.Red },
-    { color: Color.Blue },
-    { color: Color.Yellow },
-    { color: Color.Green },
+    { color: PegColor.Red },
+    { color: PegColor.Blue },
+    { color: PegColor.Yellow },
+    { color: PegColor.Green },
   ],
   keys: [
     Key.RightColorRightSlot,

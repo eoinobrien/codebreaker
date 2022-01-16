@@ -12,8 +12,8 @@ const Template: ComponentStory<typeof KeyGrid> = (args) => (
   <KeyGrid {...args} />
 );
 
-export const KeyGridSecretCode = Template.bind({});
-KeyGridSecretCode.args = {
+export const Grid = Template.bind({});
+Grid.args = {
   keys: [
     Key.RightColorRightSlot,
     Key.RightColorWrongSlot,
