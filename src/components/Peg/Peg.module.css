@@ -1,0 +1,12 @@
+.peg {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 1rem;
+    background-color: black;
+    display: inline-flex;
+}
+
+.small {
+    height: 1.5rem;
+    width: 1.5rem;
+}

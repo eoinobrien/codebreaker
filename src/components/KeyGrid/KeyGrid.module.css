@@ -1,0 +1,7 @@
+.keyGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 4rem;
+    margin: 0.5rem;
+    place-content: space-between;
+}

@@ -1,0 +1,7 @@
+.pegRow {
+    display: flex;
+}
+
+.pegRowPeg {
+    margin: 0.5rem;
+}

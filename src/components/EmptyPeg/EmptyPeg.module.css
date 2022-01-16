@@ -1,0 +1,26 @@
+.emptyPeg {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 1rem;
+    border: 0.1rem solid #cdcdcd;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pegHole {
+    height: 2rem;
+    width: 2rem;
+    background-color: #cdcdcd;
+    border-radius: 2rem;
+}
+
+.pegHoleSmall {
+    display: none;
+}
+
+.small {
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: #cdcdcd;
+}
