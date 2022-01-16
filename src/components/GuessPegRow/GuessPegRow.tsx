@@ -4,14 +4,14 @@ import { PegRow } from "../PegRow/PegRow";
 import styles from "./GuessPegRow.module.css";
 
 interface GuessPegRowProps {
-  slots: PegSlot[];
+  code: PegSlot[];
   keys: Key[];
 }
 
-export const GuessPegRow = ({ slots , keys}: GuessPegRowProps) => {
+export const GuessPegRow = ({ code , keys}: GuessPegRowProps) => {
   return (
     <div className={styles.guessPegRow}>
-      <PegRow slots={slots} />
+      <PegRow code={code} />
       <KeyGrid keys={keys}/>
     </div>
   );

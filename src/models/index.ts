@@ -20,11 +20,11 @@ export type PegSlot = {
 };
 
 export type Guess = {
-  Code: PegSlot[];
-  Key: Key[];
+  code: PegSlot[];
+  keys: Key[];
 };
 
 export type Game = {
-  Code: PegSlot[];
-  Guesses: Guess[];
+  code: PegSlot[];
+  guesses: Guess[];
 };

@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof PegRow> = (args) => <PegRow {...args} />;
 
 export const Colours = Template.bind({});
 Colours.args = {
-  slots: [
+  code: [
     { color: PegColor.Red },
     { color: PegColor.Red },
     { color: PegColor.Red },
@@ -22,7 +22,7 @@ Colours.args = {
 
 export const Empty = Template.bind({});
 Empty.args = {
-  slots: [
+  code: [
     { color: PegColor.Blank },
     { color: PegColor.Blank },
     { color: PegColor.Blank },
@@ -32,7 +32,7 @@ Empty.args = {
 
 export const ColorsAndEmpty = Template.bind({});
 ColorsAndEmpty.args = {
-  slots: [
+  code: [
     { color: PegColor.Red },
     { color: PegColor.Blue },
     { color: PegColor.Blank },
@@ -42,7 +42,7 @@ ColorsAndEmpty.args = {
 
 export const Hidden = Template.bind({});
 Hidden.args = {
-  slots: [
+  code: [
     { color: PegColor.Hidden },
     { color: PegColor.Hidden },
     { color: PegColor.Hidden },

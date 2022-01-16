@@ -5,13 +5,13 @@ import { Peg } from "../Peg/Peg";
 import styles from "./PegRow.module.css";
 
 interface PegRowProps {
-  slots: PegSlot[];
+  code: PegSlot[];
 }
 
-export const PegRow = ({ slots }: PegRowProps) => {
+export const PegRow = ({ code }: PegRowProps) => {
   return (
     <div className={styles.pegRow}>
-      {slots.map((peg, index) => {
+      {code.map((peg, index) => {
         if (peg.color === PegColor.Blank) {
           return <EmptyPeg key={index} className={styles.pegRowPeg} />;
         }
