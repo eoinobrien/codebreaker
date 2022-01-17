@@ -5,12 +5,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background-color: darkgrey;
+    border: 0.3rem solid;
 }
 
 .hiddenIcon {
-    height: 2rem;
+    /* height: 2rem;
     width: 2rem;
     background-color: grey;
-    border-radius: 2rem;
+    border-radius: 2rem; */
 }

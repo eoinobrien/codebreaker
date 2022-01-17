@@ -1,8 +1,8 @@
-.emptyPeg {
+.game {
     height: 4rem;
     width: 4rem;
     border-radius: 1rem;
-    border: 0.2em solid #cdcdcd;
+    border: 0.1rem solid #cdcdcd;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -22,4 +22,5 @@
 .small {
     height: 1.5rem;
     width: 1.5rem;
+    background-color: #cdcdcd;
 }

@@ -12,9 +12,11 @@ export const EmptyPeg = ({ size = 'medium', className }: EmptyPegProps) => {
     { [styles.small]: size === 'small' },
     className,
   );
+
   var holeClasses = classnames(styles.pegHole, {
     [styles.pegHoleSmall]: size === 'small',
   });
+
   return (
     <div className={emptyPegClasses}>
       <div className={holeClasses}></div>

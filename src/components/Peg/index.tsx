@@ -13,5 +13,5 @@ export const Peg = ({ color, size = 'medium', className }: PegProps) => {
     { [styles.small]: size === 'small' },
     className,
   );
-  return <div className={pegClasses} style={{ backgroundColor: color }}></div>;
+  return <div className={pegClasses} style={{ backgroundColor: color }} aria-label={color}></div>;
 };

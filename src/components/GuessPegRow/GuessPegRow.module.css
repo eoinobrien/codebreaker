@@ -1,3 +1,7 @@
 .guessPegRow {
     display: flex;
 }
+
+.currentGuess {
+    background-color: rebeccapurple;
+}

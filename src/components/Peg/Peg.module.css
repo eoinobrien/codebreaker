@@ -3,6 +3,8 @@
     width: 4rem;
     border-radius: 1rem;
     display: inline-flex;
+    border:none;
+    border: 0.2em solid;
 }
 
 .small {

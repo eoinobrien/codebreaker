@@ -5,12 +5,14 @@ import styles from './PlayingBoard.module.css';
 
 interface PlayingBoardProps {
   code: PegColor[];
+  currentGuess: Guess;
   guesses: Guess[];
   totalNumberOfGuesses: number;
 }
 
 export const PlayingBoard = ({
   code,
+  currentGuess,
   guesses,
   totalNumberOfGuesses,
 }: PlayingBoardProps) => {
@@ -21,6 +23,7 @@ export const PlayingBoard = ({
       </div>
       <div>
         <GuessBoard
+          currentGuess={currentGuess}
           guesses={guesses}
           totalNumberOfGuesses={totalNumberOfGuesses}
         />

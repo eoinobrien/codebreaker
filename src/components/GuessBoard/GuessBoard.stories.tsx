@@ -12,6 +12,12 @@ const Template: ComponentStory<typeof GuessBoard> = (args) => <GuessBoard {...ar
 
 export const GuessTable = Template.bind({});
 GuessTable.args = {
+  currentGuess: 
+  {
+    code: [PegColor.Green, PegColor.Green, PegColor.Green, PegColor.Green],
+    keys: [],
+    currentGuess: true,
+  },
   guesses: [
     {
       code: [PegColor.Green, PegColor.Green, PegColor.Green, PegColor.Green],

@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import { Keyboard } from '.';
 import { PegColor } from '../../models';
 
@@ -10,7 +9,7 @@ export default {
 
 const Template: ComponentStory<typeof Keyboard> = (args) => <Keyboard {...args} />;
 
-export const KB = Template.bind({});
-KB.args = {
-  color: PegColor.Red
+export const KeyboardColors = Template.bind({});
+KeyboardColors.args = {
+  colors: [PegColor.Red, PegColor.Blue]
 };
