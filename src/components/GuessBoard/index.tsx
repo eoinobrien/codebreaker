@@ -1,6 +1,6 @@
-import { Guess, Key, PegColor } from "../../models";
-import { GuessPegRow } from "../GuessPegRow/GuessPegRow";
-import styles from "./GuessBoard.module.css";
+import { Guess, Key, PegColor } from '../../models';
+import { GuessPegRow } from '../GuessPegRow';
+import styles from './GuessBoard.module.css';
 
 interface GuessBoardProps {
   guesses: Guess[];

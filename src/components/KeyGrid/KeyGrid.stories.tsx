@@ -1,10 +1,10 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { KeyGrid } from "./KeyGrid";
-import { Key } from "../../models";
+import { KeyGrid } from '.';
+import { Key } from '../../models';
 
 export default {
-  title: "KeyGrid",
+  title: 'Components/KeyGrid',
   component: KeyGrid,
 } as ComponentMeta<typeof KeyGrid>;
 

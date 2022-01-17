@@ -1,7 +1,7 @@
-import { PegColor, Key } from "../../models";
-import { EmptyPeg } from "../EmptyPeg/EmptyPeg";
-import { Peg } from "../Peg/Peg";
-import styles from "./KeyGrid.module.css";
+import { PegColor, Key } from '../../models';
+import { EmptyPeg } from '../EmptyPeg';
+import { Peg } from '../Peg';
+import styles from './KeyGrid.module.css';
 
 interface KeyGridProps {
   keys: Key[];
@@ -11,7 +11,10 @@ export const KeyGrid = ({ keys }: KeyGridProps) => {
   let numberOfColumns: number = Math.ceil(keys.length / 2);
 
   return (
-    <div className={styles.keyGrid} style={{gridTemplateColumns: `repeat(${numberOfColumns}, 1fr)`}}>
+    <div
+      className={styles.keyGrid}
+      style={{ gridTemplateColumns: `repeat(${numberOfColumns}, 1fr)` }}
+    >
       {keys.map((key, index) => {
         let keyColor: PegColor =
           key === Key.RightColorRightSlot

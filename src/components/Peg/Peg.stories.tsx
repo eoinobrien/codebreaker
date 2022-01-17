@@ -1,10 +1,10 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Peg } from './Peg';
+import { Peg } from '.';
 import { PegColor } from '../../models';
 
 export default {
-  title: 'Peg',
+  title: 'Components/Peg',
   component: Peg,
 } as ComponentMeta<typeof Peg>;
 

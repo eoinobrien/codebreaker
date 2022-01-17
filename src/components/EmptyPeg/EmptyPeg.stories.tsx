@@ -1,8 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { EmptyPeg } from './EmptyPeg';
+import { EmptyPeg } from '.';
 
 export default {
-  title: 'EmptyPeg',
+  title: 'Components/EmptyPeg',
   component: EmptyPeg,
 } as ComponentMeta<typeof EmptyPeg>;
 

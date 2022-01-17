@@ -1,8 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { HiddenPeg } from './HiddenPeg';
+import { HiddenPeg } from '.';
 
 export default {
-  title: 'HiddenPeg',
+  title: 'Components/HiddenPeg',
   component: HiddenPeg,
 } as ComponentMeta<typeof HiddenPeg>;
 

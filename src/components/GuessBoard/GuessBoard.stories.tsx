@@ -1,10 +1,10 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { GuessBoard } from './GuessBoard';
+import { GuessBoard } from '.';
 import { Key, PegColor } from '../../models';
 
 export default {
-  title: 'GuessBoard',
+  title: 'Components/GuessBoard',
   component: GuessBoard,
 } as ComponentMeta<typeof GuessBoard>;
 

@@ -1,8 +1,8 @@
-import { PegColor } from "../../models";
-import { EmptyPeg } from "../EmptyPeg/EmptyPeg";
-import { HiddenPeg } from "../HiddenPeg/HiddenPeg";
-import { Peg } from "../Peg/Peg";
-import styles from "./PegRow.module.css";
+import { PegColor } from '../../models';
+import { EmptyPeg } from '../EmptyPeg';
+import { HiddenPeg } from '../HiddenPeg';
+import { Peg } from '../Peg';
+import styles from './PegRow.module.css';
 
 interface PegRowProps {
   code: PegColor[];

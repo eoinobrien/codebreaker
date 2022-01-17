@@ -1,10 +1,10 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { GuessPegRow } from "./GuessPegRow";
-import { PegColor, Key } from "../../models";
+import { GuessPegRow } from '.';
+import { PegColor, Key } from '../../models';
 
 export default {
-  title: "GuessPegRow",
+  title: 'Components/GuessPegRow',
   component: GuessPegRow,
 } as ComponentMeta<typeof GuessPegRow>;
 

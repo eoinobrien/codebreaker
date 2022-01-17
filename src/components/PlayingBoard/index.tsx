@@ -1,7 +1,7 @@
-import { Guess, Key, PegColor } from "../../models";
-import { GuessBoard } from "../GuessBoard/GuessBoard";
-import { PegRow } from "../PegRow/PegRow";
-import styles from "./PlayingBoard.module.css";
+import { Guess, Key, PegColor } from '../../models';
+import { GuessBoard } from '../GuessBoard';
+import { PegRow } from '../PegRow';
+import styles from './PlayingBoard.module.css';
 
 interface PlayingBoardProps {
   code: PegColor[];

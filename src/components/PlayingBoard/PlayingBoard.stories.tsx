@@ -1,10 +1,10 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { PlayingBoard } from './PlayingBoard';
+import { PlayingBoard } from '.';
 import { Key, PegColor } from '../../models';
 
 export default {
-  title: 'PlayingBoard',
+  title: 'Components/PlayingBoard',
   component: PlayingBoard,
 } as ComponentMeta<typeof PlayingBoard>;
 
