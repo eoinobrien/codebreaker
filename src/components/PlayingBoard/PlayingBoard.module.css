@@ -1,0 +1,9 @@
+.playingBoard {
+    display: flex;
+    flex-direction: column;
+}
+
+.codeRow {
+    background-color: darkgrey;
+    border-bottom: black solid 0.4rem;
+}

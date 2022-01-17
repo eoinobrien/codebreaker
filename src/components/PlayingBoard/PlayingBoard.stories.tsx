@@ -1,17 +1,18 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { GuessBoard } from './GuessBoard';
+import { PlayingBoard } from './PlayingBoard';
 import { Key, PegColor } from '../../models';
 
 export default {
-  title: 'GuessBoard',
-  component: GuessBoard,
-} as ComponentMeta<typeof GuessBoard>;
+  title: 'PlayingBoard',
+  component: PlayingBoard,
+} as ComponentMeta<typeof PlayingBoard>;
 
-const Template: ComponentStory<typeof GuessBoard> = (args) => <GuessBoard {...args} />;
+const Template: ComponentStory<typeof PlayingBoard> = (args) => <PlayingBoard {...args} />;
 
 export const GuessTable = Template.bind({});
 GuessTable.args = {
+  code: [PegColor.Hidden, PegColor.Hidden, PegColor.Hidden, PegColor.Hidden],
   guesses: [
     {
       code: [PegColor.Green, PegColor.Green, PegColor.Green, PegColor.Green],

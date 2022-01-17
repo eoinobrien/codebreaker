@@ -14,12 +14,7 @@ const Template: ComponentStory<typeof GuessPegRow> = (args) => (
 
 export const GuessPegRowCorrect = Template.bind({});
 GuessPegRowCorrect.args = {
-  code: [
-    { color: PegColor.Red },
-    { color: PegColor.Blue },
-    { color: PegColor.Yellow },
-    { color: PegColor.Green },
-  ],
+  code: [PegColor.Red, PegColor.Blue, PegColor.Yellow, PegColor.Green],
   keys: [
     Key.RightColorRightSlot,
     Key.RightColorRightSlot,

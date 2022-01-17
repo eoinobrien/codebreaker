@@ -11,17 +11,12 @@ export const GuessBoard = ({
   guesses,
   totalNumberOfGuesses,
 }: GuessBoardProps) => {
-  let localGuesses = guesses;
+  let localGuesses = [...guesses];
   let remainingGuesses = totalNumberOfGuesses - guesses.length;
 
   for (let i = 0; i < remainingGuesses; i++) {
     localGuesses.push({
-      code: [
-        { color: PegColor.Blank },
-        { color: PegColor.Blank },
-        { color: PegColor.Blank },
-        { color: PegColor.Blank },
-      ],
+      code: [PegColor.Blank, PegColor.Blank, PegColor.Blank, PegColor.Blank],
       keys: [Key.WrongColor, Key.WrongColor, Key.WrongColor, Key.WrongColor],
     });
   }

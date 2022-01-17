@@ -15,16 +15,12 @@ export enum Key {
   WrongColor,
 }
 
-export type PegSlot = {
-  color: PegColor;
-};
-
 export type Guess = {
-  code: PegSlot[];
+  code: PegColor[];
   keys: Key[];
 };
 
 export type Game = {
-  code: PegSlot[];
+  code: PegColor[];
   guesses: Guess[];
 };

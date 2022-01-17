@@ -1,10 +1,10 @@
-import { Key, PegSlot } from "../../models";
+import { Key, PegColor } from "../../models";
 import { KeyGrid } from "../KeyGrid/KeyGrid";
 import { PegRow } from "../PegRow/PegRow";
 import styles from "./GuessPegRow.module.css";
 
 interface GuessPegRowProps {
-  code: PegSlot[];
+  code: PegColor[];
   keys: Key[];
 }
 
