@@ -33,6 +33,7 @@ export const GuessBoard = ({
         key={guesses.length}
         numberOfPegs={numberOfPegs}
         code={currentGuess}
+        currentGuess
       />
 
       {/* Fill remainder of Game board with number of attempts left */}
