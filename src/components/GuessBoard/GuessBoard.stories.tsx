@@ -12,25 +12,21 @@ const Template: ComponentStory<typeof GuessBoard> = (args) => <GuessBoard {...ar
 
 export const GuessTable = Template.bind({});
 GuessTable.args = {
-  currentGuess: 
-  {
-    code: [PegColor.Green, PegColor.Green, PegColor.Green, PegColor.Green],
-    keys: [],
-    currentGuess: true,
-  },
+  currentGuess: [PegColor.Green, PegColor.Green, PegColor.Green, PegColor.Green],
   guesses: [
     {
       code: [PegColor.Green, PegColor.Green, PegColor.Green, PegColor.Green],
-      keys: [Key.WrongColor,Key.WrongColor, Key.WrongColor, Key.WrongColor], 
+      keys: [], 
     },
     {
       code: [PegColor.Green, PegColor.Green, PegColor.Red, PegColor.White],
-      keys: [Key.WrongColor,Key.WrongColor, Key.WrongColor, Key.WrongColor], 
+      keys: [], 
     },
     {
       code: [PegColor.Green, PegColor.Blue, PegColor.Red, PegColor.White],
-      keys: [Key.RightColorRightSlot,Key.RightColorRightSlot, Key.WrongColor, Key.WrongColor], 
+      keys: [Key.RightColorRightSlot,Key.RightColorRightSlot], 
     }
   ],
+  numberOfPegs: 4,
   totalNumberOfGuesses: 10
 };

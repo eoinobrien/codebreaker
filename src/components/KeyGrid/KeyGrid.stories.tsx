@@ -17,7 +17,7 @@ Grid.args = {
   keys: [
     Key.RightColorRightSlot,
     Key.RightColorWrongSlot,
-    Key.RightColorWrongSlot,
-    Key.WrongColor,
+    Key.RightColorWrongSlot
   ],
+  numberOfPegs: 4
 };

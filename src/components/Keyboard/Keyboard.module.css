@@ -1,6 +1,13 @@
 .keyboard {
-    height: 4rem;
+    display: flex;
+}
+
+.keyboard button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.actions {
     width: 4rem;
-    border-radius: 1rem;
-    display: inline-flex;
 }

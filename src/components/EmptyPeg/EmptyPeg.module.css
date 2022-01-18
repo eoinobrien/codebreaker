@@ -1,6 +1,7 @@
 .emptyPeg {
     height: 4rem;
     width: 4rem;
+    margin: 0.5rem;
     border-radius: 1rem;
     border: 0.2em solid #cdcdcd;
     display: inline-flex;

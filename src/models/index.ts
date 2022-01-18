@@ -10,9 +10,8 @@ export enum PegColor {
 }
 
 export enum Key {
-  RightColorRightSlot = "RightColorRightSlot",
-  RightColorWrongSlot = "RightColorWrongSlot",
-  WrongColor = "WrongColor"
+  RightColorRightSlot,
+  RightColorWrongSlot
 }
 
 export type Guess = {
@@ -25,3 +24,14 @@ export type Game = {
   code: PegColor[];
   guesses: Guess[];
 };
+
+export enum KeyboardActions {
+  ColorPicker,
+  Enter,
+  Backspace
+}
+
+export type KeyboardActionResult = {
+  guess: PegColor[],
+  error?: string
+}

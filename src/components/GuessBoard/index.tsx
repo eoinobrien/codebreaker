@@ -1,34 +1,47 @@
-import { Guess, Key, PegColor } from "../../models";
-import { GuessPegRow } from "../GuessPegRow";
-import styles from "./GuessBoard.module.css";
+import { useEffect, useState } from 'react';
+import { createArrayOfObject } from '../../logic/codes';
+import { Guess, PegColor } from '../../models';
+import { GuessPegRow } from '../GuessPegRow';
+import styles from './GuessBoard.module.css';
 
 interface GuessBoardProps {
-  currentGuess: Guess;
+  currentGuess: PegColor[];
   guesses: Guess[];
+  numberOfPegs: number;
   totalNumberOfGuesses: number;
 }
 
 export const GuessBoard = ({
   currentGuess,
   guesses,
+  numberOfPegs,
   totalNumberOfGuesses,
 }: GuessBoardProps) => {
-  let localGuesses = [...guesses];
-  let remainingGuesses = totalNumberOfGuesses - guesses.length;
-
-  localGuesses.push(currentGuess);
-
-  for (let i = 0; i < remainingGuesses; i++) {
-    localGuesses.push({
-      code: [PegColor.Blank, PegColor.Blank, PegColor.Blank, PegColor.Blank],
-      keys: [Key.WrongColor, Key.WrongColor, Key.WrongColor, Key.WrongColor],
-    });
-  }
+  let remainingGuessesIndexes = createArrayOfObject(
+    0,
+    totalNumberOfGuesses - guesses.length,
+  );
 
   return (
     <div className={styles.guessBoard}>
-      {localGuesses.map((guess, index) => (
-        <GuessPegRow key={index} {...guess} />
+      {guesses.map((guess, index) => (
+        <GuessPegRow key={index} numberOfPegs={numberOfPegs} {...guess} />
+      ))}
+
+      {/* Current Guess */}
+      <GuessPegRow
+        key={guesses.length}
+        numberOfPegs={numberOfPegs}
+        code={currentGuess}
+      />
+
+      {/* Fill remainder of Game board with number of attempts left */}
+      {remainingGuessesIndexes.map((_, index) => (
+        <GuessPegRow
+          key={index + guesses.length + 1}
+          numberOfPegs={numberOfPegs}
+          code={[]}
+        />
       ))}
     </div>
   );

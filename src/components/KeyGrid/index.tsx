@@ -1,3 +1,4 @@
+import { createArrayOfObject } from '../../logic/codes';
 import { PegColor, Key } from '../../models';
 import { EmptyPeg } from '../EmptyPeg';
 import { Peg } from '../Peg';
@@ -5,10 +6,12 @@ import styles from './KeyGrid.module.css';
 
 interface KeyGridProps {
   keys: Key[];
+  numberOfPegs: number;
 }
 
-export const KeyGrid = ({ keys }: KeyGridProps) => {
-  let numberOfColumns: number = Math.ceil(keys.length / 2);
+export const KeyGrid = ({ keys, numberOfPegs }: KeyGridProps) => {
+  let numberOfColumns: number = Math.ceil(numberOfPegs / 2);
+  let pegIndexes = createArrayOfObject(0, numberOfPegs - keys.length);
 
   return (
     <div
@@ -23,12 +26,6 @@ export const KeyGrid = ({ keys }: KeyGridProps) => {
             ? PegColor.White
             : PegColor.Blank;
 
-        if (keyColor === PegColor.Blank) {
-          return (
-            <EmptyPeg key={index} className={styles.keyGridPeg} size="small" />
-          );
-        }
-
         return (
           <Peg
             key={index}
@@ -36,6 +33,12 @@ export const KeyGrid = ({ keys }: KeyGridProps) => {
             size="small"
             color={keyColor}
           />
+        );
+      })}
+
+      {pegIndexes.map((_, index) => {
+        return (
+          <EmptyPeg key={index} className={styles.keyGridPeg} size="small" />
         );
       })}
     </div>

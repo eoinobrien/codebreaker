@@ -21,4 +21,5 @@ GuessPegRowCorrect.args = {
     Key.RightColorRightSlot,
     Key.RightColorRightSlot,
   ],
+  numberOfPegs: 4,
 };

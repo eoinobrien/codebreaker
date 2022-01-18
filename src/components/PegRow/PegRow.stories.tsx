@@ -13,19 +13,23 @@ const Template: ComponentStory<typeof PegRow> = (args) => <PegRow {...args} />;
 export const Colours = Template.bind({});
 Colours.args = {
   code: [PegColor.Red, PegColor.Red, PegColor.Red, PegColor.Red],
+  numberOfPegs: 4,
 };
 
 export const Empty = Template.bind({});
 Empty.args = {
-  code: [PegColor.Blank, PegColor.Blank, PegColor.Blank, PegColor.Blank],
+  code: [],
+  numberOfPegs: 4,
 };
 
 export const ColorsAndEmpty = Template.bind({});
 ColorsAndEmpty.args = {
-  code: [PegColor.Red, PegColor.Blue, PegColor.Blank, PegColor.Blank],
+  code: [PegColor.Red, PegColor.Blue,],
+  numberOfPegs: 4,
 };
 
 export const Hidden = Template.bind({});
 Hidden.args = {
   code: [PegColor.Hidden, PegColor.Hidden, PegColor.Hidden, PegColor.Hidden],
+  numberOfPegs: 4,
 };

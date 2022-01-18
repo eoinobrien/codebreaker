@@ -6,7 +6,7 @@ export default {
   component: Game,
 } as ComponentMeta<typeof Game>;
 
-const Template: ComponentStory<typeof Game> = (args) => <Game {...args} />;
+const Template: ComponentStory<typeof Game> = () => <Game />;
 
 export const Empty = Template.bind({});
 Empty.args = {};
