@@ -20,6 +20,7 @@ export const Keyboard = ({ colors, numberOfPegs, callback }: KeyboardProps) => {
           <PegButton
             key={index}
             color={color}
+            ariaLabel={color}
             action={KeyboardActions.ColorPicker}
             onClick={callback}
           />
@@ -27,14 +28,18 @@ export const Keyboard = ({ colors, numberOfPegs, callback }: KeyboardProps) => {
       </div>
       <div className={styles.actions}>
         <PegButton
-          color="lightgrey"
+          color={PegColor.KeyboardAction}
+          light
+          ariaLabel='Backspace'
           action={KeyboardActions.Backspace}
           onClick={callback}
         >
           <BsBackspace size="2rem" />
         </PegButton>
         <PegButton
-          color="lightgrey"
+          color={PegColor.KeyboardAction}
+          light
+          ariaLabel='Enter'
           action={KeyboardActions.Enter}
           onClick={callback}
         >

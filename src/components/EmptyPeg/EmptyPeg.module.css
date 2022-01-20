@@ -3,7 +3,7 @@
     width: 4rem;
     margin: 0.5rem;
     border-radius: 1rem;
-    border: 0.2em solid #cdcdcd;
+    border: 0.2em solid #D7CCC8;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +12,7 @@
 .pegHole {
     height: 2rem;
     width: 2rem;
-    background-color: #cdcdcd;
+    background-color: #D7CCC8;
     border-radius: 2rem;
 }
 

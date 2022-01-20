@@ -6,7 +6,8 @@ export enum PegColor {
   Black = "Black",
   White = "White",
   Blank = "Blank",
-  Hidden = "Hidden"
+  Hidden = "Hidden",
+  KeyboardAction = "KeyboardAction"
 }
 
 export enum Key {

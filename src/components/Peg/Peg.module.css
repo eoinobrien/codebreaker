@@ -5,7 +5,7 @@
     margin: 0.5rem;
     display: inline-flex;
     border:none;
-    border: 0.2em solid;
+    border: #3E2723 0.2em solid;
     align-items: center;
     justify-content: center;
 }
@@ -13,4 +13,9 @@
 .small {
     height: 1.5rem;
     width: 1.5rem;
+}
+
+.light {
+    border-color: #3E2723;
+    color: #D7CCC8;
 }

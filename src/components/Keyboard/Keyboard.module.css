@@ -1,11 +1,7 @@
 .keyboard {
     display: flex;
-}
-
-.keyboard button {
-    padding: 0;
-    border: none;
-    background: none;
+    background-color: #6D4C41;
+    border-top: #3E2723 solid 0.4rem;
 }
 
 .colors {
@@ -14,5 +10,5 @@
 }
 
 .actions {
-    width: 4rem;
+    width: 5rem;
 }

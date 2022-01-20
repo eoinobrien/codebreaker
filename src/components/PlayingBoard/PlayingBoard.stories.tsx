@@ -35,5 +35,5 @@ GuessTable.args = {
   ],
   numberOfPegs: 4,
   totalNumberOfGuesses: 10,
-  hideCode: true
+  gameComplete: false
 };

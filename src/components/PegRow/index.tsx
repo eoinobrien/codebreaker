@@ -1,4 +1,5 @@
 import { createArrayOfObject } from '../../logic/codes';
+import { pegHexColors } from '../../logic/pegs';
 import { PegColor } from '../../models';
 import { EmptyPeg } from '../EmptyPeg';
 import { HiddenPeg } from '../HiddenPeg';
@@ -26,7 +27,13 @@ export const PegRow = ({
             return <HiddenPeg key={index} />;
           }
 
-          return <Peg key={index} color={code[index]} />;
+          return (
+            <Peg
+              key={index}
+              color={pegHexColors.get(code[index]) ?? '#F3E5F5'}
+              ariaLabel={code[index]}
+            />
+          );
         } else {
           return <EmptyPeg key={index} />;
         }
