@@ -19,10 +19,10 @@ export const Peg = ({
   children,
 }: PegProps) => {
   var pegClasses = classnames(
+    className,
     styles.peg,
     { [styles.small]: size === 'small' },
     { [styles.light]: light },
-    className,
   );
   return (
     <div

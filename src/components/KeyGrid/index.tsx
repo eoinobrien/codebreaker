@@ -29,7 +29,6 @@ export const KeyGrid = ({ keys, numberOfPegs }: KeyGridProps) => {
         return (
           <Peg
             key={index}
-            className={styles.keyGridPeg}
             size="small"
             color={keyColor}
           />
@@ -38,7 +37,7 @@ export const KeyGrid = ({ keys, numberOfPegs }: KeyGridProps) => {
 
       {pegIndexes.map((_, index) => {
         return (
-          <EmptyPeg key={index} className={styles.keyGridPeg} size="small" />
+          <EmptyPeg key={index} size="small" />
         );
       })}
     </div>
