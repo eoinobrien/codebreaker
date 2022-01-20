@@ -76,10 +76,7 @@ export const Game = () => {
         guesses={guesses}
         numberOfPegs={numberOfPegs}
         totalNumberOfGuesses={totalNumberOfGuesses}
-        hideCode={
-          guesses === undefined ||
-          !gameComplete
-        }
+        gameComplete={gameComplete}
       />
       <Keyboard
         colors={AllowedColors}

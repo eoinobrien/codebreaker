@@ -9,7 +9,7 @@ interface PlayingBoardProps {
   guesses: Guess[];
   numberOfPegs: number;
   totalNumberOfGuesses: number;
-  hideCode: boolean;
+  gameComplete: boolean;
 }
 
 export const PlayingBoard = ({
@@ -18,12 +18,12 @@ export const PlayingBoard = ({
   guesses,
   numberOfPegs,
   totalNumberOfGuesses,
-  hideCode,
+  gameComplete,
 }: PlayingBoardProps) => {
   return (
     <div className={styles.playingBoard}>
       <div className={styles.codeRow}>
-        <PegRow code={code} hideCode={hideCode} numberOfPegs={numberOfPegs}/>
+        <PegRow code={code} hideCode={!gameComplete} numberOfPegs={numberOfPegs}/>
       </div>
       <div>
         <GuessBoard
@@ -31,6 +31,7 @@ export const PlayingBoard = ({
           guesses={guesses}
           numberOfPegs={numberOfPegs}
           totalNumberOfGuesses={totalNumberOfGuesses}
+          gameComplete={gameComplete}
         />
       </div>
     </div>

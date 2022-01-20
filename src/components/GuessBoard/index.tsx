@@ -8,6 +8,7 @@ interface GuessBoardProps {
   guesses: Guess[];
   numberOfPegs: number;
   totalNumberOfGuesses: number;
+  gameComplete: boolean;
 }
 
 export const GuessBoard = ({
@@ -15,8 +16,8 @@ export const GuessBoard = ({
   guesses,
   numberOfPegs,
   totalNumberOfGuesses,
+  gameComplete,
 }: GuessBoardProps) => {
-  let gameComplete = guesses.length >= totalNumberOfGuesses;
   let remainingGuessesIndexes = createArrayOfObject(
     0,
     totalNumberOfGuesses - guesses.length - (gameComplete ? 0 : 1),
