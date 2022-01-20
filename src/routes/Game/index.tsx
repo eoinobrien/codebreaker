@@ -9,7 +9,6 @@ import {
 } from '../../logic/codes';
 import { backspace, pushGuess } from '../../logic/keyboard';
 import { Guess, KeyboardActions, PegColor } from '../../models';
-import styles from './Game.module.css';
 
 export const Game = () => {
   const [code] = useState<PegColor[]>(createCode(4));
