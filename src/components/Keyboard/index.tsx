@@ -5,13 +5,17 @@ import styles from './Keyboard.module.css';
 
 interface KeyboardProps {
   colors: PegColor[];
+  numberOfPegs: number;
   callback: (action: KeyboardActions, color?: PegColor) => void;
 }
 
-export const Keyboard = ({ colors, callback }: KeyboardProps) => {
+export const Keyboard = ({ colors, numberOfPegs, callback }: KeyboardProps) => {
   return (
     <div className={styles.keyboard}>
-      <div>
+      <div
+        className={styles.colors}
+        style={{ gridTemplateColumns: `repeat(${numberOfPegs}, 1fr)` }}
+      >
         {colors.map((color, index) => (
           <PegButton
             key={index}

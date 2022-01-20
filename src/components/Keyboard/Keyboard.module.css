@@ -8,6 +8,11 @@
     background: none;
 }
 
+.colors {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .actions {
     width: 4rem;
 }

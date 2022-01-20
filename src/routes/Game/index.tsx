@@ -15,7 +15,7 @@ export const Game = () => {
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
   const [gameComplete, setGameComplete] = useState<boolean>(false);
-  
+
   const numberOfPegs = 4;
   const totalNumberOfGuesses = 10;
 
@@ -71,7 +71,11 @@ export const Game = () => {
           guesses.length < totalNumberOfGuesses
         }
       />
-      <Keyboard colors={AllowedColors} callback={callback} />
+      <Keyboard
+        colors={AllowedColors}
+        numberOfPegs={numberOfPegs}
+        callback={callback}
+      />
     </div>
   );
 };
