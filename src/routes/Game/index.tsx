@@ -11,7 +11,7 @@ import { backspace, pushGuess } from '../../logic/keyboard';
 import { Guess, KeyboardActions, PegColor } from '../../models';
 
 export const Game = () => {
-  const [code] = useState<PegColor[]>(createCode(4, true));
+  const [code] = useState<PegColor[]>(createCode(4));
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
   const [gameComplete, setGameComplete] = useState<boolean>(false);
