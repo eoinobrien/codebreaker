@@ -80,9 +80,6 @@ export function keyIsCorrectGuess(
 ): boolean {
   let keys: Key[] = createArrayOfObject(Key.RightColorRightSlot, numberOfPegs);
 
-  console.log(guessKey);
-  console.log(keys);
-
   return arraysMatchExactly(guessKey, keys);
 }
 

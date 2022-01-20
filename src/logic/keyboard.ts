@@ -3,13 +3,13 @@ import { KeyboardActionResult, PegColor } from '../models';
 export function pushGuess(
   currentGuess: PegColor[],
   numberOfPegs: number,
-  Guess: PegColor,
+  guess: PegColor
 ): KeyboardActionResult {
   if (currentGuess.length >= numberOfPegs) {
     return { guess: currentGuess, error: 'No space to add guess' };
   }
 
-  currentGuess.push(Guess);
+  currentGuess.push(guess);
   
   return { guess: currentGuess };
 }

@@ -15,28 +15,25 @@ export const Game = () => {
   const [code, setCode] = useState<PegColor[]>(createCode(4));
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
+  const [gameComplete, setGameComplete] = useState<boolean>(false);
+  
   const numberOfPegs = 4;
   const totalNumberOfGuesses = 10;
-
-  React.useEffect(() => {}, []);
 
   const callback = (action: KeyboardActions, color?: PegColor) => {
     switch (action) {
       case KeyboardActions.ColorPicker:
-        console.log('pciker');
-        if (color !== undefined) {
+        if (color !== undefined && !gameComplete) {
           let result = pushGuess([...currentGuess], numberOfPegs, color);
 
           setCurrentGuess(result.guess);
         }
         break;
       case KeyboardActions.Backspace:
-        console.log('backspace');
         let result = backspace([...currentGuess]);
         setCurrentGuess(result.guess);
         break;
       case KeyboardActions.Enter:
-        console.log('enter');
         if (guesses.length < totalNumberOfGuesses) {
           let guessToAdd: Guess = {
             code: currentGuess,
@@ -44,8 +41,11 @@ export const Game = () => {
             currentGuess: false,
           };
           let cloneGuesses = [...guesses];
+
           cloneGuesses.push(guessToAdd);
           setGuesses(cloneGuesses);
+          setGameComplete(keyIsCorrectGuess(guessToAdd.keys, numberOfPegs));
+
           setCurrentGuess([]);
         } else {
           // TODO
@@ -58,13 +58,8 @@ export const Game = () => {
     }
   };
 
-  // const newGame = () => {
-  //   setCode
-  // }
-
   return (
     <div>
-      {/* <button onClick={() => newGame}>New Game</button> */}
       <PlayingBoard
         code={code}
         currentGuess={currentGuess}
@@ -73,7 +68,8 @@ export const Game = () => {
         totalNumberOfGuesses={totalNumberOfGuesses}
         hideCode={
           guesses === undefined ||
-          !keyIsCorrectGuess(guesses.at(-1)?.keys ?? [], numberOfPegs)
+          !gameComplete ||
+          guesses.length < totalNumberOfGuesses
         }
       />
       <Keyboard colors={AllowedColors} callback={callback} />
