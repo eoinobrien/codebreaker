@@ -2,13 +2,12 @@ import { Key, PegColor } from '../models';
 
 export const AllowedColors: PegColor[] = [
   PegColor.Red,
-  PegColor.Green,
-  PegColor.Yellow,
-  PegColor.Blue,
-  PegColor.Black,
-  PegColor.White,
+  // PegColor.Green,
+  // PegColor.Yellow,
+  // PegColor.Blue,
+  // PegColor.Black,
+  // PegColor.White,
 ];
-
 
 export function createCode(
   numberOfPegs: number,
@@ -33,21 +32,25 @@ function randomPegColor(): PegColor {
 
 export function keysFromGuess(code: PegColor[], guess: PegColor[]): Key[] {
   let keys: Key[] = [];
-  let consumedIndexs: number[] = [];
+  let consumedIndexes: number[] = [];
 
   code.forEach((codePeg, codeIndex) => {
     let keyResult: Key | undefined;
 
-    guess.forEach((guessPeg, guessIndex) => {
+    guess.every((guessPeg, guessIndex) => {
       if (codePeg === guessPeg) {
         if (codeIndex === guessIndex) {
           keyResult = Key.RightColorRightSlot;
-        } else if (consumedIndexs.indexOf(guessIndex) === -1) {
-          keyResult = Key.RightColorWrongSlot
+          consumedIndexes.push(guessIndex);
+          return false;
+        } else if (consumedIndexes.indexOf(guessIndex) === -1) {
+          keyResult = Key.RightColorWrongSlot;
         }
 
-        consumedIndexs.push(guessIndex);
+        consumedIndexes.push(guessIndex);
       }
+
+      return true; // keep the loop going
     });
 
     keyResult !== undefined && keys.push(keyResult);

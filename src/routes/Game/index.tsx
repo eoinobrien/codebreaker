@@ -11,13 +11,14 @@ import { backspace, pushGuess } from '../../logic/keyboard';
 import { Guess, KeyboardActions, PegColor } from '../../models';
 
 export const Game = () => {
-  const [code] = useState<PegColor[]>(createCode(4));
+  const [code] = useState<PegColor[]>(createCode(4, true));
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
   const [gameComplete, setGameComplete] = useState<boolean>(false);
 
   const numberOfPegs = 4;
   const totalNumberOfGuesses = 10;
+  const allowEmptyPegs = false;
 
   const callback = (action: KeyboardActions, color?: PegColor) => {
     switch (action) {
@@ -28,24 +29,28 @@ export const Game = () => {
           setCurrentGuess(result.guess);
         }
         break;
+      
       case KeyboardActions.Backspace:
         let result = backspace([...currentGuess]);
         setCurrentGuess(result.guess);
         break;
+      
       case KeyboardActions.Enter:
         if (guesses.length < totalNumberOfGuesses) {
-          let guessToAdd: Guess = {
-            code: currentGuess,
-            keys: keysFromGuess(code, currentGuess),
-            currentGuess: false,
-          };
-          let cloneGuesses = [...guesses];
+          if (currentGuess.length === numberOfPegs || allowEmptyPegs) {
+            let guessToAdd: Guess = {
+              code: currentGuess,
+              keys: keysFromGuess(code, currentGuess),
+              currentGuess: false,
+            };
+            let cloneGuesses = [...guesses];
 
-          cloneGuesses.push(guessToAdd);
-          setGuesses(cloneGuesses);
-          setGameComplete(keyIsCorrectGuess(guessToAdd.keys, numberOfPegs));
+            cloneGuesses.push(guessToAdd);
+            setGuesses(cloneGuesses);
+            setGameComplete(keyIsCorrectGuess(guessToAdd.keys, numberOfPegs));
 
-          setCurrentGuess([]);
+            setCurrentGuess([]);
+          }
         } else {
           // TODO
         }

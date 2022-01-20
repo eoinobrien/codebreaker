@@ -29,9 +29,28 @@ test('keysFromGuess one color from Code occurs twice incorrectly in guess. Retur
   expect(keysFromGuess(code, guess)).toStrictEqual([Key.RightColorWrongSlot]);
 });
 
-test('keysFromGuess one color from Code occurs twice, once correctly in guess. Returns one RightColorRightSlot', () => {
+test('keysFromGuess one color from Code occurs twice in guess, once correctly. Returns one RightColorRightSlot', () => {
   let code = [PegColor.Red, PegColor.Black, PegColor.Red, PegColor.Red];
   let guess = [PegColor.White, PegColor.Black, PegColor.Black, PegColor.White];
 
-  expect(keysFromGuess(code, guess)).toStrictEqual([Key.RightColorWrongSlot]);
+  expect(keysFromGuess(code, guess)).toStrictEqual([Key.RightColorRightSlot]);
+});
+
+test('keysFromGuess one color from Code occurs twice, once correctly. Second guess occurrence is correct. Returns one RightColorRightSlot', () => {
+  let code = [PegColor.Red, PegColor.Red, PegColor.Black, PegColor.Red];
+  let guess = [PegColor.White, PegColor.Black, PegColor.Black, PegColor.White];
+
+  expect(keysFromGuess(code, guess)).toStrictEqual([Key.RightColorRightSlot]);
+});
+
+test('keysFromGuess code is one color and matches guess. Returns 4 RightColorRightSlot', () => {
+  let code = [PegColor.Red, PegColor.Red, PegColor.Red, PegColor.Red];
+  let guess = [PegColor.Red, PegColor.Red, PegColor.Red, PegColor.Red];
+
+  expect(keysFromGuess(code, guess)).toStrictEqual([
+    Key.RightColorRightSlot,
+    Key.RightColorRightSlot,
+    Key.RightColorRightSlot,
+    Key.RightColorRightSlot,
+  ]);
 });
