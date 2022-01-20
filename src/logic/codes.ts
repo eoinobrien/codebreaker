@@ -5,6 +5,8 @@ export const AllowedColors: PegColor[] = [
   PegColor.Green,
   PegColor.Yellow,
   PegColor.Blue,
+  PegColor.Orange,
+  PegColor.Purple,
   PegColor.Black,
   PegColor.White,
 ];
