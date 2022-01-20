@@ -23,17 +23,19 @@ export const PlayingBoard = ({
   return (
     <div className={styles.playingBoard}>
       <div className={styles.codeRow}>
-        <PegRow code={code} hideCode={!gameComplete} numberOfPegs={numberOfPegs}/>
-      </div>
-      <div>
-        <GuessBoard
-          currentGuess={currentGuess}
-          guesses={guesses}
+        <PegRow
+          code={code}
+          hideCode={!gameComplete}
           numberOfPegs={numberOfPegs}
-          totalNumberOfGuesses={totalNumberOfGuesses}
-          gameComplete={gameComplete}
         />
       </div>
+      <GuessBoard
+        currentGuess={currentGuess}
+        guesses={guesses}
+        numberOfPegs={numberOfPegs}
+        totalNumberOfGuesses={totalNumberOfGuesses}
+        gameComplete={gameComplete}
+      />
     </div>
   );
 };

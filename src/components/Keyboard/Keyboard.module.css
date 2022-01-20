@@ -2,6 +2,7 @@
     display: flex;
     background-color: #6D4C41;
     border-top: #3E2723 solid 0.4rem;
+    justify-content: center;
 }
 
 .colors {

@@ -6,4 +6,6 @@
 .codeRow {
     background-color: #6D4C41;
     border-bottom: #3E2723 solid 0.4rem;
+    display: flex;
+    justify-content: center;
 }
