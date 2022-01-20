@@ -1,4 +1,4 @@
-import { pegHexColors } from '../../logic/pegs';
+import { getPegStyling } from '../../logic/pegs';
 import { KeyboardActions, PegColor } from '../../models';
 import { Peg } from '../Peg';
 import styles from './PegButton.module.css';
@@ -27,7 +27,7 @@ export const PegButton = ({
       aria-label={ariaLabel}
       onClick={() => onClick(action, PegColor[color as keyof typeof PegColor])}
     >
-      <Peg color={pegHexColors.get(color) ?? '#F3E5F5'} light={light}>
+      <Peg color={getPegStyling.get(color)?.color ?? '#F3E5F5'} light={light}>
         {children}
       </Peg>
     </button>

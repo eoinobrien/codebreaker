@@ -5,6 +5,11 @@ export enum PegColor {
   Blue = "Blue",
   Black = "Black",
   White = "White",
+  Purple = "Purple",
+  Pink = "Pink",
+  Orange = "Orange",
+  Teal = "Teal",
+
   Blank = "Blank",
   Hidden = "Hidden",
   KeyboardAction = "KeyboardAction"
