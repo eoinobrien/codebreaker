@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import { Keyboard } from '../../components/Keyboard';
 import { PlayingBoard } from '../../components/PlayingBoard';
@@ -12,7 +11,7 @@ import { backspace, pushGuess } from '../../logic/keyboard';
 import { Guess, KeyboardActions, PegColor } from '../../models';
 
 export const Game = () => {
-  const [code, setCode] = useState<PegColor[]>(createCode(4));
+  const [code] = useState<PegColor[]>(createCode(4));
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
   const [gameComplete, setGameComplete] = useState<boolean>(false);

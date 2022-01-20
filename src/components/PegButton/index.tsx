@@ -1,4 +1,3 @@
-import { MouseEventHandler } from 'react';
 import { KeyboardActions, PegColor } from '../../models';
 import { Peg } from '../Peg';
 import styles from './PegButton.module.css';

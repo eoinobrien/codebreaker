@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { createArrayOfObject } from '../../logic/codes';
 import { Guess, PegColor } from '../../models';
 import { GuessPegRow } from '../GuessPegRow';
