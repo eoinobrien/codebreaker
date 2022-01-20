@@ -1,12 +1,10 @@
 import { createArrayOfObject } from '../../logic/codes';
 import { getPegStyling } from '../../logic/pegs';
-import * as Icons from 'react-icons/bs';
 import { PegColor } from '../../models';
 import { EmptyPeg } from '../EmptyPeg';
 import { HiddenPeg } from '../HiddenPeg';
 import { Peg } from '../Peg';
 import styles from './PegRow.module.css';
-import React from 'react';
 import { PegIconChooser } from '../PegIconChooser';
 
 interface PegRowProps {

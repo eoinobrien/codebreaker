@@ -1,6 +1,3 @@
-
-import { IconType } from 'react-icons';
-import { BsFillSuitHeartFill } from 'react-icons/bs';
 import { PegColor } from '../models';
 
 export type PegStyling = {
