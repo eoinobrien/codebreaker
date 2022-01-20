@@ -1,4 +1,5 @@
 import { createArrayOfObject } from '../../logic/codes';
+import { pegHexColors } from '../../logic/pegs';
 import { PegColor, Key } from '../../models';
 import { EmptyPeg } from '../EmptyPeg';
 import { Peg } from '../Peg';
@@ -30,7 +31,7 @@ export const KeyGrid = ({ keys, numberOfPegs }: KeyGridProps) => {
           <Peg
             key={index}
             size="small"
-            color={keyColor}
+            color={pegHexColors.get(keyColor) ?? '#000'}
           />
         );
       })}

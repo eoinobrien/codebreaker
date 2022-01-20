@@ -30,7 +30,7 @@ export const PegRow = ({
           return (
             <Peg
               key={index}
-              color={pegHexColors.get(code[index]) ?? '#F3E5F5'}
+              color={pegHexColors.get(code[index]) ?? '#000'}
               ariaLabel={code[index]}
             />
           );
