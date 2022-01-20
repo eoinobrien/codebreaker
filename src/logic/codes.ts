@@ -2,11 +2,11 @@ import { Key, PegColor } from '../models';
 
 export const AllowedColors: PegColor[] = [
   PegColor.Red,
-  // PegColor.Green,
-  // PegColor.Yellow,
-  // PegColor.Blue,
-  // PegColor.Black,
-  // PegColor.White,
+  PegColor.Green,
+  PegColor.Yellow,
+  PegColor.Blue,
+  PegColor.Black,
+  PegColor.White,
 ];
 
 export function createCode(

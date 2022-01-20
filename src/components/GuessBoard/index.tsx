@@ -16,9 +16,10 @@ export const GuessBoard = ({
   numberOfPegs,
   totalNumberOfGuesses,
 }: GuessBoardProps) => {
+  let gameComplete = guesses.length >= totalNumberOfGuesses;
   let remainingGuessesIndexes = createArrayOfObject(
     0,
-    totalNumberOfGuesses - guesses.length,
+    totalNumberOfGuesses - guesses.length - (gameComplete ? 0 : 1),
   );
 
   return (
@@ -28,12 +29,14 @@ export const GuessBoard = ({
       ))}
 
       {/* Current Guess */}
-      <GuessPegRow
-        key={guesses.length}
-        numberOfPegs={numberOfPegs}
-        code={currentGuess}
-        currentGuess
-      />
+      {!gameComplete && (
+        <GuessPegRow
+          key={guesses.length}
+          numberOfPegs={numberOfPegs}
+          code={currentGuess}
+          currentGuess
+        />
+      )}
 
       {/* Fill remainder of Game board with number of attempts left */}
       {remainingGuessesIndexes.map((_, index) => (

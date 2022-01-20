@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Keyboard } from '../../components/Keyboard';
 import { PlayingBoard } from '../../components/PlayingBoard';
 import {
@@ -20,6 +20,13 @@ export const Game = () => {
   const totalNumberOfGuesses = 10;
   const allowEmptyPegs = false;
 
+  useEffect(() => {
+    setGameComplete(
+      guesses.length >= totalNumberOfGuesses ||
+        keyIsCorrectGuess(guesses.at(-1)?.keys ?? [], numberOfPegs),
+    );
+  }, [guesses]);
+
   const callback = (action: KeyboardActions, color?: PegColor) => {
     switch (action) {
       case KeyboardActions.ColorPicker:
@@ -29,14 +36,14 @@ export const Game = () => {
           setCurrentGuess(result.guess);
         }
         break;
-      
+
       case KeyboardActions.Backspace:
         let result = backspace([...currentGuess]);
         setCurrentGuess(result.guess);
         break;
-      
+
       case KeyboardActions.Enter:
-        if (guesses.length < totalNumberOfGuesses) {
+        if (!gameComplete) {
           if (currentGuess.length === numberOfPegs || allowEmptyPegs) {
             let guessToAdd: Guess = {
               code: currentGuess,
@@ -47,7 +54,6 @@ export const Game = () => {
 
             cloneGuesses.push(guessToAdd);
             setGuesses(cloneGuesses);
-            setGameComplete(keyIsCorrectGuess(guessToAdd.keys, numberOfPegs));
 
             setCurrentGuess([]);
           }
@@ -72,8 +78,7 @@ export const Game = () => {
         totalNumberOfGuesses={totalNumberOfGuesses}
         hideCode={
           guesses === undefined ||
-          !gameComplete ||
-          guesses.length < totalNumberOfGuesses
+          !gameComplete
         }
       />
       <Keyboard
