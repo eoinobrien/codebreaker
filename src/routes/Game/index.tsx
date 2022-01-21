@@ -1,37 +1,55 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { GuessBoard } from '../../components/GuessBoard';
 import { Keyboard } from '../../components/Keyboard';
-import { PlayingBoard } from '../../components/PlayingBoard';
+import { PegRow } from '../../components/PegRow';
 import {
   AllowedColors,
-  createCode,
   keyIsCorrectGuess,
   keysFromGuess,
 } from '../../logic/codes';
+import {
+  createGameSettings,
+  decodeGameSettings,
+  encodeGameSettings,
+  GameSettings,
+} from '../../logic/game';
 import { backspace, pushGuess } from '../../logic/keyboard';
 import { Guess, KeyboardActions, PegColor } from '../../models';
+import styles from './Game.module.css';
 
 export const Game = () => {
-  const [code] = useState<PegColor[]>(createCode(4));
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [gameSettings] = useState<GameSettings>(
+    searchParams.has('code')
+      ? decodeGameSettings(searchParams.get('code') ?? '')
+      : createGameSettings(),
+  );
+  const [code] = useState<PegColor[]>(gameSettings.code);
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
   const [gameComplete, setGameComplete] = useState<boolean>(false);
 
-  const numberOfPegs = 4;
-  const totalNumberOfGuesses = 10;
-  const allowEmptyPegs = false;
-
   useEffect(() => {
     setGameComplete(
-      guesses.length >= totalNumberOfGuesses ||
-        keyIsCorrectGuess(guesses.at(-1)?.keys ?? [], numberOfPegs),
+      guesses.length >= gameSettings.totalNumberOfGuesses ||
+        keyIsCorrectGuess(
+          guesses.at(-1)?.keys ?? [],
+          gameSettings.numberOfPegs,
+        ),
     );
-  }, [guesses]);
+    setSearchParams({ code: encodeGameSettings(gameSettings) });
+  }, [guesses, gameSettings, setSearchParams]);
 
   const callback = (action: KeyboardActions, color?: PegColor) => {
     switch (action) {
       case KeyboardActions.ColorPicker:
         if (color !== undefined && !gameComplete) {
-          let result = pushGuess([...currentGuess], numberOfPegs, color);
+          let result = pushGuess(
+            [...currentGuess],
+            gameSettings.numberOfPegs,
+            color,
+          );
 
           setCurrentGuess(result.guess);
         }
@@ -44,7 +62,7 @@ export const Game = () => {
 
       case KeyboardActions.Enter:
         if (!gameComplete) {
-          if (currentGuess.length === numberOfPegs || allowEmptyPegs) {
+          if (currentGuess.length === gameSettings.numberOfPegs) {
             let guessToAdd: Guess = {
               code: currentGuess,
               keys: keysFromGuess(code, currentGuess),
@@ -69,20 +87,30 @@ export const Game = () => {
   };
 
   return (
-    <div>
-      <PlayingBoard
-        code={code}
-        currentGuess={currentGuess}
-        guesses={guesses}
-        numberOfPegs={numberOfPegs}
-        totalNumberOfGuesses={totalNumberOfGuesses}
-        gameComplete={gameComplete}
-      />
-      <Keyboard
-        colors={AllowedColors}
-        numberOfPegs={numberOfPegs}
-        callback={callback}
-      />
+    <div className={styles.game}>
+      <div className={styles.codeRow}>
+        <PegRow
+          code={code}
+          hideCode={!gameComplete}
+          numberOfPegs={gameSettings.numberOfPegs}
+        />
+      </div>
+      <div className={styles.guessBoard}>
+        <GuessBoard
+          currentGuess={currentGuess}
+          guesses={guesses}
+          numberOfPegs={gameSettings.numberOfPegs}
+          totalNumberOfGuesses={gameSettings.totalNumberOfGuesses}
+          gameComplete={gameComplete}
+        />
+      </div>
+      <div className={styles.keyboard}>
+        <Keyboard
+          colors={AllowedColors}
+          numberOfPegs={gameSettings.numberOfPegs}
+          callback={callback}
+        />
+      </div>
     </div>
   );
 };

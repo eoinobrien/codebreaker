@@ -20,7 +20,7 @@ export const Keyboard = ({ colors, numberOfPegs, callback }: KeyboardProps) => {
           <PegButton
             key={index}
             color={color}
-            ariaLabel={color}
+            ariaLabel={PegColor[color]}
             action={KeyboardActions.ColorPicker}
             onClick={callback}
           />

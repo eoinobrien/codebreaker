@@ -12,15 +12,16 @@ export const AllowedColors: PegColor[] = [
 ];
 
 export function createCode(
+  colors: PegColor[],
   numberOfPegs: number,
   allowDuplicates: boolean = false,
 ): PegColor[] {
   let pegs: PegColor[] = [];
 
   for (let i = 0; i < numberOfPegs; i++) {
-    let peg = randomPegColor();
+    let peg = randomPegColor(colors);
     while (!allowDuplicates && pegs.indexOf(peg) !== -1) {
-      peg = randomPegColor();
+      peg = randomPegColor(colors);
     }
     pegs.push(peg);
   }
@@ -28,8 +29,8 @@ export function createCode(
   return pegs;
 }
 
-function randomPegColor(): PegColor {
-  return AllowedColors[Math.floor(Math.random() * AllowedColors.length)];
+function randomPegColor(colors: PegColor[]): PegColor {
+  return colors[Math.floor(Math.random() * colors.length)];
 }
 
 export function keysFromGuess(code: PegColor[], guess: PegColor[]): Key[] {

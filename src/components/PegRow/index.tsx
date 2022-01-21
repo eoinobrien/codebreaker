@@ -43,7 +43,7 @@ export const PegRow = ({
             <Peg
               key={index}
               color={pegStyling?.color ?? '#000'}
-              ariaLabel={code[index]}
+              ariaLabel={PegColor[code[index]]}
             >
               {IconComponent}
             </Peg>

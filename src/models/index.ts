@@ -1,18 +1,18 @@
 export enum PegColor {
-  Red = "Red",
-  Green = "Green",
-  Yellow = "Yellow",
-  Blue = "Blue",
-  Black = "Black",
-  White = "White",
-  Purple = "Purple",
-  Pink = "Pink",
-  Orange = "Orange",
-  Teal = "Teal",
+  Red,
+  Green,
+  Yellow,
+  Blue,
+  Black,
+  White,
+  Purple,
+  Pink,
+  Orange,
+  Teal,
 
-  Blank = "Blank",
-  Hidden = "Hidden",
-  KeyboardAction = "KeyboardAction"
+  Blank,
+  Hidden,
+  KeyboardAction
 }
 
 export enum Key {

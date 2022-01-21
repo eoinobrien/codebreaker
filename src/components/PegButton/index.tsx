@@ -25,7 +25,7 @@ export const PegButton = ({
       className={styles.pegButton}
       value={color}
       aria-label={ariaLabel}
-      onClick={() => onClick(action, PegColor[color as keyof typeof PegColor])}
+      onClick={() => onClick(action, color)}
     >
       <Peg color={getPegStyling.get(color)?.color ?? '#F3E5F5'} light={light}>
         {children}
