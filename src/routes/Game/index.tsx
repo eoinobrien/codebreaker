@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { BsFillPlusSquareFill } from 'react-icons/bs';
 import { useSearchParams } from 'react-router-dom';
 import { GuessBoard } from '../../components/GuessBoard';
+import { IconButton } from '../../components/IconButton';
 import { Keyboard } from '../../components/Keyboard';
 import { PegRow } from '../../components/PegRow';
 import {
@@ -94,6 +96,7 @@ export const Game = () => {
           hideCode={!gameComplete}
           numberOfPegs={gameSettings.numberOfPegs}
         />
+        <IconButton Icon={BsFillPlusSquareFill} onClick={() => alert("new game")} light/>
       </div>
       <div className={styles.guessBoard}>
         <GuessBoard

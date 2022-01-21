@@ -1,0 +1,27 @@
+.iconButton {
+    height: 4rem;
+    width: 4rem;
+    
+    border: none;
+    background: none;
+    display: inline-flex;
+
+    border-radius: 1rem;
+    margin: 0.5rem;
+    padding: 0;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.iconButton:hover {
+    filter: brightness(90%);
+}
+
+.iconButton:active {
+    filter: brightness(80%);
+}
+
+.light {
+    color: #D7CCC8;
+}
