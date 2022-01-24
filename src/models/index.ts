@@ -20,11 +20,11 @@ export const PegColorsArray: PegColor[] = [
   PegColor.Green,
   PegColor.Yellow,
   PegColor.Blue,
-  PegColor.Pink,
+  PegColor.Purple,
   PegColor.Orange,
   PegColor.Black,
   PegColor.White,
-  PegColor.Purple,
+  PegColor.Pink,
   PegColor.Teal,
 ]
 

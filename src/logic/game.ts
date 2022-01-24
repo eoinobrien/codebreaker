@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer';
-import { PegColor } from '../models';
+import { PegColor, PegColorsArray } from '../models';
 import { AllowedColors, createCode } from './codes';
 
 export type GameSettings = {
@@ -51,7 +51,7 @@ export function decodeGameSettings(encodedSettings: string): GameSettings {
 }
 
 export function createGameSettings(
-  colors: PegColor[] = AllowedColors,
+  colors: PegColor[] = PegColorsArray.slice(0,8),
   numberOfPegs: number = 4,
   totalNumberOfGuesses: number = 10,
   allowDuplicates: boolean = false,
