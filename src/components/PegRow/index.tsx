@@ -4,7 +4,6 @@ import { PegColor } from '../../models';
 import { EmptyPeg } from '../EmptyPeg';
 import { HiddenPeg } from '../HiddenPeg';
 import { Peg } from '../Peg';
-import styles from './PegRow.module.css';
 import { PegIconChooser } from '../PegIconChooser';
 
 interface PegRowProps {
@@ -23,7 +22,7 @@ export const PegRow = ({
   let pegsIndex: number[] = createArrayOfObject(0, numberOfPegs);
 
   return (
-    <div className={styles.pegRow}>
+    <>
       {pegsIndex.map((_, index) => {
         if (code.length > index && code[index] !== PegColor.Blank) {
           if (hideCode || code[index] === PegColor.Hidden) {
@@ -52,6 +51,6 @@ export const PegRow = ({
           return <EmptyPeg key={index} />;
         }
       })}
-    </div>
+    </>
   );
 };

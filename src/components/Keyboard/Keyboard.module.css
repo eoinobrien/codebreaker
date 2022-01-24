@@ -3,13 +3,9 @@
     background-color: #6D4C41;
     border-top: #3E2723 solid 0.4rem;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
-.colors {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.actions {
-    width: 5rem;
+.keyboard button {
+    flex-basis: 20%;
 }

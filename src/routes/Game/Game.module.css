@@ -3,17 +3,23 @@
     min-height: 0;
     display: flex;
     flex-direction: column;
+
+    max-width: 50rem;
+    margin: 0 auto;
 }
+
 .codeRow {
     background-color: #6d4c41;
     border-bottom: #3e2723 solid 0.4rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
+
 .guessBoard {
     flex: 1;
     overflow-y: auto;
 }
+
 .keyboard {
     margin-top: auto;
     bottom: 0;

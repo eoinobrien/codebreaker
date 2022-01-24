@@ -96,7 +96,11 @@ export const Game = () => {
           hideCode={!gameComplete}
           numberOfPegs={gameSettings.numberOfPegs}
         />
-        <IconButton Icon={BsFillPlusSquareFill} onClick={() => alert("new game")} light/>
+        <IconButton
+          Icon={BsFillPlusSquareFill}
+          onClick={() => alert('new game')}
+          light
+        />
       </div>
       <div className={styles.guessBoard}>
         <GuessBoard
