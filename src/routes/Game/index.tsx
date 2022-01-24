@@ -6,28 +6,23 @@ import { IconButton } from '../../components/IconButton';
 import { Keyboard } from '../../components/Keyboard';
 import { PegRow } from '../../components/PegRow';
 import {
-  AllowedColors,
   keyIsCorrectGuess,
   keysFromGuess,
 } from '../../logic/codes';
 import {
   createGameSettings,
-  decodeGameSettings,
   encodeGameSettings,
   GameSettings,
+  getOrCreateGame,
 } from '../../logic/game';
 import { backspace, pushGuess } from '../../logic/keyboard';
-import { Guess, KeyboardActions, PegColor } from '../../models';
+import { Guess, KeyboardActions, PegColor, PegColorsArray } from '../../models';
 import styles from './Game.module.css';
 
 export const Game = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [gameSettings] = useState<GameSettings>(
-    searchParams.has('code')
-      ? decodeGameSettings(searchParams.get('code') ?? '')
-      : createGameSettings(),
-  );
-  const [code] = useState<PegColor[]>(gameSettings.code);
+  const [gameSettings, setGameSettings] = useState<GameSettings>(getOrCreateGame(searchParams));
+  const [code, setCode] = useState<PegColor[]>(gameSettings.code);
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
   const [gameComplete, setGameComplete] = useState<boolean>(false);
@@ -40,8 +35,19 @@ export const Game = () => {
           gameSettings.numberOfPegs,
         ),
     );
+}, [guesses, gameSettings.totalNumberOfGuesses, gameSettings.numberOfPegs]);
+
+  useEffect(() => {
     setSearchParams({ code: encodeGameSettings(gameSettings) });
+    setCode(gameSettings.code);
   }, [guesses, gameSettings, setSearchParams]);
+
+  const newGame = () => {
+    setGameSettings(createGameSettings());
+    setGameComplete(false);
+    setGuesses([]);
+    setCurrentGuess([]);
+  }
 
   const callback = (action: KeyboardActions, color?: PegColor) => {
     switch (action) {
@@ -98,7 +104,7 @@ export const Game = () => {
         />
         <IconButton
           Icon={BsFillPlusSquareFill}
-          onClick={() => alert('new game')}
+          onClick={() => newGame()}
           light
         />
       </div>
@@ -113,7 +119,7 @@ export const Game = () => {
       </div>
       <div className={styles.keyboard}>
         <Keyboard
-          colors={AllowedColors}
+          colors={PegColorsArray.slice(0, gameSettings.numberOfColors)}
           numberOfPegs={gameSettings.numberOfPegs}
           callback={callback}
         />

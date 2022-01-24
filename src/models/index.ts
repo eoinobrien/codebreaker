@@ -1,5 +1,5 @@
 export enum PegColor {
-  Red,
+  Red = 0,
   Green,
   Yellow,
   Blue,
@@ -10,10 +10,23 @@ export enum PegColor {
   Orange,
   Teal,
 
-  Blank,
+  Blank = 100,
   Hidden,
   KeyboardAction
 }
+
+export const PegColorsArray: PegColor[] = [
+  PegColor.Red,
+  PegColor.Green,
+  PegColor.Yellow,
+  PegColor.Blue,
+  PegColor.Pink,
+  PegColor.Orange,
+  PegColor.Black,
+  PegColor.White,
+  PegColor.Purple,
+  PegColor.Teal,
+]
 
 export enum Key {
   RightColorRightSlot,
