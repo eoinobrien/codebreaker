@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer';
 import { PegColor, PegColorsArray } from '../models';
-import { AllowedColors, createCode } from './codes';
+import { createCode } from './codes';
 
 export type GameSettings = {
   code: PegColor[];
