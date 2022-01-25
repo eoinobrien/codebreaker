@@ -1,0 +1,36 @@
+.incrementor {
+    font-size: 2rem;
+    display: inline-flex;
+    justify-content: space-around;
+    width:100%;
+    max-width: 30rem;
+    border-radius: 1.5rem;
+
+    border: #3E2723 0.2em solid;
+    font-weight: bold;
+}
+
+.incrementor button {
+    padding: 1rem;
+    border: none;
+    background: #D7CCC8;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.incrementor button:hover {
+    filter: brightness(90%);
+}
+
+.incrementor button:active {
+    filter: brightness(80%);
+}
+
+.incrementor button:disabled {
+    filter: brightness(110%);
+}
+
+.incrementor div {
+    padding: 1rem;
+    margin: 0 2rem;
+}
