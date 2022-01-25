@@ -104,13 +104,13 @@ function createComponentString<T>(
 
 export function encodeGameSettings(game: GameSettings): string {
   let serialised = JSON.stringify(createGameSettingsCompressed(game));
-  let encodedString = Buffer.from(serialised).toString('base64url');
+  let encodedString = Buffer.from(serialised).toString('base64');
 
   return encodedString;
 }
 
 export function decodeGameSettings(encodedSettings: string): GameSettings {
-  let decodedData = Buffer.from(encodedSettings, 'base64url').toString('ascii');
+  let decodedData = Buffer.from(encodedSettings, 'base64').toString('ascii');
 
   return reverseGameSettingsCompressed(JSON.parse(decodedData));
 }
