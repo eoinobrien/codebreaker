@@ -95,7 +95,7 @@ function createComponentString<T>(
   indicator: string,
   compressed: string[],
 ): string[] {
-  if (value != constant) {
+  if (value !== constant) {
     compressed.push(`${indicator}${value}`);
   }
 
