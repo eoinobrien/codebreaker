@@ -1,4 +1,4 @@
-import { createArrayOfObject } from 'logic/codes';
+import { createArrayOfObject } from 'logic';
 import { Guess, PegColor } from 'models';
 import { GuessPegRow } from 'components/GuessPegRow';
 import styles from './GuessBoard.module.css';

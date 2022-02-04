@@ -2,8 +2,8 @@ import { createArrayOfObject, getPegStyling } from 'logic';
 import { PegColor } from 'models';
 import { EmptyPeg } from 'components/EmptyPeg';
 import { HiddenPeg } from 'components/HiddenPeg';
-import { Peg } from 'components/Peg';
-import { PegIconChooser } from 'components/PegIconChooser';
+import { Peg } from 'components/Peg/Peg';
+import { PegIconChooser } from 'components/PegIconChooser/PegIconChooser';
 
 interface PegRowProps {
   code: PegColor[];

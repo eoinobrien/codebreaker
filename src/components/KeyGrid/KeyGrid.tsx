@@ -1,5 +1,4 @@
-import { createArrayOfObject } from 'logic/codes';
-import { getPegStyling } from 'logic/pegs';
+import { createArrayOfObject, getPegStyling } from 'logic';
 import { PegColor, Key } from 'models';
 import { EmptyPeg } from 'components/EmptyPeg';
 import { Peg } from 'components/Peg';
