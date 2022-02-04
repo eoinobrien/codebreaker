@@ -1,2 +1,2 @@
-import { PegIconChooser } from './PegIconChooser';
-export { PegIconChooser };
+import { PegIconChooser, getIcon } from './PegIconChooser';
+export { PegIconChooser, getIcon };

@@ -2,6 +2,9 @@ import { BsArrowReturnLeft, BsBackspace } from 'react-icons/bs';
 import { KeyboardActions, PegColor } from 'models';
 import { PegButton } from 'components/PegButton';
 import styles from './Keyboard.module.css';
+import { SettingsContext } from 'context/settingsContext';
+import { useContext } from 'react';
+import { getIcon, PegIconChooser } from 'components/PegIconChooser';
 
 interface KeyboardProps {
   colors: PegColor[];
@@ -10,6 +13,7 @@ interface KeyboardProps {
 }
 
 export const Keyboard = ({ colors, numberOfPegs, callback }: KeyboardProps) => {
+  let { showIcons } = useContext(SettingsContext);
   const halfWayIndex = Math.ceil(colors.length / 2);
 
   const firstHalfOfColors = colors.slice(0, halfWayIndex);
@@ -17,15 +21,19 @@ export const Keyboard = ({ colors, numberOfPegs, callback }: KeyboardProps) => {
 
   return (
     <div className={styles.keyboard}>
-      {firstHalfOfColors.map((color, index) => (
-        <PegButton
-          key={index}
-          color={color}
-          ariaLabel={PegColor[color]}
-          action={KeyboardActions.ColorPicker}
-          onClick={callback}
-        />
-      ))}
+      {firstHalfOfColors.map((color, index) => {
+        return (
+          <PegButton
+            key={index}
+            color={color}
+            ariaLabel={PegColor[color]}
+            action={KeyboardActions.ColorPicker}
+            onClick={callback}
+          >
+            {getIcon(color, showIcons)}
+          </PegButton>
+        );
+      })}
 
       <PegButton
         color={PegColor.KeyboardAction}
@@ -44,7 +52,9 @@ export const Keyboard = ({ colors, numberOfPegs, callback }: KeyboardProps) => {
           ariaLabel={PegColor[color]}
           action={KeyboardActions.ColorPicker}
           onClick={callback}
-        />
+        >
+          {getIcon(color, showIcons)}
+        </PegButton>
       ))}
 
       <PegButton

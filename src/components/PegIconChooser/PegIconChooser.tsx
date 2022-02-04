@@ -1,3 +1,5 @@
+import { getPegStyling } from 'logic';
+import { PegColor } from 'models';
 import {
   BsFillHexagonFill,
   BsFillPatchQuestionFill,
@@ -15,34 +17,45 @@ import {
 interface PegIconChooserProps {
   iconName: string;
   size: string | number;
+  color?: string;
 }
 
-export const PegIconChooser = ({ iconName, size }: PegIconChooserProps) => {
+export const PegIconChooser = ({ iconName, size, color }: PegIconChooserProps) => {
   switch (iconName) {
     case 'BsFillSuitHeartFill':
-      return <BsFillSuitHeartFill size={size} />;
+      return <BsFillSuitHeartFill size={size} color={color} />;
     case 'BsFillSquareFill':
-      return <BsFillSquareFill size={size} />;
+      return <BsFillSquareFill size={size} color={color} />;
     case 'BsFillTriangleFill':
-      return <BsFillTriangleFill size={size} />;
+      return <BsFillTriangleFill size={size} color={color} />;
     case 'BsFillSuitClubFill':
-      return <BsFillSuitClubFill size={size} />;
+      return <BsFillSuitClubFill size={size} color={color} />;
     case 'BsFillSuitDiamondFill':
-      return <BsFillSuitDiamondFill size={size} />;
+      return <BsFillSuitDiamondFill size={size} color={color} />;
     case 'BsFillSuitSpadeFill':
-      return <BsFillSuitSpadeFill size={size} />;
+      return <BsFillSuitSpadeFill size={size} color={color} />;
     case 'BsFillStarFill':
-      return <BsFillStarFill size={size} />;
+      return <BsFillStarFill size={size} color={color} />;
     case 'BsFillHexagonFill':
-      return <BsFillHexagonFill size={size} />;
+      return <BsFillHexagonFill size={size} color={color} />;
     case 'BsFillShieldFill':
-      return <BsFillShieldFill size={size} />;
+      return <BsFillShieldFill size={size} color={color} />;
     case 'BsFillShiftFill':
-      return <BsFillShiftFill size={size} />;
+      return <BsFillShiftFill size={size} color={color} />;
     case 'BsFillPatchQuestionFill':
-      return <BsFillPatchQuestionFill size={size} />;
+      return <BsFillPatchQuestionFill size={size} color={color} />;
 
     default:
-      return <BsFillPatchQuestionFill size={size} />;
+      return <BsFillPatchQuestionFill size={size} color={color} />;
   }
+};
+
+export const getIcon = (color: PegColor, showIcons: boolean) => {
+  const pegStyling = getPegStyling.get(color);
+  const iconString: string = pegStyling?.icon ?? 'BsFillPatchQuestionFill';
+  return showIcons ? (
+    <PegIconChooser iconName={iconString} size="2rem" color={ pegStyling?.iconColor ?? '#FFF'} />
+  ) : (
+    <div />
+  );
 };

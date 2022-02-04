@@ -1,2 +1,2 @@
-import { Keyboard } from './Keyboard';
-export { Keyboard };
+import { IconButton } from './IconButton';
+export { IconButton };

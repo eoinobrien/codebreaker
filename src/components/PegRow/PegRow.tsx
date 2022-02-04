@@ -2,22 +2,23 @@ import { createArrayOfObject, getPegStyling } from 'logic';
 import { PegColor } from 'models';
 import { EmptyPeg } from 'components/EmptyPeg';
 import { HiddenPeg } from 'components/HiddenPeg';
-import { Peg } from 'components/Peg/Peg';
-import { PegIconChooser } from 'components/PegIconChooser/PegIconChooser';
+import { Peg } from 'components/Peg';
+import { getIcon, PegIconChooser } from 'components/PegIconChooser';
+import { SettingsContext } from 'context/settingsContext';
+import { useContext } from 'react';
 
 interface PegRowProps {
   code: PegColor[];
   numberOfPegs: number;
   hideCode?: boolean;
-  showIcons?: boolean;
 }
 
 export const PegRow = ({
   code,
   numberOfPegs,
   hideCode = false,
-  showIcons = false,
 }: PegRowProps) => {
+  let { showIcons } = useContext(SettingsContext);
   let pegsIndex: number[] = createArrayOfObject(0, numberOfPegs);
 
   return (
@@ -28,22 +29,13 @@ export const PegRow = ({
             return <HiddenPeg key={index} />;
           }
 
-          const pegStyling = getPegStyling.get(code[index]);
-          const iconString: string =
-            pegStyling?.icon ?? 'BsFillPatchQuestionFill';
-          const IconComponent = showIcons ? (
-            <PegIconChooser iconName={iconString} size="2rem" />
-          ) : (
-            <div />
-          );
-
           return (
             <Peg
               key={index}
-              color={pegStyling?.color ?? '#000'}
+              color={getPegStyling.get(code[index])?.color ?? '#000'}
               ariaLabel={PegColor[code[index]]}
             >
-              {IconComponent}
+              {getIcon(code[index], showIcons)}
             </Peg>
           );
         } else {
