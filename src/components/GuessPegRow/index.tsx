@@ -1,7 +1,7 @@
 import classnames from 'classnames';
-import { Key, PegColor } from '../../models';
-import { KeyGrid } from '../KeyGrid';
-import { PegRow } from '../PegRow';
+import { Key, PegColor } from 'models';
+import { KeyGrid } from 'components/KeyGrid';
+import { PegRow } from 'components/PegRow';
 import styles from './GuessPegRow.module.css';
 
 interface GuessPegRowProps {

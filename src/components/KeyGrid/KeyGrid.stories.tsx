@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { KeyGrid } from '.';
-import { Key } from '../../models';
+import { Key } from 'models';
 
 export default {
   title: 'Components/KeyGrid',

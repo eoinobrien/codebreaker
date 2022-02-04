@@ -1,27 +1,28 @@
 import { useEffect, useState } from 'react';
 import { BsFillPlusSquareFill } from 'react-icons/bs';
 import { useSearchParams } from 'react-router-dom';
-import { GuessBoard } from '../../components/GuessBoard';
-import { IconButton } from '../../components/IconButton';
-import { Keyboard } from '../../components/Keyboard';
-import { PegRow } from '../../components/PegRow';
+import { GuessBoard } from 'components/GuessBoard';
+import { IconButton } from 'components/IconButton';
+import { Keyboard } from 'components/Keyboard';
+import { PegRow } from 'components/PegRow';
 import {
   keyIsCorrectGuess,
   keysFromGuess,
-} from '../../logic/codes';
-import {
   createGameSettings,
   encodeGameSettings,
   GameSettings,
   getOrCreateGame,
-} from '../../logic/game';
-import { backspace, pushGuess } from '../../logic/keyboard';
-import { Guess, KeyboardActions, PegColor, PegColorsArray } from '../../models';
+  backspace,
+  pushGuess,
+} from 'logic';
+import { Guess, KeyboardActions, PegColor, PegColorsArray } from 'models';
 import styles from './Game.module.css';
 
 export const Game = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [gameSettings, setGameSettings] = useState<GameSettings>(getOrCreateGame(searchParams));
+  const [gameSettings, setGameSettings] = useState<GameSettings>(
+    getOrCreateGame(searchParams),
+  );
   const [code, setCode] = useState<PegColor[]>(gameSettings.code);
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
@@ -35,7 +36,7 @@ export const Game = () => {
           gameSettings.numberOfPegs,
         ),
     );
-}, [guesses, gameSettings.totalNumberOfGuesses, gameSettings.numberOfPegs]);
+  }, [guesses, gameSettings.totalNumberOfGuesses, gameSettings.numberOfPegs]);
 
   useEffect(() => {
     setSearchParams({ code: encodeGameSettings(gameSettings) });
@@ -47,7 +48,7 @@ export const Game = () => {
     setGameComplete(false);
     setGuesses([]);
     setCurrentGuess([]);
-  }
+  };
 
   const callback = (action: KeyboardActions, color?: PegColor) => {
     switch (action) {

@@ -1,6 +1,6 @@
-import { getPegStyling } from '../../logic/pegs';
-import { KeyboardActions, PegColor } from '../../models';
-import { Peg } from '../Peg';
+import { getPegStyling } from 'logic/pegs';
+import { KeyboardActions, PegColor } from 'models';
+import { Peg } from 'components/Peg';
 import styles from './PegButton.module.css';
 
 interface PegButtonProps {

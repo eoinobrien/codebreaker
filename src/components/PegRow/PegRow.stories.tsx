@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { PegRow } from '.';
-import { PegColor } from '../../models';
+import { PegColor } from 'models';
 
 export default {
   title: 'Components/PegRow',

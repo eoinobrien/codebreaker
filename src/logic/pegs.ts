@@ -1,4 +1,4 @@
-import { PegColor } from '../models';
+import { PegColor } from 'models';
 
 export type PegStyling = {
   color: string;

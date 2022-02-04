@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Keyboard } from '.';
-import { PegColor } from '../../models';
+import { PegColor } from 'models';
 
 export default {
   title: 'Components/Keyboard',

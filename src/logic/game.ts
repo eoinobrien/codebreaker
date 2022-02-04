@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer';
-import { PegColor, PegColorsArray } from '../models';
+import { PegColor, PegColorsArray } from 'models';
 import { createCode } from './codes';
 
 const NUMBER_OF_COLORS: number = 8;

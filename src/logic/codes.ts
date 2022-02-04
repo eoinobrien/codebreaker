@@ -1,4 +1,4 @@
-import { Key, PegColor } from '../models';
+import { Key, PegColor } from 'models';
 
 export function createCode(
   colors: PegColor[],

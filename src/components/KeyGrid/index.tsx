@@ -1,8 +1,8 @@
-import { createArrayOfObject } from '../../logic/codes';
-import { getPegStyling } from '../../logic/pegs';
-import { PegColor, Key } from '../../models';
-import { EmptyPeg } from '../EmptyPeg';
-import { Peg } from '../Peg';
+import { createArrayOfObject } from 'logic/codes';
+import { getPegStyling } from 'logic/pegs';
+import { PegColor, Key } from 'models';
+import { EmptyPeg } from 'components/EmptyPeg';
+import { Peg } from 'components/Peg';
 import styles from './KeyGrid.module.css';
 
 interface KeyGridProps {

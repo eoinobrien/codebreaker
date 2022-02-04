@@ -1,7 +1,7 @@
 import { BsFillPatchQuestionFill } from 'react-icons/bs';
-import { getPegStyling } from '../../logic/pegs';
-import { PegColor } from '../../models';
-import { Peg } from '../Peg';
+import { getPegStyling } from 'logic/pegs';
+import { PegColor } from 'models';
+import { Peg } from 'components/Peg';
 
 interface HiddenPegProps {
   className?: string;

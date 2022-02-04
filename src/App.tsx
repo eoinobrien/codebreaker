@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import styles from './App.module.css';
-import { Game } from './routes/Game';
-import { Home } from './routes/Home';
+import { Game } from 'routes/Game';
+import { Home } from 'routes/Home';
 
 function App() {
   return (

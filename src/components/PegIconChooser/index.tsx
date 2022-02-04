@@ -1,14 +1,23 @@
-import { BsFillHexagonFill, BsFillPatchQuestionFill, BsFillShieldFill, BsFillShiftFill, BsFillSquareFill, BsFillStarFill, BsFillSuitClubFill, BsFillSuitDiamondFill, BsFillSuitHeartFill, BsFillSuitSpadeFill, BsFillTriangleFill } from 'react-icons/bs';
+import {
+  BsFillHexagonFill,
+  BsFillPatchQuestionFill,
+  BsFillShieldFill,
+  BsFillShiftFill,
+  BsFillSquareFill,
+  BsFillStarFill,
+  BsFillSuitClubFill,
+  BsFillSuitDiamondFill,
+  BsFillSuitHeartFill,
+  BsFillSuitSpadeFill,
+  BsFillTriangleFill,
+} from 'react-icons/bs';
 
 interface PegIconChooserProps {
   iconName: string;
   size: string | number;
 }
 
-export const PegIconChooser = ({
-  iconName,
-  size
-}: PegIconChooserProps) => {
+export const PegIconChooser = ({ iconName, size }: PegIconChooserProps) => {
   switch (iconName) {
     case 'BsFillSuitHeartFill':
       return <BsFillSuitHeartFill size={size} />;
@@ -32,7 +41,7 @@ export const PegIconChooser = ({
       return <BsFillShiftFill size={size} />;
     case 'BsFillPatchQuestionFill':
       return <BsFillPatchQuestionFill size={size} />;
-      
+
     default:
       return <BsFillPatchQuestionFill size={size} />;
   }

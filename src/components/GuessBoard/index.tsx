@@ -1,6 +1,6 @@
-import { createArrayOfObject } from '../../logic/codes';
-import { Guess, PegColor } from '../../models';
-import { GuessPegRow } from '../GuessPegRow';
+import { createArrayOfObject } from 'logic/codes';
+import { Guess, PegColor } from 'models';
+import { GuessPegRow } from 'components/GuessPegRow';
 import styles from './GuessBoard.module.css';
 
 interface GuessBoardProps {

@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Peg } from '.';
-import { PegColor } from '../../models';
+import { PegColor } from 'models';
 
 export default {
   title: 'Components/Peg',

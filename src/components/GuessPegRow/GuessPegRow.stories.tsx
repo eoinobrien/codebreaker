@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { GuessPegRow } from '.';
-import { PegColor, Key } from '../../models';
+import { PegColor, Key } from 'models';
 
 export default {
   title: 'Components/GuessPegRow',

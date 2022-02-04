@@ -1,10 +1,9 @@
-import { createArrayOfObject } from '../../logic/codes';
-import { getPegStyling } from '../../logic/pegs';
-import { PegColor } from '../../models';
-import { EmptyPeg } from '../EmptyPeg';
-import { HiddenPeg } from '../HiddenPeg';
-import { Peg } from '../Peg';
-import { PegIconChooser } from '../PegIconChooser';
+import { createArrayOfObject, getPegStyling } from 'logic';
+import { PegColor } from 'models';
+import { EmptyPeg } from 'components/EmptyPeg';
+import { HiddenPeg } from 'components/HiddenPeg';
+import { Peg } from 'components/Peg';
+import { PegIconChooser } from 'components/PegIconChooser';
 
 interface PegRowProps {
   code: PegColor[];
