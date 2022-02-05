@@ -1,0 +1,30 @@
+.switch {
+    font-size: 2rem;
+    display: inline-flex;
+    justify-content: space-around;
+    width:100%;
+    border-radius: 1.5rem;
+
+    border: #3E2723 0.2em solid;
+    font-weight: bold;
+}
+
+.switch input {
+    display: none;
+}
+
+.label {
+    padding: 1rem;
+    text-align: center;
+    flex: 1;
+}
+
+.switch input:checked+.label {
+    background: #D7CCC8;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.label p {
+    margin: 0;
+}

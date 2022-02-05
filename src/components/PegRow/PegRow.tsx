@@ -3,7 +3,7 @@ import { PegColor } from 'models';
 import { EmptyPeg } from 'components/EmptyPeg';
 import { HiddenPeg } from 'components/HiddenPeg';
 import { Peg } from 'components/Peg';
-import { getIcon, PegIconChooser } from 'components/PegIconChooser';
+import { getIcon } from 'components/PegIconChooser';
 import { SettingsContext } from 'context/settingsContext';
 import { useContext } from 'react';
 

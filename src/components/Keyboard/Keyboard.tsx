@@ -4,7 +4,7 @@ import { PegButton } from 'components/PegButton';
 import styles from './Keyboard.module.css';
 import { SettingsContext } from 'context/settingsContext';
 import { useContext } from 'react';
-import { getIcon, PegIconChooser } from 'components/PegIconChooser';
+import { getIcon } from 'components/PegIconChooser';
 
 interface KeyboardProps {
   colors: PegColor[];

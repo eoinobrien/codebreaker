@@ -1,0 +1,6 @@
+.guessBoard {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    height: 100%;
+}
