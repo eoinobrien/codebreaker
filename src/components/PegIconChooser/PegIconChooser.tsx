@@ -1,6 +1,8 @@
 import { getPegStyling } from 'logic';
 import { PegColor } from 'models';
 import {
+  BsArrowReturnLeft,
+  BsBackspace,
   BsFillHexagonFill,
   BsFillPatchQuestionFill,
   BsFillShieldFill,
@@ -20,7 +22,11 @@ interface PegIconChooserProps {
   color?: string;
 }
 
-export const PegIconChooser = ({ iconName, size, color }: PegIconChooserProps) => {
+export const PegIconChooser = ({
+  iconName,
+  size,
+  color,
+}: PegIconChooserProps) => {
   switch (iconName) {
     case 'BsFillSuitHeartFill':
       return <BsFillSuitHeartFill size={size} color={color} />;
@@ -44,6 +50,10 @@ export const PegIconChooser = ({ iconName, size, color }: PegIconChooserProps) =
       return <BsFillShiftFill size={size} color={color} />;
     case 'BsFillPatchQuestionFill':
       return <BsFillPatchQuestionFill size={size} color={color} />;
+    case 'BsBackspace':
+      return <BsBackspace size={size} color={color} />;
+    case 'BsArrowReturnLeft':
+      return <BsArrowReturnLeft size={size} color={color} />;
 
     default:
       return <BsFillPatchQuestionFill size={size} color={color} />;
@@ -54,7 +64,11 @@ export const getIcon = (color: PegColor, showIcons: boolean) => {
   const pegStyling = getPegStyling.get(color);
   const iconString: string = pegStyling?.icon ?? 'BsFillPatchQuestionFill';
   return showIcons ? (
-    <PegIconChooser iconName={iconString} size="2rem" color={ pegStyling?.iconColor ?? '#FFF'} />
+    <PegIconChooser
+      iconName={iconString}
+      size="2rem"
+      color={pegStyling?.iconColor ?? '#FFF'}
+    />
   ) : (
     <div />
   );

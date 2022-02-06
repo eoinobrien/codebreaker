@@ -64,6 +64,7 @@ export const Game = ({
           colors={PegColorsArray.slice(0, numberOfColors)}
           numberOfPegs={numberOfPegs}
           callback={keyboardCallback}
+          showIcons
         />
       </div>
     </div>

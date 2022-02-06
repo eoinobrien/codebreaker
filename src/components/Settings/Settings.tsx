@@ -19,9 +19,8 @@ export const Settings = ({}: SettingsProps) => {
         key={index}
         color={p}
         ariaLabel={PegColor[p]}
-      >
-        {getIcon(p, showIcons)}
-      </Peg>
+        showIcon={showIcons}
+      />
     ));
   };
 

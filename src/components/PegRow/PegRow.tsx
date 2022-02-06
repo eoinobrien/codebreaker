@@ -3,8 +3,6 @@ import { PegColor } from 'models';
 import { EmptyPeg } from 'components/EmptyPeg';
 import { Peg } from 'components/Peg';
 import { getIcon } from 'components/PegIconChooser';
-import { SettingsContext } from 'context/settingsContext';
-import { useContext } from 'react';
 
 interface PegRowProps {
   code: PegColor[];
@@ -29,11 +27,10 @@ export const PegRow = ({
             return (
               <Peg
                 key={index}
-                color={code[index]}
-                ariaLabel={PegColor[code[index]]}
-              >
-                {getIcon(code[index], showIcons)}
-              </Peg>
+                color={PegColor.Hidden}
+                ariaLabel={PegColor[PegColor.Hidden]}
+                showIcon={true}
+              />
             );
           }
 
@@ -42,9 +39,8 @@ export const PegRow = ({
               key={index}
               color={code[index]}
               ariaLabel={PegColor[code[index]]}
-            >
-              {getIcon(code[index], true)}
-            </Peg>
+              showIcon={showIcons}
+            />
           );
         } else {
           return <EmptyPeg key={index} />;

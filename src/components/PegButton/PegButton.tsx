@@ -8,8 +8,8 @@ interface PegButtonProps {
   light?: boolean;
   ariaLabel?: string;
   action: KeyboardActions;
+  showIcon: boolean;
   onClick: (action: KeyboardActions, color?: PegColor) => void;
-  children?: React.ReactChild | React.ReactChild[];
 }
 
 export const PegButton = ({
@@ -17,8 +17,8 @@ export const PegButton = ({
   light,
   ariaLabel,
   action,
+  showIcon,
   onClick,
-  children,
 }: PegButtonProps) => {
   return (
     <button
@@ -27,9 +27,7 @@ export const PegButton = ({
       aria-label={ariaLabel}
       onClick={() => onClick(action, color)}
     >
-      <Peg color={color} light={light}>
-        {children}
-      </Peg>
+      <Peg color={color} light={light} showIcon={showIcon} />
     </button>
   );
 };

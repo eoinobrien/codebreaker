@@ -12,7 +12,8 @@ export enum PegColor {
 
   Blank = 100,
   Hidden,
-  KeyboardAction
+  KeyboardBackspace,
+  KeyboardEnter,
 }
 
 export const PegColorsArray: PegColor[] = [
@@ -26,11 +27,11 @@ export const PegColorsArray: PegColor[] = [
   PegColor.White,
   PegColor.Pink,
   PegColor.Teal,
-]
+];
 
 export enum Key {
   RightColorRightSlot,
-  RightColorWrongSlot
+  RightColorWrongSlot,
 }
 
 export type Guess = {
@@ -47,10 +48,10 @@ export type Game = {
 export enum KeyboardActions {
   ColorPicker,
   Enter,
-  Backspace
+  Backspace,
 }
 
 export type KeyboardActionResult = {
-  guess: PegColor[],
-  error?: string
-}
+  guess: PegColor[];
+  error?: string;
+};

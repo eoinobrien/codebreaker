@@ -76,8 +76,16 @@ getPegStyling.set(PegColor.Hidden, {
   iconColor: '#E5D4D1',
 });
 
-getPegStyling.set(PegColor.KeyboardAction, {
+getPegStyling.set(PegColor.KeyboardBackspace, {
   color: '#795548',
   borderColor: '#3E2723',
-  iconColor: '#3E2723',
+  icon: 'BsBackspace',
+  iconColor: '#E5D4D1',
+});
+
+getPegStyling.set(PegColor.KeyboardEnter, {
+  color: '#795548',
+  borderColor: '#3E2723',
+  icon: 'BsArrowReturnLeft',
+  iconColor: '#E5D4D1',
 });

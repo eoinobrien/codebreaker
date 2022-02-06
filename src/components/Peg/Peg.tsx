@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import { getIcon } from 'components/PegIconChooser';
 import { getPegStyling } from 'logic';
 import { PegColor } from 'models';
 import styles from './Peg.module.css';
@@ -7,18 +8,18 @@ interface PegProps {
   color: PegColor;
   size?: 'medium' | 'small';
   light?: boolean;
+  showIcon?: boolean;
   ariaLabel?: string;
   className?: string;
-  children?: React.ReactChild | React.ReactChild[];
 }
 
 export const Peg = ({
   color,
   size = 'medium',
   light = false,
+  showIcon = false,
   ariaLabel,
   className,
-  children,
 }: PegProps) => {
   var pegClasses = classnames(
     className,
@@ -32,10 +33,13 @@ export const Peg = ({
   return (
     <div
       className={pegClasses}
-      style={{ backgroundColor: pegStyling?.color ?? '#000', borderColor: pegStyling?.borderColor ?? '#333' }}
+      style={{
+        backgroundColor: pegStyling?.color ?? '#000',
+        borderColor: pegStyling?.borderColor ?? '#333',
+      }}
       aria-label={ariaLabel}
     >
-      {children !== undefined && size !== 'small' && children}
+      {size !== 'small' && showIcon && getIcon(color, showIcon)}
     </div>
   );
 };
