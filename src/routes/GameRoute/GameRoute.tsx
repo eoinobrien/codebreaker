@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
   keyIsCorrectGuess,
@@ -12,6 +12,7 @@ import {
 } from 'logic';
 import { Guess, KeyboardActions, PegColor } from 'models';
 import { Game } from 'components/Game';
+import { SettingsContext } from 'context/settingsContext';
 
 export const GameRoute = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,6 +23,7 @@ export const GameRoute = () => {
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
   const [gameComplete, setGameComplete] = useState<boolean>(false);
+  let { showIcons } = useContext(SettingsContext);
 
   useEffect(() => {
     setGameComplete(
@@ -91,16 +93,17 @@ export const GameRoute = () => {
   };
 
   return (
-      <Game
-        code={code}
-        gameComplete={gameComplete}
-        numberOfPegs={gameSettings.numberOfPegs}
-        totalNumberOfGuesses={gameSettings.totalNumberOfGuesses}
-        numberOfColors={gameSettings.numberOfColors}
-        currentGuess={currentGuess}
-        guesses={guesses}
-        newGameCallback={newGame}
-        keyboardCallback={callback}
-      />
+    <Game
+      code={code}
+      gameComplete
+      numberOfPegs={gameSettings.numberOfPegs}
+      totalNumberOfGuesses={gameSettings.totalNumberOfGuesses}
+      numberOfColors={gameSettings.numberOfColors}
+      currentGuess={currentGuess}
+      guesses={guesses}
+      showIcons
+      newGameCallback={newGame}
+      keyboardCallback={callback}
+    />
   );
 };

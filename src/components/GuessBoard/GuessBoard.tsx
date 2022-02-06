@@ -9,6 +9,7 @@ interface GuessBoardProps {
   numberOfPegs: number;
   totalNumberOfGuesses: number;
   gameComplete: boolean;
+  showIcons: boolean;
 }
 
 export const GuessBoard = ({
@@ -17,6 +18,7 @@ export const GuessBoard = ({
   numberOfPegs,
   totalNumberOfGuesses,
   gameComplete,
+  showIcons,
 }: GuessBoardProps) => {
   let remainingGuessesIndexes = createArrayOfObject(
     0,
@@ -26,7 +28,12 @@ export const GuessBoard = ({
   return (
     <div className={styles.guessBoard}>
       {guesses.map((guess, index) => (
-        <GuessPegRow key={index} numberOfPegs={numberOfPegs} {...guess} />
+        <GuessPegRow
+          key={index}
+          numberOfPegs={numberOfPegs}
+          showIcons
+          {...guess}
+        />
       ))}
 
       {/* Current Guess */}
@@ -35,6 +42,7 @@ export const GuessBoard = ({
           key={guesses.length}
           numberOfPegs={numberOfPegs}
           code={currentGuess}
+          showIcons
           currentGuess
         />
       )}
@@ -45,6 +53,7 @@ export const GuessBoard = ({
           key={index + guesses.length + 1}
           numberOfPegs={numberOfPegs}
           code={[]}
+          showIcons
         />
       ))}
     </div>

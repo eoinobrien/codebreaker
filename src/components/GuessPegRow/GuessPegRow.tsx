@@ -8,6 +8,7 @@ interface GuessPegRowProps {
   code: PegColor[];
   keys?: Key[];
   numberOfPegs: number;
+  showIcons: boolean;
   currentGuess?: boolean;
 }
 
@@ -15,7 +16,8 @@ export const GuessPegRow = ({
   code,
   keys = [],
   numberOfPegs,
-  currentGuess = false,
+  showIcons,
+  currentGuess = false
 }: GuessPegRowProps) => {
   var guessPegRowClass = classnames(styles.guessPegRow, {
     [styles.currentGuess]: currentGuess,
@@ -23,7 +25,7 @@ export const GuessPegRow = ({
 
   return (
     <div className={guessPegRowClass}>
-      <PegRow code={code} numberOfPegs={numberOfPegs} />
+      <PegRow code={code} numberOfPegs={numberOfPegs} showIcons/>
       <KeyGrid keys={keys} numberOfPegs={numberOfPegs} />
     </div>
   );

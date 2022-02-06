@@ -14,6 +14,7 @@ interface GameProps {
   numberOfColors: number;
   currentGuess: PegColor[];
   guesses: Guess[];
+  showIcons: boolean;
   newGameCallback: () => void;
   keyboardCallback: (
     action: KeyboardActions,
@@ -29,6 +30,7 @@ export const Game = ({
   numberOfColors,
   currentGuess,
   guesses,
+  showIcons,
   newGameCallback,
   keyboardCallback,
 }: GameProps) => {
@@ -39,6 +41,7 @@ export const Game = ({
           code={code}
           hideCode={!gameComplete}
           numberOfPegs={numberOfPegs}
+          showIcons
         />
         <IconButton
           Icon={BsFillPlusSquareFill}
@@ -52,7 +55,8 @@ export const Game = ({
           guesses={guesses}
           numberOfPegs={numberOfPegs}
           totalNumberOfGuesses={totalNumberOfGuesses}
-          gameComplete={gameComplete}
+          gameComplete
+          showIcons
         />
       </div>
       <div className={styles.keyboard}>
