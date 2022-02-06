@@ -101,7 +101,7 @@ export const GameRoute = () => {
       numberOfColors={gameSettings.numberOfColors}
       currentGuess={currentGuess}
       guesses={guesses}
-      showIcons
+      showIcons={showIcons}
       newGameCallback={newGame}
       keyboardCallback={callback}
     />

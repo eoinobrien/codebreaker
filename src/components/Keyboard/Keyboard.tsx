@@ -1,10 +1,6 @@
-import { BsArrowReturnLeft, BsBackspace } from 'react-icons/bs';
 import { KeyboardActions, PegColor } from 'models';
 import { PegButton } from 'components/PegButton';
 import styles from './Keyboard.module.css';
-import { SettingsContext } from 'context/settingsContext';
-import { useContext } from 'react';
-import { getIcon } from 'components/PegIconChooser';
 
 interface KeyboardProps {
   colors: PegColor[];
