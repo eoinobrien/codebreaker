@@ -2,65 +2,82 @@ import { PegColor } from 'models';
 
 export type PegStyling = {
   color: string;
+  borderColor: string;
   icon?: string;
   iconColor?: string;
 };
 
 export const getPegStyling = new Map<PegColor, PegStyling>();
 getPegStyling.set(PegColor.Red, {
-  color: '#D50000',
+  color: '#F44336',
+  borderColor: '#B71C1C',
   icon: 'BsFillSuitHeartFill',
-  iconColor: '#000000',
+  iconColor: '#310808',
 });
 getPegStyling.set(PegColor.Green, {
-  color: '#00C853',
+  color: '#4CAF50',
+  borderColor: '#1B5E20',
   icon: 'BsFillSquareFill',
-  iconColor: '#000000',
+  iconColor: '#051005',
 });
 getPegStyling.set(PegColor.Yellow, {
-  color: '#FFD600',
+  color: '#FFC107',
+  borderColor: '#F57F17',
   icon: 'BsFillTriangleFill',
-  iconColor: '#000000',
+  iconColor: '#713705',
 });
 getPegStyling.set(PegColor.Blue, {
-  color: '#304FFE',
+  color: '#2196F3',
+  borderColor: '#0D47A1',
   icon: 'BsFillSuitClubFill',
-  iconColor: '#000000',
+  iconColor: '#051E42',
 });
 getPegStyling.set(PegColor.Black, {
   color: '#212121',
+  borderColor: '#000000',
   icon: 'BsFillSuitDiamondFill',
-  iconColor: '#FFFFFF',
+  iconColor: '#ABABAB',
 });
 getPegStyling.set(PegColor.White, {
   color: '#FAFAFA',
+  borderColor: '#757575',
   icon: 'BsFillSuitSpadeFill',
-  iconColor: '#000000',
+  iconColor: '#424242',
 });
 getPegStyling.set(PegColor.Purple, {
-  color: '#D500F9',
+  color: '#9C27B0',
+  borderColor: '#4A148C',
   icon: 'BsFillStarFill',
-  iconColor: '#000000',
+  iconColor: '#DC96E8',
 });
 getPegStyling.set(PegColor.Pink, {
   color: '#E91E63',
+  borderColor: '#880E4F',
   icon: 'BsFillHexagonFill',
-  iconColor: '#000000',
+  iconColor: '#1C0310',
 });
 getPegStyling.set(PegColor.Orange, {
-  color: '#FF6D00',
+  color: '#FF9800',
+  borderColor: '#E65100',
   icon: 'BsFillShieldFill',
-  iconColor: '#000000',
+  iconColor: '#4D1B00',
 });
 getPegStyling.set(PegColor.Teal, {
-  color: '#00BFA5',
+  color: '#009688',
+  borderColor: '#004D40',
   icon: 'BsFillShiftFill',
   iconColor: '#000000',
 });
 
 getPegStyling.set(PegColor.Hidden, {
-  color: '#5D4037',
+  color: '#795548',
+  borderColor: '#3E2723',
   icon: 'BsFillPatchQuestionFill',
-  iconColor: '#000000',
+  iconColor: '#E5D4D1',
 });
-getPegStyling.set(PegColor.KeyboardAction, { color: '#5D4037' });
+
+getPegStyling.set(PegColor.KeyboardAction, {
+  color: '#795548',
+  borderColor: '#3E2723',
+  iconColor: '#3E2723',
+});

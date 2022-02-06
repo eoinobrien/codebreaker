@@ -10,7 +10,7 @@ interface HiddenPegProps {
 export const HiddenPeg = ({ className }: HiddenPegProps) => {
   return (
     <>
-      <Peg color={getPegStyling.get(PegColor.Hidden)?.color ?? "#000"} light className={className}>
+      <Peg color={PegColor.Hidden} light className={className}>
         <BsFillPatchQuestionFill size="2rem" />
       </Peg>
     </>

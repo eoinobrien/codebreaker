@@ -12,7 +12,7 @@
     background-color: #6d4c41;
     border-bottom: #3e2723 solid 0.4rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .guessBoard {

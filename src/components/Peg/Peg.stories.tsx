@@ -12,5 +12,5 @@ const Template: ComponentStory<typeof Peg> = (args) => <Peg {...args} />;
 
 export const PegRed = Template.bind({});
 PegRed.args = {
-  color: PegColor[PegColor.Red]
+  color: PegColor.Red
 };

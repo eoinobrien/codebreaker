@@ -18,7 +18,7 @@ export const PegRow = ({
   numberOfPegs,
   hideCode = false,
 }: PegRowProps) => {
-  let { showIcons } = useContext(SettingsContext);
+  // let { showIcons } = useContext(SettingsContext);
   let pegsIndex: number[] = createArrayOfObject(0, numberOfPegs);
 
   return (
@@ -32,10 +32,10 @@ export const PegRow = ({
           return (
             <Peg
               key={index}
-              color={getPegStyling.get(code[index])?.color ?? '#000'}
+              color={code[index]}
               ariaLabel={PegColor[code[index]]}
             >
-              {getIcon(code[index], showIcons)}
+              {getIcon(code[index], true)}
             </Peg>
           );
         } else {

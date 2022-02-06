@@ -30,7 +30,7 @@ export const KeyGrid = ({ keys, numberOfPegs }: KeyGridProps) => {
           <Peg
             key={index}
             size="small"
-            color={getPegStyling.get(keyColor)?.color ?? '#000'}
+            color={keyColor}
           />
         );
       })}

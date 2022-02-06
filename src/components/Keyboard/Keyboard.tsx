@@ -21,8 +21,33 @@ export const Keyboard = ({ colors, numberOfPegs, callback }: KeyboardProps) => {
 
   return (
     <div className={styles.keyboard}>
-      {firstHalfOfColors.map((color, index) => {
-        return (
+      <div className={styles.keyboardLine}>
+        {firstHalfOfColors.map((color, index) => {
+          return (
+            <PegButton
+              key={index}
+              color={color}
+              ariaLabel={PegColor[color]}
+              action={KeyboardActions.ColorPicker}
+              onClick={callback}
+            >
+              {getIcon(color, showIcons)}
+            </PegButton>
+          );
+        })}
+
+        <PegButton
+          color={PegColor.KeyboardAction}
+          light
+          ariaLabel="Backspace"
+          action={KeyboardActions.Backspace}
+          onClick={callback}
+        >
+          <BsBackspace size="2rem" />
+        </PegButton>
+      </div>
+      <div className={styles.keyboardLine}>
+        {secondHalfOfColors.map((color, index) => (
           <PegButton
             key={index}
             color={color}
@@ -32,40 +57,18 @@ export const Keyboard = ({ colors, numberOfPegs, callback }: KeyboardProps) => {
           >
             {getIcon(color, showIcons)}
           </PegButton>
-        );
-      })}
+        ))}
 
-      <PegButton
-        color={PegColor.KeyboardAction}
-        light
-        ariaLabel="Backspace"
-        action={KeyboardActions.Backspace}
-        onClick={callback}
-      >
-        <BsBackspace size="2rem" />
-      </PegButton>
-
-      {secondHalfOfColors.map((color, index) => (
         <PegButton
-          key={index}
-          color={color}
-          ariaLabel={PegColor[color]}
-          action={KeyboardActions.ColorPicker}
+          color={PegColor.KeyboardAction}
+          light
+          ariaLabel="Enter"
+          action={KeyboardActions.Enter}
           onClick={callback}
         >
-          {getIcon(color, showIcons)}
+          <BsArrowReturnLeft size="2rem" />
         </PegButton>
-      ))}
-
-      <PegButton
-        color={PegColor.KeyboardAction}
-        light
-        ariaLabel="Enter"
-        action={KeyboardActions.Enter}
-        onClick={callback}
-      >
-        <BsArrowReturnLeft size="2rem" />
-      </PegButton>
+      </div>
     </div>
   );
 };

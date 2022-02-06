@@ -1,11 +1,16 @@
 .keyboard {
     display: flex;
+    flex-direction: column;
     background-color: #6D4C41;
     border-top: #3E2723 solid 0.4rem;
     flex-wrap: wrap;
 }
 
-.keyboard button {
-    flex-basis: 20%;
+.keyboardLine {
+    display: flex;
     justify-content: center;
+}
+
+.keyboard button {
+    /* flex-basis: 20%; */
 }

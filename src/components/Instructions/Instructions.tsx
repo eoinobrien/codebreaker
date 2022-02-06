@@ -45,7 +45,7 @@ export const Instructions = () => {
         If a key is Red{' '}
         <Peg
           size="small"
-          color={getPegStyling.get(PegColor.Red)?.color ?? '#f00'}
+          color={PegColor.Red}
         />{' '}
         it means that one of the pegs in your guess is both in the secret code
         and in the correct place.
@@ -54,7 +54,7 @@ export const Instructions = () => {
         While a White key{' '}
         <Peg
           size="small"
-          color={getPegStyling.get(PegColor.White)?.color ?? '#fff'}
+          color={PegColor.White}
         />{' '}
         means that the one of your guesses is in the code but is in the incorrect place.
       </p>

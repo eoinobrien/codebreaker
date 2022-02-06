@@ -17,7 +17,7 @@ export const Settings = ({}: SettingsProps) => {
     return pegColors.map((p, index) => (
       <Peg
         key={index}
-        color={getPegStyling.get(p)?.color ?? '#000'}
+        color={p}
         ariaLabel={PegColor[p]}
       >
         {getIcon(p, showIcons)}
