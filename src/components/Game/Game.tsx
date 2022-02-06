@@ -41,7 +41,7 @@ export const Game = ({
           code={code}
           hideCode={!gameComplete}
           numberOfPegs={numberOfPegs}
-          showIcons
+          showIcons={showIcons}
         />
         <IconButton
           Icon={BsFillPlusSquareFill}
@@ -55,8 +55,8 @@ export const Game = ({
           guesses={guesses}
           numberOfPegs={numberOfPegs}
           totalNumberOfGuesses={totalNumberOfGuesses}
-          gameComplete
-          showIcons
+          gameComplete={gameComplete}
+          showIcons={showIcons}
         />
       </div>
       <div className={styles.keyboard}>
@@ -64,7 +64,7 @@ export const Game = ({
           colors={PegColorsArray.slice(0, numberOfColors)}
           numberOfPegs={numberOfPegs}
           callback={keyboardCallback}
-          showIcons
+          showIcons={showIcons}
         />
       </div>
     </div>

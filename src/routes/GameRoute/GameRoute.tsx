@@ -95,7 +95,7 @@ export const GameRoute = () => {
   return (
     <Game
       code={code}
-      gameComplete
+      gameComplete={gameComplete}
       numberOfPegs={gameSettings.numberOfPegs}
       totalNumberOfGuesses={gameSettings.totalNumberOfGuesses}
       numberOfColors={gameSettings.numberOfColors}
