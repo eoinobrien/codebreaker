@@ -33,7 +33,7 @@ export const Settings = ({}: SettingsProps) => {
           value={showIcons}
           onLabel={
             <div>
-              <p>Show distinct icons on Pegs</p>
+              <p>Show icons on Pegs</p>
               {getPegs(true)}
             </div>
           }

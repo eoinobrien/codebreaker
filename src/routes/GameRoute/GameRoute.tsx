@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BsFillPlusSquareFill } from 'react-icons/bs';
 import { useSearchParams } from 'react-router-dom';
-import { GuessBoard } from 'components/GuessBoard';
-import { IconButton } from 'components/IconButton';
-import { Keyboard } from 'components/Keyboard';
-import { PegRow } from 'components/PegRow';
 import {
   keyIsCorrectGuess,
   keysFromGuess,
@@ -15,10 +10,10 @@ import {
   backspace,
   pushGuess,
 } from 'logic';
-import { Guess, KeyboardActions, PegColor, PegColorsArray } from 'models';
-import styles from './Game.module.css';
+import { Guess, KeyboardActions, PegColor } from 'models';
+import { Game } from 'components/Game';
 
-export const Game = () => {
+export const GameRoute = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [gameSettings, setGameSettings] = useState<GameSettings>(
     getOrCreateGame(searchParams),
@@ -96,35 +91,16 @@ export const Game = () => {
   };
 
   return (
-    <div className={styles.game}>
-      <div className={styles.codeRow}>
-        <PegRow
-          code={code}
-          hideCode={!gameComplete}
-          numberOfPegs={gameSettings.numberOfPegs}
-        />
-        <IconButton
-          Icon={BsFillPlusSquareFill}
-          onClick={() => newGame()}
-          light
-        />
-      </div>
-      <div className={styles.guessBoard}>
-        <GuessBoard
-          currentGuess={currentGuess}
-          guesses={guesses}
-          numberOfPegs={gameSettings.numberOfPegs}
-          totalNumberOfGuesses={gameSettings.totalNumberOfGuesses}
-          gameComplete={gameComplete}
-        />
-      </div>
-      <div className={styles.keyboard}>
-        <Keyboard
-          colors={PegColorsArray.slice(0, gameSettings.numberOfColors)}
-          numberOfPegs={gameSettings.numberOfPegs}
-          callback={callback}
-        />
-      </div>
-    </div>
+      <Game
+        code={code}
+        gameComplete={gameComplete}
+        numberOfPegs={gameSettings.numberOfPegs}
+        totalNumberOfGuesses={gameSettings.totalNumberOfGuesses}
+        numberOfColors={gameSettings.numberOfColors}
+        currentGuess={currentGuess}
+        guesses={guesses}
+        newGameCallback={newGame}
+        keyboardCallback={callback}
+      />
   );
 };
