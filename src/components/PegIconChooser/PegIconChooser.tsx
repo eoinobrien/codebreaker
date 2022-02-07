@@ -52,12 +52,28 @@ export const PegIconChooser = ({
     case 'BsFillPatchQuestionFill':
       return <BsFillPatchQuestionFill size={size} color={color} />;
     case 'BsBackspace':
-      return <BsBackspace size={size} color={color} />;
+      return (
+        <BsBackspace
+          size={size}
+          color={color}
+          style={{
+            strokeWidth: '0.05rem',
+          }}
+        />
+      );
     case 'BsArrowReturnLeft':
-      return <BsArrowReturnLeft size={size} color={color} />;
+      return (
+        <BsArrowReturnLeft
+          size={size}
+          color={color}
+          style={{
+            strokeWidth: '0.05rem',
+          }}
+        />
+      );
     case 'BsFillCircleFill':
       return <BsFillCircleFill size={size} color={color} />;
-    
+
     default:
       return <BsFillCircleFill size={size} color={color} />;
   }
