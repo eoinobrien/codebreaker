@@ -29,7 +29,7 @@ export const GameRoute = () => {
     setGameComplete(
       guesses.length >= gameSettings.totalNumberOfGuesses ||
         keyIsCorrectGuess(
-          guesses.at(-1)?.keys ?? [],
+          guesses[guesses.length - 1]?.keys ?? [],
           gameSettings.numberOfPegs,
         ),
     );
