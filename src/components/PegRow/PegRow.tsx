@@ -1,6 +1,5 @@
 import { createArrayOfObject } from 'logic';
 import { PegColor } from 'models';
-import { EmptyPeg } from 'components/EmptyPeg';
 import { Peg } from 'components/Peg';
 
 interface PegRowProps {
@@ -42,7 +41,14 @@ export const PegRow = ({
             />
           );
         } else {
-          return <EmptyPeg key={index} />;
+          return (
+            <Peg
+              key={index}
+              color={PegColor.Blank}
+              ariaLabel={PegColor[PegColor.Blank]}
+              showIcon={showIcons}
+            />
+          );
         }
       })}
     </>

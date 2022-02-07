@@ -3,6 +3,7 @@
     border: none;
     background: none;
     display: inline-flex;
+    transition: all 0.2s ease;
 }
 
 .pegButton:hover {
@@ -11,4 +12,8 @@
 
 .pegButton:active {
     filter: brightness(80%);
+}
+
+.peg {
+    box-shadow: 0px 2px 6px 2px rgb(62 39 35 / 50%);
 }

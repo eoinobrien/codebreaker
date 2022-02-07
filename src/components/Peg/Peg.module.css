@@ -1,11 +1,11 @@
 .peg {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 1.8rem;
+    height: 4.2rem;
+    width: 4.2rem;
+    border-radius: 1.5rem;
     margin: 0.5rem 1rem;
     display: inline-flex;
     border:none;
-    border: #3E2723 0.2em solid;
+    border: #3E2723 0.35em solid;
     align-items: center;
     justify-content: center;
 }

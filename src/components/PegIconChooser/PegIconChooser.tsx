@@ -3,6 +3,7 @@ import { PegColor } from 'models';
 import {
   BsArrowReturnLeft,
   BsBackspace,
+  BsFillCircleFill,
   BsFillHexagonFill,
   BsFillPatchQuestionFill,
   BsFillShieldFill,
@@ -54,9 +55,11 @@ export const PegIconChooser = ({
       return <BsBackspace size={size} color={color} />;
     case 'BsArrowReturnLeft':
       return <BsArrowReturnLeft size={size} color={color} />;
-
+    case 'BsFillCircleFill':
+      return <BsFillCircleFill size={size} color={color} />;
+    
     default:
-      return <BsFillPatchQuestionFill size={size} color={color} />;
+      return <BsFillCircleFill size={size} color={color} />;
   }
 };
 

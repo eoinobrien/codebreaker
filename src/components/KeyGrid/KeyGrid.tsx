@@ -1,6 +1,5 @@
 import { createArrayOfObject } from 'logic';
 import { PegColor, Key } from 'models';
-import { EmptyPeg } from 'components/EmptyPeg';
 import { Peg } from 'components/Peg';
 import styles from './KeyGrid.module.css';
 
@@ -30,7 +29,7 @@ export const KeyGrid = ({ keys, numberOfPegs }: KeyGridProps) => {
       })}
 
       {pegIndexes.map((_, index) => {
-        return <EmptyPeg key={index} size="small" />;
+        return <Peg key={index} size="small" color={PegColor.Blank} />;
       })}
     </div>
   );

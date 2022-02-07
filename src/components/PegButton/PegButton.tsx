@@ -26,7 +26,7 @@ export const PegButton = ({
       aria-label={ariaLabel}
       onClick={() => onClick(action, color)}
     >
-      <Peg color={color} light={light} showIcon={showIcon} />
+      <Peg color={color} light={light} showIcon={showIcon} className={styles.peg} />
     </button>
   );
 };

@@ -76,6 +76,13 @@ getPegStyling.set(PegColor.Hidden, {
   iconColor: '#E5D4D1',
 });
 
+getPegStyling.set(PegColor.Blank, {
+  color: 'transparent',
+  borderColor: '#D7CCC8',
+  icon: 'BsFillCircleFill',
+  iconColor: '#D7CCC8',
+});
+
 getPegStyling.set(PegColor.KeyboardBackspace, {
   color: '#795548',
   borderColor: '#3E2723',
