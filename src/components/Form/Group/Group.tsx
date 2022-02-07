@@ -9,7 +9,7 @@ export const Group = ({ label, children }: GroupProps) => {
   return (
     <div>
       <label>
-        <div>{label}</div>
+        <h2>{label}</h2>
         <div>{children}</div>
       </label>
     </div>

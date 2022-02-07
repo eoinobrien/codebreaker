@@ -3,6 +3,7 @@ import Form from 'components/Form';
 import { Switch } from 'components/Switch';
 import { PegColor } from 'models';
 import { Peg } from 'components/Peg';
+import styles from './Settings.module.css';
 
 interface SettingsProps {}
 
@@ -18,25 +19,26 @@ export const Settings = ({}: SettingsProps) => {
   };
 
   return (
-    <div>
-      <Form.Group label="Show Icons">
+    <div className={styles.settings}>
+      <h1>Settings</h1>
+      <Form.Group label="Show unique icons to distinguish colors on pegs:">
         <Switch
           id="showIcons"
           value={showIcons}
           options={[
             <div>
-              <p>Show icons on Pegs</p>
+              <p>Show icons</p>
               {getPegs(true)}
             </div>,
             <div>
-              <p>Do not show icons on Pegs</p>
+              <p>Do not show icons</p>
               {getPegs(false)}
             </div>,
           ]}
           onChange={(newValue) => setShowIcons(newValue)}
         />
       </Form.Group>
-      <Form.Group label="Color Scheme">
+      <Form.Group label="Preferred Color Scheme">
         <Switch
           id="colorScheme"
           value={colorScheme}
@@ -48,6 +50,7 @@ export const Settings = ({}: SettingsProps) => {
           onChange={(newValue) => setColorScheme(newValue)}
         />
       </Form.Group>
+      <p>A small game created by <a href="https://eoinobrien.ie">Eoin O'Brien</a>.</p>
     </div>
   );
 };

@@ -36,7 +36,7 @@ export const Keyboard = ({ colors, numberOfPegs, showIcons, callback }: Keyboard
           ariaLabel="Backspace"
           action={KeyboardActions.Backspace}
           onClick={callback}
-          showIcon={showIcons}
+          showIcon
         />
       </div>
       <div className={styles.keyboardLine}>
@@ -56,7 +56,7 @@ export const Keyboard = ({ colors, numberOfPegs, showIcons, callback }: Keyboard
           ariaLabel="Enter"
           action={KeyboardActions.Enter}
           onClick={callback}
-          showIcon={showIcons}
+          showIcon
         />
       </div>
     </div>
