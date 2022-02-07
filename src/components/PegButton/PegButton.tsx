@@ -4,7 +4,6 @@ import styles from './PegButton.module.css';
 
 interface PegButtonProps {
   color: PegColor;
-  light?: boolean;
   ariaLabel?: string;
   action: KeyboardActions;
   showIcon: boolean;
@@ -13,7 +12,6 @@ interface PegButtonProps {
 
 export const PegButton = ({
   color,
-  light,
   ariaLabel,
   action,
   showIcon,
@@ -26,7 +24,7 @@ export const PegButton = ({
       aria-label={ariaLabel}
       onClick={() => onClick(action, color)}
     >
-      <Peg color={color} light={light} showIcon={showIcon} className={styles.peg} />
+      <Peg color={color} showIcon={showIcon} className={styles.peg} />
     </button>
   );
 };

@@ -1,7 +1,8 @@
 .iconButton {
     height: 4rem;
     width: 4rem;
-    
+    color: var(--section-divider-color);
+
     border: none;
     background: none;
     display: inline-flex;
@@ -12,6 +13,7 @@
 
     align-items: center;
     justify-content: center;
+    align-self: center;
 }
 
 .iconButton:hover {
@@ -20,8 +22,4 @@
 
 .iconButton:active {
     filter: brightness(80%);
-}
-
-.light {
-    color: #D7CCC8;
 }

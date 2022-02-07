@@ -33,7 +33,6 @@ export const Keyboard = ({ colors, numberOfPegs, showIcons, callback }: Keyboard
 
         <PegButton
           color={PegColor.KeyboardBackspace}
-          light
           ariaLabel="Backspace"
           action={KeyboardActions.Backspace}
           onClick={callback}
@@ -54,7 +53,6 @@ export const Keyboard = ({ colors, numberOfPegs, showIcons, callback }: Keyboard
 
         <PegButton
           color={PegColor.KeyboardEnter}
-          light
           ariaLabel="Enter"
           action={KeyboardActions.Enter}
           onClick={callback}

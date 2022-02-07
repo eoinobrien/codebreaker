@@ -26,7 +26,7 @@ export const Settings = ({}: SettingsProps) => {
 
   return (
     <div>
-      <Form.Group>
+      <Form.Group label="Show Icons">
         <Switch
           id="showIcons"
           value={showIcons}
@@ -43,7 +43,7 @@ export const Settings = ({}: SettingsProps) => {
             </div>
           }
           onChange={(newValue) => setShowIcons(newValue)}
-        ></Switch>
+        />
       </Form.Group>
     </div>
   );

@@ -5,7 +5,7 @@
     width:100%;
     border-radius: 1.5rem;
 
-    border: #3E2723 0.2em solid;
+    border: var(--section-divider-color) 0.2em solid;
     font-weight: bold;
 }
 
@@ -19,7 +19,7 @@
     flex: 1;
     width: 100%;
     border-radius: 1rem;
-    background: #efebe9;
+    background: var(--background-color);
 }
 
 .label:hover {

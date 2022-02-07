@@ -1,9 +1,9 @@
 .keyboard {
     display: flex;
     flex-direction: column;
-    border-top: #3e2723 solid 0.4rem;
+    border-top: var(--section-divider-color) solid 0.4rem;
     flex-wrap: wrap;
-    padding: 0.5rem 0 1rem 0;
+    padding: 1rem 0;
 }
 
 .keyboardLine {

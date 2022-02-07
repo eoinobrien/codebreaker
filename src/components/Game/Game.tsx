@@ -46,7 +46,6 @@ export const Game = ({
         <IconButton
           Icon={BsFillPlusSquareFill}
           onClick={() => newGameCallback()}
-          light
         />
       </div>
       <div className={styles.guessBoard}>

@@ -5,18 +5,13 @@
     margin: 0.5rem 1rem;
     display: inline-flex;
     border:none;
-    border: #3E2723 0.35em solid;
+    border: var(--section-divider-color) 0.35em solid;
     align-items: center;
     justify-content: center;
 }
 
 .small {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.2rem;
+    width: 1.2rem;
     margin: 0.25rem;
-}
-
-.light {
-    border-color: #3E2723;
-    color: #D7CCC8;
 }

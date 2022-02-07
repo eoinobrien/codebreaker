@@ -71,28 +71,28 @@ getPegStyling.set(PegColor.Teal, {
 
 getPegStyling.set(PegColor.Hidden, {
   color: '#795548',
-  borderColor: '#3E2723',
+  borderColor: 'var(--section-divider-color)',
   icon: 'BsFillPatchQuestionFill',
   iconColor: '#E5D4D1',
 });
 
 getPegStyling.set(PegColor.Blank, {
   color: 'transparent',
-  borderColor: '#D7CCC8',
+  borderColor: 'var(--blank-peg-color)',
   icon: 'BsFillCircleFill',
-  iconColor: '#D7CCC8',
+  iconColor: 'var(--blank-peg-color)',
 });
 
 getPegStyling.set(PegColor.KeyboardBackspace, {
   color: '#795548',
-  borderColor: '#3E2723',
+  borderColor: 'var(--section-divider-color)',
   icon: 'BsBackspace',
   iconColor: '#E5D4D1',
 });
 
 getPegStyling.set(PegColor.KeyboardEnter, {
   color: '#795548',
-  borderColor: '#3E2723',
+  borderColor: 'var(--section-divider-color)',
   icon: 'BsArrowReturnLeft',
   iconColor: '#E5D4D1',
 });

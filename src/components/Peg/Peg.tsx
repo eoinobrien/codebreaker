@@ -7,7 +7,6 @@ import styles from './Peg.module.css';
 interface PegProps {
   color: PegColor;
   size?: 'medium' | 'small';
-  light?: boolean;
   showIcon?: boolean;
   ariaLabel?: string;
   className?: string;
@@ -16,7 +15,6 @@ interface PegProps {
 export const Peg = ({
   color,
   size = 'medium',
-  light = false,
   showIcon = false,
   ariaLabel,
   className,
@@ -25,7 +23,6 @@ export const Peg = ({
     className,
     styles.peg,
     { [styles.small]: size === 'small' },
-    { [styles.light]: light },
   );
 
   let pegStyling = getPegStyling.get(color);

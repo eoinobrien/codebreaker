@@ -6,7 +6,7 @@
     max-width: 30rem;
     border-radius: 1.5rem;
 
-    border: #3E2723 0.2em solid;
+    border: var(--section-divider-color) 0.2em solid;
     font-weight: bold;
 }
 
