@@ -29,7 +29,7 @@ export const GuessPegRow = ({
     if (currentGuess) {
       guessPegRowRef.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [code]);
+  }, [code, currentGuess]);
 
   return (
     <div className={guessPegRowClass} ref={guessPegRowRef}>
