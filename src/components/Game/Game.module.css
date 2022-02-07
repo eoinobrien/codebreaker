@@ -1,11 +1,9 @@
 .game {
-    height: 100vh;
-    min-height: 0;
+    height: 100%;
     display: flex;
     flex-direction: column;
 
     max-width: 50rem;
-    width: 100%;
     margin: 0 auto;
 }
 
@@ -17,7 +15,7 @@
 }
 
 .guessBoard {
-    flex: 1;
+    flex-grow: 1;
     overflow-y: auto;
 }
 

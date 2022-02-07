@@ -1,3 +1,16 @@
-.instructions {
+.instructions h1 {
+    font-size: 3rem;
+}
+
+.instructions p {
     font-size: 1.6rem;
+}
+
+.hiddenRow {
+    justify-content: center;
+    display: flex;
+}
+
+.singularKey {
+    font-size: 1rem;
 }

@@ -21,14 +21,16 @@ export const Instructions = ({ showIcons = false }: InstructionsProps) => {
     <div className={styles.instructions}>
       <h1>How to Play</h1>
       <p>The goal of Mastermind is to crack the secret code.</p>
-      <PegRow
-        code={secretCode}
-        numberOfPegs={secretCode.length}
-        hideCode
-        showIcons
-      />
+      <div className={styles.hiddenRow}>
+        <PegRow
+          code={secretCode}
+          numberOfPegs={secretCode.length}
+          hideCode
+          showIcons
+        />
+      </div>
       <p>
-        You do this by entering a guess that you thing the secret code might be.
+        You do this by entering a guess that you think the secret code might be.
       </p>
       <GuessPegRow
         code={[PegColor.Blue, PegColor.Red]}
@@ -37,7 +39,7 @@ export const Instructions = ({ showIcons = false }: InstructionsProps) => {
         showIcons
       />
       <p>
-        After each guess a decryption key will be returned to help you crack the
+        After each guess you will be given a decryption key to help you crack the
         code.
       </p>
       <GuessPegRow
@@ -47,16 +49,15 @@ export const Instructions = ({ showIcons = false }: InstructionsProps) => {
         showIcons
       />
       <p>
-        Each item in decryption key represents one of the pegs in your guess
-        guess.
+        Each item in decryption key stands for one of the pegs in your guess.
       </p>
       <p>
-        If a key is Red <Peg size="small" color={PegColor.Red} /> it means that
+        If a key is Red, <Peg size="small" color={PegColor.Red} className={styles.singularKey} /> it means that
         one of the pegs in your guess is both in the secret code and in the
         correct place.
       </p>
       <p>
-        While a White key <Peg size="small" color={PegColor.White} /> means that
+        While a White key <Peg size="small" color={PegColor.White} className={styles.singularKey} /> means that
         the one of your guesses is in the code but is in the incorrect place.
       </p>
       <p>
@@ -72,7 +73,7 @@ export const Instructions = ({ showIcons = false }: InstructionsProps) => {
         numberOfPegs={secretCode.length}
         showIcons
       />
-      <p>All you have to do is keep guessing until you have broken the code.</p>
+      <p>Using these keys, keep guessing until you have cracked the code.</p>
     </div>
   );
 };

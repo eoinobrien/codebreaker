@@ -32,13 +32,13 @@ export const Settings = ({}: SettingsProps) => {
           value={showIcons}
           onLabel={
             <div>
-              <p>Show icons on Pegs</p>
+              <h1>Show icons on Pegs</h1>
               {getPegs(true)}
             </div>
           }
           offLabel={
             <div>
-              <p>Do not show icons on Pegs</p>
+              <h1>Do not show icons on Pegs</h1>
               {getPegs(false)}
             </div>
           }
