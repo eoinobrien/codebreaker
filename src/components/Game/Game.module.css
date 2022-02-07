@@ -8,7 +8,7 @@
 }
 
 .codeRow {
-    border-bottom: var(--section-divider-color) solid 0.4rem;
+    border-bottom: var(--section-divider-border) solid 0.4rem;
     display: flex;
     justify-content: center;
     position: sticky;
@@ -24,5 +24,5 @@
 .keyboard {
     position: sticky;
     bottom: 0;
-    background-color: var(--background-color);
+    background: var(--background);
 }

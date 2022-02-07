@@ -4,5 +4,5 @@
 }
 
 .currentGuess {
-    background-color: var(--current-row-color);
+    background: var(--current-row-background);
 }

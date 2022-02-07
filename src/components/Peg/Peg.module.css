@@ -5,7 +5,7 @@
     margin: 0.5rem 1rem;
     display: inline-flex;
     border:none;
-    border: var(--section-divider-color) 0.35em solid;
+    border: var(--section-divider-border) 0.35em solid;
     align-items: center;
     justify-content: center;
 }

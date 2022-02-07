@@ -1,17 +1,30 @@
-:root {
-  --background-color: #efebe9;
-  --section-divider-color: #3e2723;
-  --current-row-color: #bcaaa4;
-  --blank-peg-color: #d7ccc8;
+:root, body.light {
+  --color: #3e2723;
+  --background: #efebe9;
+  --section-divider-border: #3e2723;
+  --current-row-background: #bcaaa4;
+  --blank-peg-border: #d7ccc8;
+  --switch-checked-background: #3e2723;
+  --switch-checked-color: #efebe9;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark){
   :root {
-    --background-color: #3e2723;
-    --section-divider-color: #d7ccc8;
-    --current-row-color: #6d4c41;
-    --blank-peg-color: #a1887f;
+    --color: #efebe9;
+    --background: #3e2723;
+    --section-divider-border: #d7ccc8;
+    --current-row-background: #6d4c41;
+    --blank-peg-border: #a1887f;
+    --switch-checked-background: #efebe9;
+    --switch-checked-color: #3e2723;
   }
+}
+
+body.dark {
+  --background: #3e2723;
+  --section-divider-border: #d7ccc8;
+  --current-row-background: #6d4c41;
+  --blank-peg-border: #a1887f;
 }
 
 html {
@@ -25,7 +38,8 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--background-color);
+  background: var(--background);
+  color: var(--color);
 }
 
 code {

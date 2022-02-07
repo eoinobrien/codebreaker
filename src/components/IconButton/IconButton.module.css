@@ -1,7 +1,7 @@
 .iconButton {
     height: 4rem;
     width: 4rem;
-    color: var(--section-divider-color);
+    color: var(--section-divider-border);
 
     border: none;
     background: none;
