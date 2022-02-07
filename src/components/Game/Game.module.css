@@ -12,6 +12,8 @@
     border-bottom: #3e2723 solid 0.4rem;
     display: flex;
     justify-content: center;
+    position: sticky;
+    top: 0;
 }
 
 .guessBoard {
@@ -22,4 +24,7 @@
 .keyboard {
     margin-top: auto;
     bottom: 0;
+    position: sticky;
+    bottom: 0;
+    background-color: #efebe9;
 }

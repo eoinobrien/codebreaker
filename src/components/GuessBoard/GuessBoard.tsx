@@ -31,7 +31,7 @@ export const GuessBoard = ({
         <GuessPegRow
           key={index}
           numberOfPegs={numberOfPegs}
-          showIcons
+          showIcons={showIcons}
           {...guess}
         />
       ))}
@@ -42,7 +42,7 @@ export const GuessBoard = ({
           key={guesses.length}
           numberOfPegs={numberOfPegs}
           code={currentGuess}
-          showIcons
+          showIcons={showIcons}
           currentGuess
         />
       )}
@@ -53,7 +53,7 @@ export const GuessBoard = ({
           key={index + guesses.length + 1}
           numberOfPegs={numberOfPegs}
           code={[]}
-          showIcons
+          showIcons={showIcons}
         />
       ))}
     </div>
