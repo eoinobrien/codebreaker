@@ -8,6 +8,8 @@ const TOTAL_NUMBER_OF_GUESSES: number = 10;
 const ALLOW_DUPLICATES: number = 0; // false
 const SEPARATOR: string = ';';
 
+const BASE64_ALPHABET: string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
 export type GameSettings = {
   code: PegColor[];
   numberOfColors: number;
@@ -106,11 +108,12 @@ export function encodeGameSettings(game: GameSettings): string {
   let serialised = JSON.stringify(createGameSettingsCompressed(game));
   let encodedString = Buffer.from(serialised).toString('base64');
 
-  return encodedString;
+  return `${Math.floor(Math.random() * BASE64_ALPHABET.length)}${encodedString}`;
 }
 
 export function decodeGameSettings(encodedSettings: string): GameSettings {
-  let decodedData = Buffer.from(encodedSettings, 'base64').toString('ascii');
+  let validBase64Settings = encodedSettings.substring(1);
+  let decodedData = Buffer.from(validBase64Settings, 'base64').toString('ascii');
 
   return reverseGameSettingsCompressed(JSON.parse(decodedData));
 }
