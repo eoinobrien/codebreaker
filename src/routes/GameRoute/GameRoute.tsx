@@ -15,7 +15,7 @@ import {
 } from 'logic';
 import { Guess, KeyboardActions, PegColor } from 'models';
 import { Game } from 'components/Game';
-import { SettingsContext } from 'context/settingsContext';
+import { SettingsContext, ShowIconsState } from 'context/settingsContext';
 
 export const GameRoute = () => {
   let location = useLocation();
@@ -45,7 +45,7 @@ export const GameRoute = () => {
       setSearchParams({ code: encodeGameSettings(gameSettings) });
     }
     setCode(gameSettings.code);
-  }, [guesses, gameSettings, setSearchParams]);
+  }, [guesses, gameSettings, location.pathname, setSearchParams]);
 
   const newGame = () => {
     setGameSettings(createGameSettings());
@@ -108,7 +108,7 @@ export const GameRoute = () => {
       numberOfColors={gameSettings.numberOfColors}
       currentGuess={currentGuess}
       guesses={guesses}
-      showIcons={showIcons}
+      showIcons={showIcons === ShowIconsState.Show}
       location={location}
       newGameCallback={newGame}
       keyboardCallback={callback}

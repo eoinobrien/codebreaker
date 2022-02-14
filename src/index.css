@@ -1,4 +1,4 @@
-:root, body.light {
+:root, .light {
   --color: #3e2723;
   --background: #efebe9;
   --section-divider-border: #3e2723;
@@ -24,7 +24,7 @@
   }
 }
 
-body.dark {
+.dark {
   --color: #efebe9;
   --background: #3e2723;
   --section-divider-border: #d7ccc8;
@@ -51,13 +51,8 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--background);
-  color: var(--color);
 }
 
-body a {
-  color: var(--link-color);
-}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;

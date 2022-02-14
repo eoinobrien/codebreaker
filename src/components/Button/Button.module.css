@@ -10,11 +10,11 @@
 }
 
 .button:hover {
-    filter: brightness(90%);
+    filter: brightness(85%);
 }
 
 .button:active {
-    filter: brightness(80%);
+    filter: brightness(75%);
 }
 
 .button:disabled {

@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import Form from 'components/Form';
 import { Switch } from 'components/Switch';
 import { PegColor } from 'models';
 import { Peg } from 'components/Peg';
 import styles from './Settings.module.css';
+import {
+  SettingsContext,
+} from 'context/settingsContext';
 
-interface SettingsProps {}
-
-export const Settings = ({}: SettingsProps) => {
-  const [showIcons, setShowIcons] = useState<number>(1);
-  const [colorScheme, setColorScheme] = useState<number>(2);
+export const Settings = () => {
+  let { showIcons, setShowIcons, colorScheme, setColorScheme } =
+    useContext(SettingsContext);
 
   const pegColors: PegColor[] = [PegColor.Red, PegColor.Blue, PegColor.Green];
   const getPegs = (showIcons: boolean) => {
@@ -41,12 +42,13 @@ export const Settings = ({}: SettingsProps) => {
         <Switch
           id="colorScheme"
           value={colorScheme}
-          options={[<p>Light</p>, <p>Dark</p>, <p>System Theme</p>]}
+          options={['Light', 'Dark', 'System Theme']}
           onChange={(newValue) => setColorScheme(newValue)}
         />
       </Form.Group>
       <p>
-        A small game created by <a href="https://eoinobrien.ie">Eoin O'Brien</a>.
+        A small game created by <a href="https://eoinobrien.ie">Eoin O'Brien</a>
+        .
       </p>
     </div>
   );

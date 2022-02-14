@@ -46,7 +46,7 @@ export const PegRow = ({
               key={index}
               color={PegColor.Blank}
               ariaLabel={PegColor[PegColor.Blank]}
-              showIcon={showIcons}
+              showIcon={true}
             />
           );
         }

@@ -28,11 +28,12 @@ export const Switch = ({
   return (
     <div className={switchClasses}>
       {options.map((option, index) => {
-        var labelDivClass = classnames(styles.labelDiv, {
+        var labelClasses = classnames(styles.label, { 
           [styles.checked]: value === index,
         });
+
         return (
-          <div key={index} className={labelDivClass}>
+          <label key={index} className={labelClasses}>
             <input
               type="radio"
               id={`${id}-${index}`}
@@ -41,10 +42,8 @@ export const Switch = ({
               onChange={handleChange}
               checked={value === index}
             />
-            <label htmlFor={`${id}-${index}`} className={styles.label}>
-              {option}
-            </label>
-          </div>
+            {option}
+          </label>
         );
       })}
     </div>

@@ -8,8 +8,6 @@ export default {
   component: Settings,
 } as ComponentMeta<typeof Settings>;
 
-const Template: ComponentStory<typeof Settings> = (args) => <Settings {...args} />;
+const Template: ComponentStory<typeof Settings> = (args) => <Settings />;
 
 export const A = Template.bind({});
-A.args = {
-};

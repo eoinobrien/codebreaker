@@ -2,22 +2,39 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import styles from './App.module.css';
 import { GameRoute } from 'routes/GameRoute';
 import { Home } from 'routes/Home';
-import { SettingsContext } from 'context/settingsContext';
-import { useState } from 'react';
+import {
+  ColorSchemeState,
+  SettingsContext,
+  ShowIconsState,
+} from 'context/settingsContext';
+import { useContext, useState } from 'react';
 import { RouterModal } from 'components/RouterModal';
 import { Settings } from 'components/Settings';
 import { Instructions } from 'components/Instructions';
 import { NewGame } from 'components/NewGame';
+import classnames from 'classnames';
 
 function App() {
   let location = useLocation();
   let state = location.state as { backgroundLocation?: Location };
 
-  const [showIcons, setShowIcons] = useState<boolean>(true);
+  const [showIcons, setShowIcons] = useState<ShowIconsState>(
+    ShowIconsState.Hide,
+  );
+  const [colorScheme, setColorScheme] = useState<ColorSchemeState>(
+    ColorSchemeState.SystemDefault,
+  );
+
+  var appClasses = classnames(styles.app, {
+    ['light']: colorScheme === ColorSchemeState.Light,
+    ['dark']: colorScheme === ColorSchemeState.Dark,
+  });
 
   return (
-    <SettingsContext.Provider value={{ showIcons, setShowIcons }}>
-      <div className={styles.app}>
+    <SettingsContext.Provider
+      value={{ showIcons, setShowIcons, colorScheme, setColorScheme }}
+    >
+      <div className={appClasses}>
         <Routes location={state?.backgroundLocation || location}>
           <Route path="/" element={<Home />}>
             <Route index element={<GameRoute />} />

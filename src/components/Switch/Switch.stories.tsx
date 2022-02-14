@@ -1,8 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Peg } from 'components/Peg';
-import { getIcon } from 'components/PegIconChooser';
-import { PegRow } from 'components/PegRow';
-import { getPegStyling } from 'logic';
 import { PegColor } from 'models';
 import { Switch } from '.';
 
@@ -18,7 +15,7 @@ export const SimpleSwitch = Template.bind({});
 SimpleSwitch.args = {
   id: 'switch1',
   value: 0,
-  options: [<p>On</p>, <p>Off</p>],
+  options: ['On', 'Off'],
 };
 
 const pegColors: PegColor[] = [PegColor.Red, PegColor.Blue, PegColor.Green];
@@ -48,5 +45,5 @@ export const ThreeItemsSwitch = Template.bind({});
 ThreeItemsSwitch.args = {
   id: 'switch1',
   value: 1,
-  options: [<p>Dark</p>, <p>Light</p>, <p>System Theme</p>],
+  options: ['Dark', 'Light', 'System Theme'],
 };

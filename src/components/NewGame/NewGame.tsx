@@ -7,9 +7,7 @@ import { PegColorsArray } from 'models';
 import { useState } from 'react';
 import styles from './NewGame.module.css';
 
-interface NewGameProps {}
-
-export const NewGame = ({}: NewGameProps) => {
+export const NewGame = () => {
   const [numberOfColors, setNumberOfColors] = useState<number>(8);
   const [numberOfPegs, setNumberOfPegs] = useState<number>(4);
   const [totalNumberOfGuesses, setTotalNumberOfGuesses] = useState<number>(10);

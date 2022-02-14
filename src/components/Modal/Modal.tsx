@@ -23,7 +23,7 @@ export const Modal = ({
     if (event.keyCode === 27) {
       onDismiss();
     }
-  }, []);
+  }, [onDismiss]);
 
   useEffect(() => {
     document.addEventListener('keydown', escFunction);
@@ -34,7 +34,6 @@ export const Modal = ({
   }, [escFunction]);
 
   const onModalBackgroundClick = (e: MouseEvent<HTMLDivElement>): void => {
-    e.preventDefault();
     e.stopPropagation();
     if (e.target === e.currentTarget) {
       onDismiss();
@@ -42,7 +41,6 @@ export const Modal = ({
   };
 
   const onCloseModalClick = (e: MouseEvent<HTMLButtonElement>): void => {
-    e.preventDefault();
     e.stopPropagation();
     onDismiss();
   };
