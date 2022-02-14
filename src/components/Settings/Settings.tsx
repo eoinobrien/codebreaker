@@ -4,9 +4,7 @@ import { Switch } from 'components/Switch';
 import { PegColor } from 'models';
 import { Peg } from 'components/Peg';
 import styles from './Settings.module.css';
-import {
-  SettingsContext,
-} from 'context/settingsContext';
+import { SettingsContext } from 'providers/SettingsContextProviders';
 
 export const Settings = () => {
   let { showIcons, setShowIcons, colorScheme, setColorScheme } =

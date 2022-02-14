@@ -15,7 +15,7 @@ import {
 } from 'logic';
 import { Guess, KeyboardActions, PegColor } from 'models';
 import { Game } from 'components/Game';
-import { SettingsContext, ShowIconsState } from 'context/settingsContext';
+import { SettingsContext, ShowIconsState } from 'providers/SettingsContextProviders';
 
 export const GameRoute = () => {
   let location = useLocation();
