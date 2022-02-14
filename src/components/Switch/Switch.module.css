@@ -13,6 +13,10 @@
     .switch {
         flex-direction: column;
     }
+
+    .noColumns {
+        flex-direction: row;
+    }
 }
 
 .switch input {

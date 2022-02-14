@@ -62,6 +62,7 @@ export const NewGame = ({}: NewGameProps) => {
           id="allowDuplicates"
           value={allowDuplicates ? 1 : 0}
           options={['No', 'Yes']}
+          shortLabels={true}
           onChange={(newValue) => setAllowDuplicates(newValue === 1)}
         />
       </Form.Group>
