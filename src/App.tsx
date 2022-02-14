@@ -8,7 +8,8 @@ import { Instructions } from 'components/Instructions';
 import { NewGame } from 'components/NewGame';
 import classnames from 'classnames';
 import {
-  ColorSchemeState, SettingsContext,
+  ColorSchemeState,
+  SettingsContext,
 } from 'providers/SettingsContextProviders';
 import { useContext } from 'react';
 
@@ -18,8 +19,8 @@ function App() {
   let state = location.state as { backgroundLocation?: Location };
 
   var appClasses = classnames(styles.app, {
-    ['light']: colorScheme === ColorSchemeState.Light,
-    ['dark']: colorScheme === ColorSchemeState.Dark,
+    light: colorScheme === ColorSchemeState.Light,
+    dark: colorScheme === ColorSchemeState.Dark,
   });
 
   return (
