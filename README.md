@@ -1,5 +1,9 @@
-# Mastermind
+# Code Breaker
 
-Simple in browser version of Mastermind.
+*Currently under development.*
 
-Currently under development.
+# Development
+
+Deploy locally: `npm run start`
+
+Start storybook component viewer: `npm run storybook`
