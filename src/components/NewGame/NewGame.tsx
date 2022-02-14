@@ -1,6 +1,8 @@
+import { Button } from 'components/Button';
 import Form from 'components/Form';
 import { Incrementor } from 'components/Incrementor';
 import { Switch } from 'components/Switch';
+import { createGameSettings } from 'logic';
 import { PegColorsArray } from 'models';
 import { useState } from 'react';
 import styles from './NewGame.module.css';
@@ -13,10 +15,24 @@ export const NewGame = ({}: NewGameProps) => {
   const [totalNumberOfGuesses, setTotalNumberOfGuesses] = useState<number>(10);
   const [allowDuplicates, setAllowDuplicates] = useState<boolean>(false);
 
+  const resetToDefaults = () => {
+    setNumberOfColors(8);
+    setNumberOfPegs(4);
+    setTotalNumberOfGuesses(10);
+    setAllowDuplicates(false);
+  };
+
+  const createGame = () => {
+    createGameSettings(
+      PegColorsArray.slice(0, numberOfColors),
+      numberOfPegs,
+      totalNumberOfGuesses,
+      allowDuplicates,
+    );
+  };
+
   return (
     <div className={styles.newGame}>
-      <h1>New Game</h1>
-
       <Form.Group label="Number of colors to choose from:">
         <Incrementor
           value={numberOfColors}
@@ -49,6 +65,11 @@ export const NewGame = ({}: NewGameProps) => {
           onChange={(newValue) => setAllowDuplicates(newValue === 1)}
         />
       </Form.Group>
+      <Button onClick={() => resetToDefaults()} secondary>
+        Reset to default settings
+      </Button>
+
+      <Button onClick={createGame}>Create Game</Button>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { Button } from 'components/Button';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import styles from './Incrementor.module.css';
 
@@ -16,13 +17,13 @@ export const Incrementor = ({
 }: IncrementorProps) => {
   return (
     <div className={styles.incrementor}>
-      <button onClick={() => onChange(value - 1)} disabled={value <= min}>
+      <Button onClick={() => onChange(value - 1)} disabled={value <= min} className={styles.button}>
         <FiMinus />
-      </button>
+      </Button>
       <div>{value}</div>
-      <button onClick={() => onChange(value + 1)} disabled={value >= max}>
+      <Button onClick={() => onChange(value + 1)} disabled={value >= max} className={styles.button}>
         <FiPlus />
-      </button>
+      </Button>
     </div>
   );
 };

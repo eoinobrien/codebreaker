@@ -1,5 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import {
+  useLocation,
+  useSearchParams,
+} from 'react-router-dom';
 import {
   keyIsCorrectGuess,
   keysFromGuess,
@@ -15,6 +18,7 @@ import { Game } from 'components/Game';
 import { SettingsContext } from 'context/settingsContext';
 
 export const GameRoute = () => {
+  let location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [gameSettings, setGameSettings] = useState<GameSettings>(
     getOrCreateGame(searchParams),
@@ -36,7 +40,10 @@ export const GameRoute = () => {
   }, [guesses, gameSettings.totalNumberOfGuesses, gameSettings.numberOfPegs]);
 
   useEffect(() => {
-    setSearchParams({ code: encodeGameSettings(gameSettings) });
+    if (location.pathname === '/') {
+      // If the URL is not root (e.g. in a modal), don't change the URL.
+      setSearchParams({ code: encodeGameSettings(gameSettings) });
+    }
     setCode(gameSettings.code);
   }, [guesses, gameSettings, setSearchParams]);
 
@@ -102,6 +109,7 @@ export const GameRoute = () => {
       currentGuess={currentGuess}
       guesses={guesses}
       showIcons={showIcons}
+      location={location}
       newGameCallback={newGame}
       keyboardCallback={callback}
     />

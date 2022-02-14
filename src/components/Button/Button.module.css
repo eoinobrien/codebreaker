@@ -1,0 +1,28 @@
+.button {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+    border: none;
+    width: 100%;
+    border-radius: 1rem;
+    background: var(--primary-background);
+    color: var(--primary-color);
+}
+
+.button:hover {
+    filter: brightness(90%);
+}
+
+.button:active {
+    filter: brightness(80%);
+}
+
+.button:disabled {
+    filter: brightness(110%);
+}
+
+.secondary {
+    background: inherit;
+    color: var(--color);
+    border: var(--section-divider-border) 0.2em solid;
+}

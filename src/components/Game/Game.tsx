@@ -5,6 +5,7 @@ import { Keyboard } from 'components/Keyboard';
 import { PegRow } from 'components/PegRow';
 import { Guess, KeyboardActions, PegColor, PegColorsArray } from 'models';
 import styles from './Game.module.css';
+import { Link, Location } from 'react-router-dom';
 
 interface GameProps {
   code: PegColor[];
@@ -15,6 +16,7 @@ interface GameProps {
   currentGuess: PegColor[];
   guesses: Guess[];
   showIcons: boolean;
+  location: Location;
   newGameCallback: () => void;
   keyboardCallback: (
     action: KeyboardActions,
@@ -31,6 +33,7 @@ export const Game = ({
   currentGuess,
   guesses,
   showIcons,
+  location,
   newGameCallback,
   keyboardCallback,
 }: GameProps) => {
@@ -47,6 +50,15 @@ export const Game = ({
           Icon={BsFillPlusSquareFill}
           onClick={() => newGameCallback()}
         />
+        <Link to={`/settings`} state={{ backgroundLocation: location }}>
+          Settings
+        </Link>
+        <Link to={`/how-to-play`} state={{ backgroundLocation: location }}>
+          Help
+        </Link>
+        <Link to={`/new`} state={{ backgroundLocation: location }}>
+          New
+        </Link>
       </div>
       <div className={styles.guessBoard}>
         <GuessBoard

@@ -20,7 +20,6 @@ export const Settings = ({}: SettingsProps) => {
 
   return (
     <div className={styles.settings}>
-      <h1>Settings</h1>
       <Form.Group label="Show unique icons to distinguish colors on pegs:">
         <Switch
           id="showIcons"
@@ -42,15 +41,13 @@ export const Settings = ({}: SettingsProps) => {
         <Switch
           id="colorScheme"
           value={colorScheme}
-          options={[
-            <p>Light</p>,
-            <p>Dark</p>,
-            <p>System Theme</p>,
-          ]}
+          options={[<p>Light</p>, <p>Dark</p>, <p>System Theme</p>]}
           onChange={(newValue) => setColorScheme(newValue)}
         />
       </Form.Group>
-      <p>A small game created by <a href="https://eoinobrien.ie">Eoin O'Brien</a>.</p>
+      <p>
+        A small game created by <a href="https://eoinobrien.ie">Eoin O'Brien</a>.
+      </p>
     </div>
   );
 };

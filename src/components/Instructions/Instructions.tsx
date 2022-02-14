@@ -1,7 +1,7 @@
 import { GuessPegRow } from 'components/GuessPegRow';
 import { Peg } from 'components/Peg';
 import { PegRow } from 'components/PegRow';
-import { Key, PegColor, PegColorsArray } from 'models';
+import { Key, PegColor } from 'models';
 import styles from './Instructions.module.css';
 
 interface InstructionsProps {
@@ -15,11 +15,9 @@ export const Instructions = ({ showIcons = false }: InstructionsProps) => {
     PegColor.Purple,
     PegColor.Green,
   ];
-  const numberOfColors = 8;
 
   return (
     <div className={styles.instructions}>
-      <h1>How to Play</h1>
       <p>The goal of Mastermind is to crack the secret code.</p>
       <div className={styles.hiddenRow}>
         <PegRow
@@ -52,12 +50,12 @@ export const Instructions = ({ showIcons = false }: InstructionsProps) => {
         Each item in decryption key stands for one of the pegs in your guess.
       </p>
       <p>
-        If a key is Red, <Peg size="small" color={PegColor.Red} className={styles.singularKey} /> it means that
+        If a key is Red, <Peg as="span" size="small" color={PegColor.Red} className={styles.singularKey} /> it means that
         one of the pegs in your guess is both in the secret code and in the
         correct place.
       </p>
       <p>
-        While a White key <Peg size="small" color={PegColor.White} className={styles.singularKey} /> means that
+        While a White key <Peg as="span" size="small" color={PegColor.White} className={styles.singularKey} /> means that
         the one of your guesses is in the code but is in the incorrect place.
       </p>
       <p>
