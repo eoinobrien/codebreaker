@@ -7,6 +7,7 @@
     border-radius: 1rem;
     background: var(--primary-background);
     color: var(--primary-color);
+    border: var(--primary-background) 0.2em solid;
 }
 
 .button:hover {
@@ -24,5 +25,5 @@
 .secondary {
     background: inherit;
     color: var(--color);
-    border: var(--section-divider-border) 0.2em solid;
+    border-color: var(--section-divider-border);
 }

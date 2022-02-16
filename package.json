@@ -60,6 +60,7 @@
     "node": ">=16"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^6.4.19",
     "@storybook/addon-actions": "^6.4.13",
     "@storybook/addon-essentials": "^6.4.13",
     "@storybook/addon-links": "^6.4.13",
@@ -69,6 +70,7 @@
     "@storybook/preset-create-react-app": "^4.0.0",
     "@storybook/react": "^6.4.13",
     "mini-css-extract-plugin": "2.4.5",
+    "storybook-dark-mode": "^1.0.8",
     "webpack": "^5.66.0"
   },
   "overrides": {

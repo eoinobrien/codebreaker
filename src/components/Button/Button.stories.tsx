@@ -9,9 +9,15 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-let value: number = 5;
-export const B = Template.bind({});
-B.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   onClick: () => { },
   children: <span>Hello</span>,
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  onClick: () => { },
+  children: <span>Hello</span>,
+  secondary: true,
 };
