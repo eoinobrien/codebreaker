@@ -1,6 +1,4 @@
 .iconButton {
-    height: 4rem;
-    width: 4rem;
     color: var(--section-divider-border);
 
     border: none;
@@ -14,6 +12,8 @@
     align-items: center;
     justify-content: center;
     align-self: center;
+
+    cursor: pointer;
 }
 
 .iconButton:hover {

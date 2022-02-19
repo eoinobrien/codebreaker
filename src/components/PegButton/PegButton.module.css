@@ -4,6 +4,7 @@
     background: none;
     display: inline-flex;
     transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .pegButton:hover {

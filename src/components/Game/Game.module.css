@@ -7,6 +7,10 @@
     margin: 0 auto;
 }
 
+.menuIcon {
+    margin-right: 1.5rem;
+}
+
 .codeRow {
     border-bottom: var(--section-divider-border) solid 0.4rem;
     display: flex;

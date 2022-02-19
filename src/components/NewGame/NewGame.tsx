@@ -2,7 +2,7 @@ import { Button } from 'components/Button';
 import Form from 'components/Form';
 import { Incrementor } from 'components/Incrementor';
 import { Switch } from 'components/Switch';
-import { createGameSettings } from 'logic';
+import { createGameSettings, encodeGameSettings } from 'logic';
 import { PegColorsArray } from 'models';
 import { useState } from 'react';
 import styles from './NewGame.module.css';
@@ -21,12 +21,16 @@ export const NewGame = () => {
   };
 
   const createGame = () => {
-    createGameSettings(
-      PegColorsArray.slice(0, numberOfColors),
-      numberOfPegs,
-      totalNumberOfGuesses,
-      allowDuplicates,
+    let gameSettings = encodeGameSettings(
+      createGameSettings(
+        PegColorsArray.slice(0, numberOfColors),
+        numberOfPegs,
+        totalNumberOfGuesses,
+        allowDuplicates,
+      ),
     );
+
+    console.log(gameSettings);
   };
 
   return (

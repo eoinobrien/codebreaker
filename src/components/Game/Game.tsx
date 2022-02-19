@@ -1,8 +1,9 @@
-import { BsFillPlusSquareFill } from 'react-icons/bs';
+import { BsFillPlusSquareFill, BsGear, BsPatchPlus, BsPatchQuestion } from 'react-icons/bs';
 import { GuessBoard } from 'components/GuessBoard';
 import { IconButton } from 'components/IconButton';
 import { Keyboard } from 'components/Keyboard';
 import { PegRow } from 'components/PegRow';
+import Menu from 'components/Menu';
 import { Guess, KeyboardActions, PegColor, PegColorsArray } from 'models';
 import styles from './Game.module.css';
 import { Link, Location } from 'react-router-dom';
@@ -50,15 +51,20 @@ export const Game = ({
           Icon={BsFillPlusSquareFill}
           onClick={() => newGameCallback()}
         />
-        <Link to={`/settings`} state={{ backgroundLocation: location }}>
-          Settings
-        </Link>
-        <Link to={`/how-to-play`} state={{ backgroundLocation: location }}>
-          Help
-        </Link>
-        <Link to={`/new`} state={{ backgroundLocation: location }}>
-          New
-        </Link>
+        <Menu.Menu alignRight>
+          <Link to={`/new`} state={{ backgroundLocation: location }}>
+            <BsPatchPlus className={styles.menuIcon} />
+            Advanced New Game
+          </Link>
+          <Link to={`/how-to-play`} state={{ backgroundLocation: location }}>
+            <BsPatchQuestion className={styles.menuIcon} />
+            How to Play
+          </Link>
+          <Link to={`/settings`} state={{ backgroundLocation: location }}>
+            <BsGear className={styles.menuIcon} />
+            Settings
+          </Link>
+        </Menu.Menu>
       </div>
       <div className={styles.guessBoard}>
         <GuessBoard
