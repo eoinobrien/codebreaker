@@ -105,17 +105,16 @@ function createComponentString<T>(
 }
 
 export function encodeGameSettings(game: GameSettings): string {
-  let serialised = JSON.stringify(createGameSettingsCompressed(game));
-  let encodedString = Buffer.from(serialised).toString('base64');
+  let encodedString = Buffer.from(createGameSettingsCompressed(game)).toString('base64');
 
-  return `${Math.floor(Math.random() * BASE64_ALPHABET.length)}${encodedString}`;
+  return `${BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]}${encodedString}`;
 }
 
 export function decodeGameSettings(encodedSettings: string): GameSettings {
   let validBase64Settings = encodedSettings.substring(1);
   let decodedData = Buffer.from(validBase64Settings, 'base64').toString('ascii');
 
-  return reverseGameSettingsCompressed(JSON.parse(decodedData));
+  return reverseGameSettingsCompressed(decodedData);
 }
 
 export function createGameSettings(

@@ -1,13 +1,15 @@
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom"
 import { Button } from 'components/Button';
-import Form from 'components/Form';
 import { Incrementor } from 'components/Incrementor';
 import { Switch } from 'components/Switch';
+import Form from 'components/Form';
 import { createGameSettings, encodeGameSettings } from 'logic';
 import { PegColorsArray } from 'models';
-import { useState } from 'react';
 import styles from './NewGame.module.css';
 
 export const NewGame = () => {
+  const navigate = useNavigate()
   const [numberOfColors, setNumberOfColors] = useState<number>(8);
   const [numberOfPegs, setNumberOfPegs] = useState<number>(4);
   const [totalNumberOfGuesses, setTotalNumberOfGuesses] = useState<number>(10);
@@ -31,6 +33,7 @@ export const NewGame = () => {
     );
 
     console.log(gameSettings);
+    navigate(`/?code=${gameSettings}`)
   };
 
   return (
