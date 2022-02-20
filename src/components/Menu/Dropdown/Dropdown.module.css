@@ -48,7 +48,7 @@
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
-    color: var(--color);
+    color: var(--color) !important; /* TODO: Fix the CSS maths so this isn't needed */
     text-decoration: none;
     cursor: pointer;
     background: var(--background);
