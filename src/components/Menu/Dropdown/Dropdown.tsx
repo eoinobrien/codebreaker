@@ -1,14 +1,20 @@
 import classnames from 'classnames';
-import { ReactNode } from 'react';
+import { LegacyRef, ReactNode, useCallback, useEffect } from 'react';
 import styles from './Dropdown.module.css';
 
 interface DropdownProps {
   items: ReactNode[];
   open: boolean;
   alignRight?: boolean;
+  closeCallback: () => void;
 }
 
-export const Dropdown = ({ items, open, alignRight }: DropdownProps) => {
+export const Dropdown = ({
+  items,
+  open,
+  alignRight,
+  closeCallback,
+}: DropdownProps) => {
   const dropdownClasses = classnames(
     styles.dropdown,
     {
@@ -16,6 +22,23 @@ export const Dropdown = ({ items, open, alignRight }: DropdownProps) => {
     },
     { [styles.open]: open },
   );
+
+  const escFunction = useCallback(
+    (event) => {
+      if (event.keyCode === 27) {
+        closeCallback();
+      }
+    },
+    [closeCallback],
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', escFunction);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction);
+    };
+  }, [escFunction]);
 
   return (
     <div className={dropdownClasses}>

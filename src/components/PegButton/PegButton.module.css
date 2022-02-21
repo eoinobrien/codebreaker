@@ -5,6 +5,8 @@
     display: inline-flex;
     transition: all 0.2s ease;
     cursor: pointer;
+
+    transition: filter 0.2s linear;
 }
 
 .pegButton:hover {
@@ -12,7 +14,7 @@
 }
 
 .pegButton:active {
-    filter: brightness(80%);
+    filter: brightness(75%);
 }
 
 .peg {

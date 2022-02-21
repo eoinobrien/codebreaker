@@ -24,7 +24,7 @@ export const IconButton = ({
       className={styles.iconButton}
       style={{
         width: width,
-        height: height
+        height: height,
       }}
       aria-label={ariaLabel}
       onClick={onClick}

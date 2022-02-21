@@ -24,6 +24,8 @@ export const NewGame = () => {
         settings: gameSettings,
       },
     });
+
+    
   };
 
   return (
@@ -81,7 +83,7 @@ export const NewGame = () => {
           secondary
           className={styles.button}
         >
-          Reset to default settings
+          Reset to default
         </Button>
 
         <Button onClick={createGame} className={styles.button}>

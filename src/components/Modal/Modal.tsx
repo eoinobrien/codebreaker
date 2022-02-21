@@ -10,20 +10,19 @@ interface ModalProps {
   onDismiss: () => void;
 }
 
-export const Modal = ({
-  header,
-  children,
-  onDismiss,
-}: ModalProps) => {
+export const Modal = ({ header, children, onDismiss }: ModalProps) => {
   var modalClasses = classnames(styles.modal, {
     [styles.show]: true,
   });
 
-  const escFunction = useCallback((event) => {
-    if (event.keyCode === 27) {
-      onDismiss();
-    }
-  }, [onDismiss]);
+  const escFunction = useCallback(
+    (event) => {
+      if (event.keyCode === 27) {
+        onDismiss();
+      }
+    },
+    [onDismiss],
+  );
 
   useEffect(() => {
     document.addEventListener('keydown', escFunction);
