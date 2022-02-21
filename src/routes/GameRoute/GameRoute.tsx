@@ -4,7 +4,7 @@ import { Game } from 'components/Game';
 import { ShowIconsState } from 'reducers/settingsReducer';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { GameTypes } from 'reducers/gamesReducer';
-import { BASE64_ALPHABET, decodeGameSettings, encodeGameSettings } from 'logic';
+import { BASE64_ALPHABET, createCode, decodeGameSettings, DEFAULT_GAME_SETTINGS, encodeGameSettings } from 'logic';
 
 export const GameRoute = () => {
   const { state, dispatch } = useContext(GlobalReducerContext);
@@ -13,18 +13,24 @@ export const GameRoute = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    if (searchParams.has('code')) {
-      const encodedGameSettings = searchParams.get('code');
+    const encodedGameSettings = searchParams.get('code');
 
-      if (encodedGameSettings) {
-        const validBase64Settings = decodeGameSettings(
-          encodedGameSettings.substring(1),
-        );
-        dispatch({
-          type: GameTypes.NewGame,
-          payload: validBase64Settings,
-        });
-      }
+    if (encodedGameSettings) {
+      const validBase64Settings = decodeGameSettings(
+        encodedGameSettings.substring(1),
+      );
+      dispatch({
+        type: GameTypes.NewGame,
+        payload: validBase64Settings,
+      });
+    } else {
+      dispatch({
+        type: GameTypes.NewGame,
+        payload: {
+          code: createCode(DEFAULT_GAME_SETTINGS),
+          settings: DEFAULT_GAME_SETTINGS,
+        },
+      });
     }
   }, []);
 
