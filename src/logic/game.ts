@@ -1,5 +1,6 @@
 import { Buffer } from 'buffer';
 import { GameSettings, PegColor } from 'models';
+import { createCode } from './codes';
 
 const NUMBER_OF_COLORS: number = 8;
 const NUMBER_OF_PEGS: number = 4;
@@ -57,8 +58,14 @@ export function reverseGameSettingsCompressed(
   let compressed: string[] = settingsString.split(SEPARATOR);
   let nonCodeSettings: string[] = compressed.slice(1);
 
-  let code: PegColor[] = JSON.parse(`[${compressed[0]}]`);
-
+  let code = createCode();
+  try {
+    code = JSON.parse(`[${compressed[0]}]`);
+  }
+  catch {
+    console.warn('URL Code is invalid, using default settings');
+  }
+    
   let settings: GameSettings = {
     numberOfColors: findSetting(nonCodeSettings, 'c') ?? NUMBER_OF_COLORS,
     numberOfPegs: findSetting(nonCodeSettings, 'n') ?? NUMBER_OF_PEGS,

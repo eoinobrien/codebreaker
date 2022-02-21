@@ -1,4 +1,4 @@
-import { KeyboardActions, PegColor } from 'models';
+import { PegColor } from 'models';
 import { Peg } from 'components/Peg';
 import styles from './PegButton.module.css';
 

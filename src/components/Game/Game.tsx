@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { Link, Location } from 'react-router-dom';
 import {
   BsFillPlusSquareFill,
   BsGear,
@@ -9,13 +11,11 @@ import { IconButton } from 'components/IconButton';
 import { Keyboard } from 'components/Keyboard';
 import { PegRow } from 'components/PegRow';
 import Menu from 'components/Menu';
-import { Guess, KeyboardActions, PegColor, PegColorsArray } from 'models';
-import styles from './Game.module.css';
-import { Link, Location } from 'react-router-dom';
-import { useContext } from 'react';
+import { Guess, PegColor, PegColorsArray } from 'models';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { GameTypes } from 'reducers/gamesReducer';
 import { createCode, DEFAULT_GAME_SETTINGS } from 'logic';
+import styles from './Game.module.css';
 
 interface GameProps {
   code: PegColor[];
@@ -40,7 +40,7 @@ export const Game = ({
   showIcons,
   location,
 }: GameProps) => {
-  const { state, dispatch } = useContext(GlobalReducerContext);
+  const { dispatch } = useContext(GlobalReducerContext);
   return (
     <div className={styles.game}>
       <div className={styles.codeRow}>

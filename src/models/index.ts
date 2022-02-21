@@ -54,12 +54,6 @@ export type Game = {
   settings: GameSettings;
 };
 
-export enum KeyboardActions {
-  ColorPicker,
-  Enter,
-  Backspace,
-}
-
 export type KeyboardActionResult = {
   guess: PegColor[];
   error?: string;

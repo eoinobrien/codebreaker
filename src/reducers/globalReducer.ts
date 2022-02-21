@@ -1,5 +1,4 @@
 import { createCode, DEFAULT_GAME_SETTINGS } from 'logic';
-import { Game } from 'models';
 import { GamesActions, gamesReducer, GamesStateType } from './gamesReducer';
 import {
   ColorSchemeState,
@@ -27,7 +26,7 @@ export const initialState = {
       guesses: [],
       settings: DEFAULT_GAME_SETTINGS,
     },
-    games: {}
+    games: {},
   },
 };
 

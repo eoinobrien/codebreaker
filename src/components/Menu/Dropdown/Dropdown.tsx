@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { LegacyRef, ReactNode, useCallback, useEffect } from 'react';
+import { ReactNode, useCallback, useEffect } from 'react';
 import styles from './Dropdown.module.css';
 
 interface DropdownProps {

@@ -1,4 +1,4 @@
-import { KeyboardActions, PegColor } from 'models';
+import { PegColor } from 'models';
 import { PegButton } from 'components/PegButton';
 import styles from './Keyboard.module.css';
 import { useCallback, useContext, useEffect } from 'react';
@@ -11,10 +11,7 @@ interface KeyboardProps {
   showIcons: boolean;
 }
 
-export const Keyboard = ({
-  colors,
-  showIcons,
-}: KeyboardProps) => {
+export const Keyboard = ({ colors, showIcons }: KeyboardProps) => {
   const { state, dispatch } = useContext(GlobalReducerContext);
   const halfWayIndex = Math.ceil(colors.length / 2);
 
@@ -33,7 +30,7 @@ export const Keyboard = ({
         });
       }
     },
-    [dispatch],
+    [dispatch, state.games.currentGame.currentGuess],
   );
 
   useEffect(() => {
@@ -76,7 +73,9 @@ export const Keyboard = ({
           onClick={() =>
             dispatch({
               type: GameTypes.Backspace,
-              payload: { colors: backspace(state.games.currentGame.currentGuess) },
+              payload: {
+                colors: backspace(state.games.currentGame.currentGuess),
+              },
             })
           }
           showIcon

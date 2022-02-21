@@ -15,13 +15,15 @@ export function useLocallyPersistedReducer<R extends Reducer<any, any>>(
         ? initializer(defaultState)
         : defaultState;
     } catch {
-      return initializer !== undefined ? initializer(defaultState) : defaultState;
+      return initializer !== undefined
+        ? initializer(defaultState)
+        : defaultState;
     }
   });
 
   useEffect(() => {
     localStorage.setItem(storageKey, JSON.stringify(hookVars[0]));
-  }, [storageKey, hookVars[0]]);
+  }, [storageKey, hookVars]);
 
   return hookVars;
 }

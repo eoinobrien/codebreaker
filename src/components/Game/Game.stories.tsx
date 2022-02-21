@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Key, KeyboardActions, PegColor } from 'models';
+import { Key, PegColor } from 'models';
 import { Game } from './Game';
 
 export default {
