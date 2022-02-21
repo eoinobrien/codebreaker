@@ -2,7 +2,7 @@
     font-size: 2rem;
     display: inline-flex;
     justify-content: space-around;
-    width: 100%;
+    width: max-content;
     border-radius: 1.5rem;
 
     border: var(--section-divider-border) 0.2em solid;
@@ -32,8 +32,7 @@
     text-align: center;
     flex: 1;
     border-radius: 1.1rem;
-    padding: 1rem;
-    width: 100%;
+    padding: 1rem 5rem;
     background: var(--background);
     color: var(--color);
 }

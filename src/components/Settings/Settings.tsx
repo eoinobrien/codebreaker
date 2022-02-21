@@ -4,11 +4,11 @@ import { Switch } from 'components/Switch';
 import { PegColor } from 'models';
 import { Peg } from 'components/Peg';
 import styles from './Settings.module.css';
-import { SettingsContext } from 'providers/SettingsContextProviders';
+import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
+import { SettingsTypes } from 'reducers/settingsReducer';
 
 export const Settings = () => {
-  let { showIcons, setShowIcons, colorScheme, setColorScheme } =
-    useContext(SettingsContext);
+  const { state, dispatch } = useContext(GlobalReducerContext);
 
   const pegColors: PegColor[] = [PegColor.Red, PegColor.Blue, PegColor.Green];
   const getPegs = (showIcons: boolean) => {
@@ -22,7 +22,7 @@ export const Settings = () => {
       <Form.Group label="Show unique icons to distinguish colors on pegs:">
         <Switch
           id="showIcons"
-          value={showIcons}
+          value={state.settings.showIcons}
           options={[
             <div>
               <p>Show icons</p>
@@ -33,15 +33,15 @@ export const Settings = () => {
               {getPegs(false)}
             </div>,
           ]}
-          onChange={(newValue) => setShowIcons(newValue)}
+          onChange={(newValue) => dispatch({type: SettingsTypes.SetShowIcons, payload: { showIcons: newValue } })}
         />
       </Form.Group>
       <Form.Group label="Preferred Color Scheme">
         <Switch
           id="colorScheme"
-          value={colorScheme}
+          value={state.settings.colorScheme}
           options={['Light', 'Dark', 'System Theme']}
-          onChange={(newValue) => setColorScheme(newValue)}
+          onChange={(newValue) => dispatch({type: SettingsTypes.SetColorScheme, payload: { colorScheme: newValue } })}
         />
       </Form.Group>
       <p>

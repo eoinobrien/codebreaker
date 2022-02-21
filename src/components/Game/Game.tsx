@@ -1,4 +1,9 @@
-import { BsFillPlusSquareFill, BsGear, BsPatchPlus, BsPatchQuestion } from 'react-icons/bs';
+import {
+  BsFillPlusSquareFill,
+  BsGear,
+  BsPatchPlus,
+  BsPatchQuestion,
+} from 'react-icons/bs';
 import { GuessBoard } from 'components/GuessBoard';
 import { IconButton } from 'components/IconButton';
 import { Keyboard } from 'components/Keyboard';
@@ -7,6 +12,10 @@ import Menu from 'components/Menu';
 import { Guess, KeyboardActions, PegColor, PegColorsArray } from 'models';
 import styles from './Game.module.css';
 import { Link, Location } from 'react-router-dom';
+import { useContext } from 'react';
+import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
+import { GameTypes } from 'reducers/gamesReducer';
+import { createCode, DEFAULT_GAME_SETTINGS } from 'logic';
 
 interface GameProps {
   code: PegColor[];
@@ -18,11 +27,6 @@ interface GameProps {
   guesses: Guess[];
   showIcons: boolean;
   location: Location;
-  newGameCallback: () => void;
-  keyboardCallback: (
-    action: KeyboardActions,
-    color?: PegColor | undefined,
-  ) => void;
 }
 
 export const Game = ({
@@ -35,9 +39,8 @@ export const Game = ({
   guesses,
   showIcons,
   location,
-  newGameCallback,
-  keyboardCallback,
 }: GameProps) => {
+  const { state, dispatch } = useContext(GlobalReducerContext);
   return (
     <div className={styles.game}>
       <div className={styles.codeRow}>
@@ -49,7 +52,15 @@ export const Game = ({
         />
         <IconButton
           Icon={BsFillPlusSquareFill}
-          onClick={() => newGameCallback()}
+          onClick={() =>
+            dispatch({
+              type: GameTypes.NewGame,
+              payload: {
+                code: createCode(DEFAULT_GAME_SETTINGS),
+                settings: DEFAULT_GAME_SETTINGS,
+              },
+            })
+          }
         />
         <Menu.Menu alignRight>
           <Link to={`/new`} state={{ backgroundLocation: location }}>
@@ -79,8 +90,6 @@ export const Game = ({
       <div className={styles.keyboard}>
         <Keyboard
           colors={PegColorsArray.slice(0, numberOfColors)}
-          numberOfPegs={numberOfPegs}
-          callback={keyboardCallback}
           showIcons={showIcons}
         />
       </div>

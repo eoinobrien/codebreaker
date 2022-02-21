@@ -1,9 +1,9 @@
-import { PegColor } from '../models';
-import { createGameSettingsCompressed, decodeGameSettings, encodeGameSettings, GameSettings, reverseGameSettingsCompressed } from './game';
+import { GameSettings, PegColor } from '../models';
+import { createGameSettingsCompressed, decodeGameSettings, encodeGameSettings, reverseGameSettingsCompressed } from './game';
 
 test('encodeGameSettings with defaults returns correct value', () => {
+  let code = [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue];
   let game: GameSettings = {
-    code: [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue],
     numberOfColors: 8,
     numberOfPegs: 4,
     totalNumberOfGuesses: 10,
@@ -12,13 +12,14 @@ test('encodeGameSettings with defaults returns correct value', () => {
 
   let encodedString: string = 'IjAsMSwyLDMi';
 
-  expect(encodeGameSettings(game)).toBe(encodedString);
+  expect(encodeGameSettings(code, game)).toBe(encodedString);
   expect(decodeGameSettings(encodedString)).toStrictEqual(game);
 });
 
 test('encodeGameSettings with non defaults returns correct value', () => {
+  let code = [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue];
+
   let game: GameSettings = {
-    code: [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue],
     numberOfColors: 6,
     numberOfPegs: 5,
     totalNumberOfGuesses: 11,
@@ -27,13 +28,14 @@ test('encodeGameSettings with non defaults returns correct value', () => {
 
   let encodedString: string = 'IjAsMSwyLDM7YzY7bjU7ZzExO2QxIg';
 
-  expect(encodeGameSettings(game)).toBe(encodedString);
+  expect(encodeGameSettings(code, game)).toBe(encodedString);
   expect(decodeGameSettings(encodedString)).toStrictEqual(game);
 });
 
 test('create/reverseGameSettingsCompressed with defaults, return just code', () => {
+  let code = [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue];
+
   let game: GameSettings = {
-    code: [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue],
     numberOfColors: 8,
     numberOfPegs: 4,
     totalNumberOfGuesses: 10,
@@ -42,13 +44,13 @@ test('create/reverseGameSettingsCompressed with defaults, return just code', () 
 
   let compressedString: string = '0,1,2,3';
 
-  expect(createGameSettingsCompressed(game)).toBe(compressedString);
+  expect(createGameSettingsCompressed(code, game)).toBe(compressedString);
   expect(reverseGameSettingsCompressed(compressedString)).toStrictEqual(game);
 });
 
 test('create/reverseGameSettingsCompressed with all non defaults, return everything', () => {
+  let code = [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue];
   let game: GameSettings = {
-    code: [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue],
     numberOfColors: 6,
     numberOfPegs: 5,
     totalNumberOfGuesses: 11,
@@ -57,13 +59,13 @@ test('create/reverseGameSettingsCompressed with all non defaults, return everyth
 
   let compressedString: string = '0,1,2,3;c6;n5;g11;d1';
 
-  expect(createGameSettingsCompressed(game)).toBe(compressedString);
+  expect(createGameSettingsCompressed(code, game)).toBe(compressedString);
   expect(reverseGameSettingsCompressed(compressedString)).toStrictEqual(game);
 });
 
 test('create/reverseGameSettingsCompressed with one non defaults, return code and pegs', () => {
+  let code = [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue];
   let game: GameSettings = {
-    code: [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue],
     numberOfColors: 8,
     numberOfPegs: 5,
     totalNumberOfGuesses: 10,
@@ -72,6 +74,6 @@ test('create/reverseGameSettingsCompressed with one non defaults, return code an
 
   let compressedString: string = '0,1,2,3;n5';
 
-  expect(createGameSettingsCompressed(game)).toBe(compressedString);
+  expect(createGameSettingsCompressed(code, game)).toBe(compressedString);
   expect(reverseGameSettingsCompressed(compressedString)).toStrictEqual(game);
 });

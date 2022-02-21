@@ -9,3 +9,22 @@
 .newGame p {
     font-size: 1.6rem;
 }
+
+.buttonDiv {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.button:first-child {
+    margin-right: 2rem;
+}
+
+@media (width <= 35rem) {
+    .buttonDiv {
+        flex-direction: column;
+    }
+
+    .button:last-child {
+        margin-top: 2rem;
+    }
+}

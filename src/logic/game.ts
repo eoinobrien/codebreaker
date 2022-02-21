@@ -1,6 +1,5 @@
 import { Buffer } from 'buffer';
-import { PegColor, PegColorsArray } from 'models';
-import { createCode } from './codes';
+import { GameSettings, PegColor } from 'models';
 
 const NUMBER_OF_COLORS: number = 8;
 const NUMBER_OF_PEGS: number = 4;
@@ -8,21 +7,21 @@ const TOTAL_NUMBER_OF_GUESSES: number = 10;
 const ALLOW_DUPLICATES: number = 0; // false
 const SEPARATOR: string = ';';
 
-const BASE64_ALPHABET: string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+export const BASE64_ALPHABET: string =
+  'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-export type GameSettings = {
-  code: PegColor[];
-  numberOfColors: number;
-  numberOfPegs: number;
-  totalNumberOfGuesses: number;
-  allowDuplicates: boolean;
+export const DEFAULT_GAME_SETTINGS: GameSettings = {
+  numberOfColors: 8,
+  numberOfPegs: 4,
+  totalNumberOfGuesses: 10,
+  allowDuplicates: false,
 };
 
-export function createGameSettingsCompressed(game: GameSettings): string {
+export function createGameSettingsCompressed(code: PegColor[], game: GameSettings): string {
   let compressed: string[] = [];
 
-  let code = JSON.stringify(game.code);
-  compressed.push(code.substring(1, code.length - 1));
+  let stringifiedCode = JSON.stringify(code);
+  compressed.push(stringifiedCode.substring(1, stringifiedCode.length - 1));
 
   compressed = createComponentString(
     game.numberOfColors,
@@ -54,14 +53,13 @@ export function createGameSettingsCompressed(game: GameSettings): string {
 
 export function reverseGameSettingsCompressed(
   settingsString: string,
-): GameSettings {
+): { code: PegColor[], settings: GameSettings }  {
   let compressed: string[] = settingsString.split(SEPARATOR);
   let nonCodeSettings: string[] = compressed.slice(1);
 
   let code: PegColor[] = JSON.parse(`[${compressed[0]}]`);
 
-  let gameSettings: GameSettings = {
-    code: code,
+  let settings: GameSettings = {
     numberOfColors: findSetting(nonCodeSettings, 'c') ?? NUMBER_OF_COLORS,
     numberOfPegs: findSetting(nonCodeSettings, 'n') ?? NUMBER_OF_PEGS,
     totalNumberOfGuesses:
@@ -72,7 +70,7 @@ export function reverseGameSettingsCompressed(
         : false,
   };
 
-  return gameSettings;
+  return { code, settings };
 }
 
 function findSetting(compressed: string[], letter: string): number | undefined {
@@ -80,7 +78,7 @@ function findSetting(compressed: string[], letter: string): number | undefined {
     return undefined;
   }
 
-  let value : number | undefined = undefined;
+  let value: number | undefined = undefined;
 
   compressed.forEach((c) => {
     if (c.substring(0, 1) === letter) {
@@ -104,46 +102,16 @@ function createComponentString<T>(
   return compressed;
 }
 
-export function encodeGameSettings(game: GameSettings): string {
-  let encodedString = Buffer.from(createGameSettingsCompressed(game)).toString('base64');
-
-  return `${BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]}${encodedString}`;
+export function encodeGameSettings(code: PegColor[], game: GameSettings): string {
+  return Buffer.from(createGameSettingsCompressed(code, game)).toString(
+    'base64',
+  );
 }
 
-export function decodeGameSettings(encodedSettings: string): GameSettings {
-  let validBase64Settings = encodedSettings.substring(1);
-  let decodedData = Buffer.from(validBase64Settings, 'base64').toString('ascii');
+export function decodeGameSettings(encodedSettings: string): { code: PegColor[], settings: GameSettings } {
+  let decodedData = Buffer.from(encodedSettings, 'base64').toString(
+    'ascii',
+  );
 
   return reverseGameSettingsCompressed(decodedData);
-}
-
-export function createGameSettings(
-  colors: PegColor[] = PegColorsArray.slice(0, NUMBER_OF_COLORS),
-  numberOfPegs: number = NUMBER_OF_PEGS,
-  totalNumberOfGuesses: number = TOTAL_NUMBER_OF_GUESSES,
-  allowDuplicates: boolean = ALLOW_DUPLICATES === 1 ? true : false,
-): GameSettings {
-  return {
-    code: createCode(colors, numberOfPegs, allowDuplicates),
-    numberOfColors: colors.length,
-    numberOfPegs: numberOfPegs,
-    totalNumberOfGuesses: totalNumberOfGuesses,
-    allowDuplicates: allowDuplicates,
-  };
-}
-
-export function getOrCreateGame(searchParams: URLSearchParams): GameSettings {
-  let gameSettings: GameSettings;
-
-  if (searchParams.has('code')) {
-    try {
-      gameSettings = decodeGameSettings(searchParams.get('code') ?? '');
-    } catch (error) {
-      gameSettings = createGameSettings();
-    }
-  } else {
-    gameSettings = createGameSettings();
-  }
-
-  return gameSettings;
 }

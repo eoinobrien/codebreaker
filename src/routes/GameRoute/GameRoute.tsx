@@ -1,117 +1,68 @@
-import { useContext, useEffect, useState } from 'react';
-import {
-  useLocation,
-  useSearchParams,
-} from 'react-router-dom';
-import {
-  keyIsCorrectGuess,
-  keysFromGuess,
-  createGameSettings,
-  encodeGameSettings,
-  GameSettings,
-  getOrCreateGame,
-  backspace,
-  pushGuess,
-} from 'logic';
-import { Guess, KeyboardActions, PegColor } from 'models';
+import { useContext, useEffect } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { Game } from 'components/Game';
-import { SettingsContext, ShowIconsState } from 'providers/SettingsContextProviders';
+import { ShowIconsState } from 'reducers/settingsReducer';
+import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
+import { GameTypes } from 'reducers/gamesReducer';
+import { BASE64_ALPHABET, decodeGameSettings, encodeGameSettings } from 'logic';
 
 export const GameRoute = () => {
+  const { state, dispatch } = useContext(GlobalReducerContext);
   let location = useLocation();
+
   const [searchParams, setSearchParams] = useSearchParams();
-  const [gameSettings, setGameSettings] = useState<GameSettings>(
-    getOrCreateGame(searchParams),
-  );
-  const [code, setCode] = useState<PegColor[]>(gameSettings.code);
-  const [guesses, setGuesses] = useState<Guess[]>([]);
-  const [currentGuess, setCurrentGuess] = useState<PegColor[]>([]);
-  const [gameComplete, setGameComplete] = useState<boolean>(false);
-  let { showIcons } = useContext(SettingsContext);
 
   useEffect(() => {
-    setGameComplete(
-      guesses.length >= gameSettings.totalNumberOfGuesses ||
-        keyIsCorrectGuess(
-          guesses[guesses.length - 1]?.keys ?? [],
-          gameSettings.numberOfPegs,
-        ),
-    );
-  }, [guesses, gameSettings.totalNumberOfGuesses, gameSettings.numberOfPegs]);
+    if (searchParams.has('code')) {
+      const encodedGameSettings = searchParams.get('code');
+
+      if (encodedGameSettings) {
+        const validBase64Settings = decodeGameSettings(
+          encodedGameSettings.substring(1),
+        );
+        dispatch({
+          type: GameTypes.NewGame,
+          payload: validBase64Settings,
+        });
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (location.pathname === '/') {
+      const encodedGameSettings = `${
+        BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]
+      }${encodeGameSettings(
+        state.games.currentGame.code,
+        state.games.currentGame.settings,
+      )}`;
+
       // If the URL is not root (e.g. in a modal), don't change the URL.
-      setSearchParams({ code: encodeGameSettings(gameSettings) });
+      setSearchParams({
+        code: encodedGameSettings,
+      });
     }
-    setCode(gameSettings.code);
-  }, [guesses, gameSettings, location.pathname, setSearchParams]);
+  }, [
+    state.games.currentGame.code,
+    state.games.currentGame.settings,
+    setSearchParams,
+  ]);
 
-  const newGame = () => {
-    setGameSettings(createGameSettings());
-    setGameComplete(false);
-    setGuesses([]);
-    setCurrentGuess([]);
-  };
-
-  const callback = (action: KeyboardActions, color?: PegColor) => {
-    switch (action) {
-      case KeyboardActions.ColorPicker:
-        if (color !== undefined && !gameComplete) {
-          let result = pushGuess(
-            [...currentGuess],
-            gameSettings.numberOfPegs,
-            color,
-          );
-
-          setCurrentGuess(result.guess);
-        }
-        break;
-
-      case KeyboardActions.Backspace:
-        let result = backspace([...currentGuess]);
-        setCurrentGuess(result.guess);
-        break;
-
-      case KeyboardActions.Enter:
-        if (!gameComplete) {
-          if (currentGuess.length === gameSettings.numberOfPegs) {
-            let guessToAdd: Guess = {
-              code: currentGuess,
-              keys: keysFromGuess(code, currentGuess),
-              currentGuess: false,
-            };
-            let cloneGuesses = [...guesses];
-
-            cloneGuesses.push(guessToAdd);
-            setGuesses(cloneGuesses);
-
-            setCurrentGuess([]);
-          }
-        } else {
-          // TODO
-        }
-        break;
-
-      default:
-        alert('Go tell Eoin how did you get here!');
-        break;
-    }
-  };
+  const newGame = () => {};
 
   return (
     <Game
-      code={code}
-      gameComplete={gameComplete}
-      numberOfPegs={gameSettings.numberOfPegs}
-      totalNumberOfGuesses={gameSettings.totalNumberOfGuesses}
-      numberOfColors={gameSettings.numberOfColors}
-      currentGuess={currentGuess}
-      guesses={guesses}
-      showIcons={showIcons === ShowIconsState.Show}
+      code={state.games.currentGame.code}
+      gameComplete={state.games.currentGame.gameComplete}
+      numberOfPegs={state.games.currentGame.settings.numberOfPegs}
+      totalNumberOfGuesses={
+        state.games.currentGame.settings.totalNumberOfGuesses
+      }
+      numberOfColors={state.games.currentGame.settings.numberOfColors}
+      currentGuess={state.games.currentGame.currentGuess}
+      guesses={state.games.currentGame.guesses}
+      showIcons={state.settings.showIcons === ShowIconsState.Show}
       location={location}
-      newGameCallback={newGame}
-      keyboardCallback={callback}
     />
   );
 };

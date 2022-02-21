@@ -6,9 +6,9 @@ import {
 } from './codes';
 import {
   encodeGameSettings,
-  createGameSettings,
-  getOrCreateGame,
-  GameSettings,
+  decodeGameSettings,
+  BASE64_ALPHABET,
+  DEFAULT_GAME_SETTINGS,
 } from './game';
 import { pushGuess, backspace } from './keyboard';
 import { getPegStyling } from './pegs';
@@ -19,10 +19,10 @@ export {
   keysFromGuess,
   keyIsCorrectGuess,
   encodeGameSettings,
-  createGameSettings,
-  getOrCreateGame,
+  decodeGameSettings,
+  BASE64_ALPHABET,
+  DEFAULT_GAME_SETTINGS,
   pushGuess,
   backspace,
   getPegStyling,
 };
-export type { GameSettings };

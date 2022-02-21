@@ -34,15 +34,24 @@ export enum Key {
   RightColorWrongSlot,
 }
 
+export type GameSettings = {
+  numberOfColors: number;
+  numberOfPegs: number;
+  totalNumberOfGuesses: number;
+  allowDuplicates: boolean;
+};
+
 export type Guess = {
   code: PegColor[];
   keys: Key[];
-  currentGuess?: boolean;
 };
 
 export type Game = {
   code: PegColor[];
+  currentGuess: PegColor[];
+  gameComplete: boolean;
   guesses: Guess[];
+  settings: GameSettings;
 };
 
 export enum KeyboardActions {

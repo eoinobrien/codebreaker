@@ -4,14 +4,14 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { SettingsContextProvider } from 'providers/SettingsContextProviders';
+import { GlobalReducerContextProvider } from 'providers/GlobalReducerContextProvider';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <SettingsContextProvider>
+      <GlobalReducerContextProvider>
         <App />
-      </SettingsContextProvider>
+      </GlobalReducerContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),

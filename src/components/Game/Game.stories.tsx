@@ -31,9 +31,4 @@ Empty.args = {
       keys: [Key.RightColorRightSlot, Key.RightColorWrongSlot],
     },
   ],
-  newGameCallback: () => {},
-  keyboardCallback: (
-    action: KeyboardActions,
-    color?: PegColor | undefined,
-  ) => {},
 };

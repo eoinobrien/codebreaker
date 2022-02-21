@@ -1,31 +1,29 @@
+import { useContext } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import styles from './App.module.css';
+import classnames from 'classnames';
 import { GameRoute } from 'routes/GameRoute';
 import { Home } from 'routes/Home';
 import { RouterModal } from 'components/RouterModal';
 import { Settings } from 'components/Settings';
 import { Instructions } from 'components/Instructions';
 import { NewGame } from 'components/NewGame';
-import classnames from 'classnames';
-import {
-  ColorSchemeState,
-  SettingsContext,
-} from 'providers/SettingsContextProviders';
-import { useContext } from 'react';
+import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
+import { ColorSchemeState } from 'reducers/settingsReducer';
+import styles from './App.module.css';
 
 function App() {
-  let { colorScheme } = useContext(SettingsContext);
+  let { state } = useContext(GlobalReducerContext);
   let location = useLocation();
-  let state = location.state as { backgroundLocation?: Location };
+  let locationState = location.state as { backgroundLocation?: Location };
 
   var appClasses = classnames(styles.app, {
-    light: colorScheme === ColorSchemeState.Light,
-    dark: colorScheme === ColorSchemeState.Dark,
+    light: state.settings.colorScheme === ColorSchemeState.Light,
+    dark: state.settings.colorScheme === ColorSchemeState.Dark,
   });
 
   return (
     <div className={appClasses}>
-      <Routes location={state?.backgroundLocation || location}>
+      <Routes location={locationState?.backgroundLocation || location}>
         <Route path="/" element={<Home />}>
           <Route index element={<GameRoute />} />
           <Route
@@ -56,7 +54,7 @@ function App() {
       </Routes>
 
       {/* Show the modal when a `backgroundLocation` is set */}
-      {state?.backgroundLocation && (
+      {locationState?.backgroundLocation && (
         <Routes>
           <Route
             path="settings"

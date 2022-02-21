@@ -1,42 +1,48 @@
 import { KeyboardActions, PegColor } from 'models';
 import { PegButton } from 'components/PegButton';
 import styles from './Keyboard.module.css';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
+import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
+import { GameTypes } from 'reducers/gamesReducer';
+import { backspace, pushGuess } from 'logic';
 
 interface KeyboardProps {
   colors: PegColor[];
-  numberOfPegs: number;
   showIcons: boolean;
-  callback: (action: KeyboardActions, color?: PegColor) => void;
 }
 
-export const Keyboard = ({ colors, numberOfPegs, showIcons, callback }: KeyboardProps) => {
+export const Keyboard = ({
+  colors,
+  showIcons,
+}: KeyboardProps) => {
+  const { state, dispatch } = useContext(GlobalReducerContext);
   const halfWayIndex = Math.ceil(colors.length / 2);
 
   const firstHalfOfColors = colors.slice(0, halfWayIndex);
   const secondHalfOfColors = colors.slice(halfWayIndex);
 
-  const backspaceFunction = useCallback((event) => {
-    if (event.keyCode === 8) {
-      callback(KeyboardActions.Backspace, PegColor.KeyboardBackspace);
-    }
-  }, [callback]);
-
-  const enterFunction = useCallback((event) => {
-    if (event.keyCode === 13) {
-      callback(KeyboardActions.Enter, PegColor.KeyboardEnter);
-    }
-  }, [callback]);
+  const keyboardEventFunction = useCallback(
+    (event) => {
+      if (event.keyCode === 13) {
+        dispatch({ type: GameTypes.Enter, payload: {} });
+      }
+      if (event.keyCode === 8) {
+        dispatch({
+          type: GameTypes.Backspace,
+          payload: { colors: backspace(state.games.currentGame.currentGuess) },
+        });
+      }
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
-    document.addEventListener('keydown', enterFunction);
-    document.addEventListener('keydown', backspaceFunction);
+    document.addEventListener('keydown', keyboardEventFunction);
 
     return () => {
-      document.removeEventListener('keydown', enterFunction);
-      document.removeEventListener('keydown', backspaceFunction);
+      document.removeEventListener('keydown', keyboardEventFunction);
     };
-  }, [enterFunction, backspaceFunction]);
+  }, [keyboardEventFunction]);
 
   return (
     <div className={styles.keyboard}>
@@ -47,8 +53,18 @@ export const Keyboard = ({ colors, numberOfPegs, showIcons, callback }: Keyboard
               key={index}
               color={color}
               ariaLabel={PegColor[color]}
-              action={KeyboardActions.ColorPicker}
-              onClick={callback}
+              onClick={() =>
+                dispatch({
+                  type: GameTypes.AddGuess,
+                  payload: {
+                    colors: pushGuess(
+                      state.games.currentGame.currentGuess,
+                      state.games.currentGame.settings.numberOfPegs,
+                      color,
+                    ),
+                  },
+                })
+              }
               showIcon={showIcons}
             />
           );
@@ -57,8 +73,12 @@ export const Keyboard = ({ colors, numberOfPegs, showIcons, callback }: Keyboard
         <PegButton
           color={PegColor.KeyboardBackspace}
           ariaLabel="Backspace"
-          action={KeyboardActions.Backspace}
-          onClick={callback}
+          onClick={() =>
+            dispatch({
+              type: GameTypes.Backspace,
+              payload: { colors: backspace(state.games.currentGame.currentGuess) },
+            })
+          }
           showIcon
         />
       </div>
@@ -68,8 +88,18 @@ export const Keyboard = ({ colors, numberOfPegs, showIcons, callback }: Keyboard
             key={index}
             color={color}
             ariaLabel={PegColor[color]}
-            action={KeyboardActions.ColorPicker}
-            onClick={callback}
+            onClick={() =>
+              dispatch({
+                type: GameTypes.AddGuess,
+                payload: {
+                  colors: pushGuess(
+                    state.games.currentGame.currentGuess,
+                    state.games.currentGame.settings.numberOfPegs,
+                    color,
+                  ),
+                },
+              })
+            }
             showIcon={showIcons}
           />
         ))}
@@ -77,8 +107,7 @@ export const Keyboard = ({ colors, numberOfPegs, showIcons, callback }: Keyboard
         <PegButton
           color={PegColor.KeyboardEnter}
           ariaLabel="Enter"
-          action={KeyboardActions.Enter}
-          onClick={callback}
+          onClick={() => dispatch({ type: GameTypes.Enter, payload: {} })}
           showIcon
         />
       </div>

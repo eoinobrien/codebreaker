@@ -5,15 +5,13 @@ import styles from './PegButton.module.css';
 interface PegButtonProps {
   color: PegColor;
   ariaLabel?: string;
-  action: KeyboardActions;
   showIcon: boolean;
-  onClick: (action: KeyboardActions, color?: PegColor) => void;
+  onClick: () => void;
 }
 
 export const PegButton = ({
   color,
   ariaLabel,
-  action,
   showIcon,
   onClick,
 }: PegButtonProps) => {
@@ -22,7 +20,7 @@ export const PegButton = ({
       className={styles.pegButton}
       value={color}
       aria-label={ariaLabel}
-      onClick={() => onClick(action, color)}
+      onClick={onClick}
     >
       <Peg color={color} showIcon={showIcon} className={styles.peg} />
     </button>

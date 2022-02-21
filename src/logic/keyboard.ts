@@ -1,25 +1,25 @@
-import { KeyboardActionResult, PegColor } from 'models';
+import { PegColor } from 'models';
 
 export function pushGuess(
   currentGuess: PegColor[],
   numberOfPegs: number,
   guess: PegColor,
-): KeyboardActionResult {
+): PegColor[] {
   if (currentGuess.length >= numberOfPegs) {
-    return { guess: currentGuess, error: 'No space to add guess' };
+    return currentGuess
   }
 
   currentGuess.push(guess);
 
-  return { guess: currentGuess };
+  return currentGuess;
 }
 
-export function backspace(currentGuess: PegColor[]): KeyboardActionResult {
+export function backspace(currentGuess: PegColor[]): PegColor[] {
   if (currentGuess.length <= 0) {
-    return { guess: currentGuess, error: 'No colors to delete' };
+    return currentGuess;
   }
 
   currentGuess.pop();
 
-  return { guess: currentGuess };
+  return currentGuess;
 }

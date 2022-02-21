@@ -1,15 +1,14 @@
-import { Key, PegColor } from 'models';
+import { GameSettings, Key, PegColor, PegColorsArray } from 'models';
+import { DEFAULT_GAME_SETTINGS } from './game';
 
-export function createCode(
-  colors: PegColor[],
-  numberOfPegs: number,
-  allowDuplicates: boolean = false,
-): PegColor[] {
+export function createCode(settings: GameSettings = DEFAULT_GAME_SETTINGS): PegColor[] {
+  const colors = PegColorsArray.slice(0, settings.numberOfColors);
+
   let pegs: PegColor[] = [];
 
-  for (let i = 0; i < numberOfPegs; i++) {
+  for (let i = 0; i < settings.numberOfPegs; i++) {
     let peg = randomPegColor(colors);
-    while (!allowDuplicates && pegs.indexOf(peg) !== -1) {
+    while (!settings.allowDuplicates && pegs.indexOf(peg) !== -1) {
       peg = randomPegColor(colors);
     }
     pegs.push(peg);
