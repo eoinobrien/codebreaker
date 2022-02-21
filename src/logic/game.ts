@@ -18,7 +18,10 @@ export const DEFAULT_GAME_SETTINGS: GameSettings = {
   allowDuplicates: false,
 };
 
-export function createGameSettingsCompressed(code: PegColor[], game: GameSettings): string {
+export function createGameSettingsCompressed(
+  code: PegColor[],
+  game: GameSettings,
+): string {
   let compressed: string[] = [];
 
   let stringifiedCode = JSON.stringify(code);
@@ -52,20 +55,13 @@ export function createGameSettingsCompressed(code: PegColor[], game: GameSetting
   return compressed.join(SEPARATOR);
 }
 
-export function reverseGameSettingsCompressed(
-  settingsString: string,
-): { code: PegColor[], settings: GameSettings }  {
+export function reverseGameSettingsCompressed(settingsString: string): {
+  code: PegColor[];
+  settings: GameSettings;
+} {
   let compressed: string[] = settingsString.split(SEPARATOR);
   let nonCodeSettings: string[] = compressed.slice(1);
 
-  let code = createCode();
-  try {
-    code = JSON.parse(`[${compressed[0]}]`);
-  }
-  catch {
-    console.warn('URL Code is invalid, using default settings');
-  }
-    
   let settings: GameSettings = {
     numberOfColors: findSetting(nonCodeSettings, 'c') ?? NUMBER_OF_COLORS,
     numberOfPegs: findSetting(nonCodeSettings, 'n') ?? NUMBER_OF_PEGS,
@@ -76,6 +72,13 @@ export function reverseGameSettingsCompressed(
         ? true
         : false,
   };
+
+  let code = createCode(settings);
+  try {
+    code = JSON.parse(`[${compressed[0]}]`);
+  } catch {
+    console.warn('URL Code is invalid, using default settings');
+  }
 
   return { code, settings };
 }
@@ -109,16 +112,20 @@ function createComponentString<T>(
   return compressed;
 }
 
-export function encodeGameSettings(code: PegColor[], game: GameSettings): string {
+export function encodeGameSettings(
+  code: PegColor[],
+  game: GameSettings,
+): string {
   return Buffer.from(createGameSettingsCompressed(code, game)).toString(
     'base64',
   );
 }
 
-export function decodeGameSettings(encodedSettings: string): { code: PegColor[], settings: GameSettings } {
-  let decodedData = Buffer.from(encodedSettings, 'base64').toString(
-    'ascii',
-  );
+export function decodeGameSettings(encodedSettings: string): {
+  code: PegColor[];
+  settings: GameSettings;
+} {
+  let decodedData = Buffer.from(encodedSettings, 'base64').toString('ascii');
 
   return reverseGameSettingsCompressed(decodedData);
 }

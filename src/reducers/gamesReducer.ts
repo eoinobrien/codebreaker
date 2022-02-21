@@ -4,7 +4,6 @@ import { GlobalActions } from './globalReducer';
 import { ActionMap } from './helpers';
 
 export enum GameTypes {
-  NewGame = 'NEW_GAME',
   LoadGame = 'LOAD_GAME',
 
   AddGuess = 'ADD_GUESS',
@@ -19,12 +18,8 @@ export type GamesStateType = {
 };
 
 type GamesPayload = {
-  [GameTypes.NewGame]: {
-    code: PegColor[];
-    settings: GameSettings;
-  };
   [GameTypes.LoadGame]: {
-    encodedString: string;
+    game: Game;
   };
   [GameTypes.AddGuess]: { colors: PegColor[] };
   [GameTypes.Backspace]: { colors: PegColor[] };
@@ -40,18 +35,14 @@ export const gamesReducer = (
   action: GlobalActions,
 ): GamesStateType => {
   switch (action.type) {
-    case GameTypes.NewGame:
+    case GameTypes.LoadGame:
       if (state.currentGame.guesses.length > 0) {
         state.games[
           encodeGameSettings(state.currentGame.code, state.currentGame.settings)
         ] = state.currentGame;
       }
 
-      state.currentGame = {} as Game;
-      state.currentGame.settings = action.payload.settings;
-      state.currentGame.code = action.payload.code;
-      state.currentGame.guesses = [];
-      state.currentGame.currentGuess = [];
+      state.currentGame = action.payload.game;
 
       return state;
     case GameTypes.AddGuess:

@@ -54,10 +54,15 @@ export const Game = ({
           Icon={BsFillPlusSquareFill}
           onClick={() =>
             dispatch({
-              type: GameTypes.NewGame,
+              type: GameTypes.LoadGame,
               payload: {
-                code: createCode(DEFAULT_GAME_SETTINGS),
-                settings: DEFAULT_GAME_SETTINGS,
+                game: {
+                  code: createCode(DEFAULT_GAME_SETTINGS),
+                  currentGuess:[],
+                  gameComplete:false,
+                  guesses: [],
+                  settings: DEFAULT_GAME_SETTINGS,
+                },
               },
             })
           }

@@ -4,10 +4,10 @@ import { Button } from 'components/Button';
 import { Incrementor } from 'components/Incrementor';
 import { Switch } from 'components/Switch';
 import Form from 'components/Form';
-import { GameSettings, PegColorsArray } from 'models';
+import { Game, GameSettings, PegColorsArray } from 'models';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { GameTypes } from 'reducers/gamesReducer';
-import { createCode, DEFAULT_GAME_SETTINGS } from 'logic';
+import { BASE64_ALPHABET, createCode, DEFAULT_GAME_SETTINGS, encodeGameSettings } from 'logic';
 import styles from './NewGame.module.css';
 
 export const NewGame = () => {
@@ -19,15 +19,14 @@ export const NewGame = () => {
   );
 
   const createGame = () => {
-    dispatch({
-      type: GameTypes.NewGame,
-      payload: {
-        code: createCode(gameSettings),
-        settings: gameSettings,
-      },
-    });
+    const invalidEncodedGameSettings = `${
+      BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]
+    }${encodeGameSettings(
+      createCode(gameSettings),
+      gameSettings,
+    )}`;
 
-    navigate(-1);
+    navigate(`/?code=${invalidEncodedGameSettings}`);
   };
 
   return (

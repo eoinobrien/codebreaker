@@ -11,6 +11,7 @@ import {
   DEFAULT_GAME_SETTINGS,
   encodeGameSettings,
 } from 'logic';
+import * as Models from 'models';
 
 export const GameRoute = () => {
   const { state, dispatch } = useContext(GlobalReducerContext);
@@ -19,19 +20,40 @@ export const GameRoute = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const encodedGameSettings = searchParams.get('code');
-    let newGamePayload = {
-      code: createCode(DEFAULT_GAME_SETTINGS),
-      settings: DEFAULT_GAME_SETTINGS,
-    };
+    const paramGameSettings = searchParams.get('code');
+    let game: Models.Game;
 
-    if (encodedGameSettings) {
-      newGamePayload = decodeGameSettings(encodedGameSettings.substring(1));
+    if (paramGameSettings) {
+      const encodedGameSettings = paramGameSettings.substring(1);
+      game = state.games.games[encodedGameSettings];
+
+      if (!game) {
+        console.warn(
+          'Game was not found in storage, creating a new game from settings',
+        );
+
+        const { code, settings } = decodeGameSettings(encodedGameSettings);
+        game = {
+          code: code,
+          currentGuess: [],
+          gameComplete: false,
+          guesses: [],
+          settings: settings,
+        };
+      }
+    } else {
+      game = {
+        code: createCode(DEFAULT_GAME_SETTINGS),
+        currentGuess: [],
+        gameComplete: false,
+        guesses: [],
+        settings: DEFAULT_GAME_SETTINGS,
+      };
     }
 
     dispatch({
-      type: GameTypes.NewGame,
-      payload: newGamePayload,
+      type: GameTypes.LoadGame,
+      payload: { game },
     });
   }, [searchParams, dispatch]);
 
@@ -43,7 +65,10 @@ export const GameRoute = () => {
       );
 
       const paramCode = searchParams.get('code');
-      if (paramCode && paramCode.substring(1) !== encodedGameSettings) {
+      if (
+        !paramCode ||
+        (paramCode && paramCode.substring(1) !== encodedGameSettings)
+      ) {
         const invalidEncodedGameSettings = `${
           BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]
         }${encodedGameSettings}`;
@@ -56,8 +81,7 @@ export const GameRoute = () => {
     }
   }, [
     location.pathname,
-    state.games.currentGame.code,
-    state.games.currentGame.settings,
+    state.games.currentGame,
     searchParams,
     setSearchParams,
   ]);

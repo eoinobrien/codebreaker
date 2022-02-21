@@ -1,7 +1,6 @@
 import { GameSettings, Key, PegColor, PegColorsArray } from 'models';
-import { DEFAULT_GAME_SETTINGS } from './game';
 
-export function createCode(settings: GameSettings = DEFAULT_GAME_SETTINGS): PegColor[] {
+export function createCode(settings: GameSettings): PegColor[] {
   const colors = PegColorsArray.slice(0, settings.numberOfColors);
 
   let pegs: PegColor[] = [];

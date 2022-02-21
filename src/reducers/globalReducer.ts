@@ -20,7 +20,7 @@ export const initialState = {
   },
   games: {
     currentGame: {
-      code: createCode(),
+      code: createCode(DEFAULT_GAME_SETTINGS),
       currentGuess: [],
       gameComplete: false,
       guesses: [],
