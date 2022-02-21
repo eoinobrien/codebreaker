@@ -2,7 +2,7 @@
     font-size: 2rem;
     display: inline-flex;
     justify-content: space-around;
-    width: max-content;
+    max-width: 100%;
     border-radius: 1.5rem;
 
     border: var(--section-divider-border) 0.2em solid;
@@ -28,13 +28,16 @@
 }
 
 .label {
-    display: inline-block;
+    display: inline-flex;
     text-align: center;
     flex: 1;
     border-radius: 1.1rem;
-    padding: 1rem 5rem;
+    padding: 1rem 2rem;
     background: var(--background);
     color: var(--color);
+
+    justify-content: center;
+    align-items: center;
 }
 
 .label:hover {
