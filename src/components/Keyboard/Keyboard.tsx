@@ -43,6 +43,11 @@ export const Keyboard = ({ colors, showIcons }: KeyboardProps) => {
 
   return (
     <div className={styles.keyboard}>
+      <h1 className={styles.duplicateString}>
+        {state.games.currentGame.settings.allowDuplicates
+          ? 'Code can potentially include duplicate colors'
+          : 'Code does not include duplicate colors'}
+      </h1>
       <div className={styles.keyboardLine}>
         {firstHalfOfColors.map((color, index) => {
           return (
