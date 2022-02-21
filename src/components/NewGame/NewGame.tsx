@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'components/Button';
 import { Incrementor } from 'components/Incrementor';
 import { Switch } from 'components/Switch';
@@ -10,6 +11,7 @@ import { createCode, DEFAULT_GAME_SETTINGS } from 'logic';
 import styles from './NewGame.module.css';
 
 export const NewGame = () => {
+  const navigate = useNavigate();
   const { dispatch } = useContext(GlobalReducerContext);
 
   const [gameSettings, setGameSettings] = useState<GameSettings>(
@@ -25,7 +27,7 @@ export const NewGame = () => {
       },
     });
 
-    
+    navigate(-1);
   };
 
   return (
