@@ -5,6 +5,7 @@ import { ActionMap } from './helpers';
 
 export enum GameTypes {
   LoadGame = 'LOAD_GAME',
+  SaveGame = 'SAVE_GAME',
 
   AddGuess = 'ADD_GUESS',
   Backspace = 'BACKSPACE_GUESS',
@@ -19,6 +20,9 @@ export type GamesStateType = {
 
 type GamesPayload = {
   [GameTypes.LoadGame]: {
+    game: Game;
+  };
+  [GameTypes.SaveGame]: {
     game: Game;
   };
   [GameTypes.AddGuess]: { colors: PegColor[] };
@@ -44,6 +48,13 @@ export const gamesReducer = (
 
       state.currentGame = action.payload.game;
 
+      return state;
+    case GameTypes.SaveGame:
+      if (action.payload.game.guesses.length > 0) {
+        state.games[
+          encodeGameSettings(action.payload.game.code, action.payload.game.settings)
+        ] = state.currentGame;
+      }
       return state;
     case GameTypes.AddGuess:
     case GameTypes.Backspace:

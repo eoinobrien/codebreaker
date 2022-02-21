@@ -86,6 +86,21 @@ export const GameRoute = () => {
     setSearchParams,
   ]);
 
+  useEffect(() => {
+    window.addEventListener('beforeunload', saveGameState);
+    return () => {
+      window.removeEventListener('beforeunload', saveGameState);
+    };
+  }, []);
+
+  const saveGameState = (e: BeforeUnloadEvent) => {
+    e.preventDefault();
+    dispatch({
+      type: GameTypes.SaveGame,
+      payload: { game: state.games.currentGame },
+    });
+  };
+
   return (
     <Game
       code={state.games.currentGame.code}
