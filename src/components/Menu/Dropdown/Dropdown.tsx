@@ -41,14 +41,14 @@ export const Dropdown = ({
   }, [escFunction]);
 
   return (
-    <div className={dropdownClasses}>
+    <ul className={dropdownClasses}>
       {items.map((item, index) => {
         return (
-          <div className={styles.dropdownItem} key={index}>
+          <li className={styles.dropdownItem} key={index}>
             {item}
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };

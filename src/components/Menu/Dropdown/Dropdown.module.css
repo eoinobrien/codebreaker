@@ -19,6 +19,7 @@
     left: 0;
     top: 5rem;
     margin: 1rem;
+    padding: 0;
 
     text-align: left;
 }
@@ -37,6 +38,7 @@
 }
 
 .dropdownItem {
+    list-style: none;
     border-bottom: var(--section-divider-border) 0.35em solid;
 }
 
