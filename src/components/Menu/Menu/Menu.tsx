@@ -17,7 +17,10 @@ export const Menu = ({ children, alignRight }: MenuProps) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
-  useEffect(listenForOutsideClick(listening, setListening, menuRef, setIsOpen));
+  useEffect(
+    () => listenForOutsideClick(listening, setListening, menuRef, setIsOpen),
+    [listening, setListening, menuRef, setIsOpen],
+  );
 
   return (
     <div className={styles.menu} ref={menuRef}>

@@ -6,23 +6,21 @@ export default function listenForOutsideClicks(
   menuRef: any,
   setIsOpen: Dispatch<SetStateAction<boolean>>,
 ) {
-  return () => {
-    if (listening) {
-      return;
-    }
-    if (!menuRef.current) {
-      return;
-    }
+  if (listening) {
+    return;
+  }
+  if (!menuRef.current) {
+    return;
+  }
 
-    setListening(true);
+  setListening(true);
 
-    [`click`, `touchstart`].forEach((type) => {
-      document.addEventListener(`click`, (evt) => {
-        if (menuRef.current.contains(evt.target)) {
-          return;
-        }
-        setIsOpen(false);
-      });
+  [`click`, `touchstart`].forEach((type) => {
+    document.addEventListener(`click`, (evt) => {
+      if (menuRef.current.contains(evt.target)) {
+        return;
+      }
+      setIsOpen(false);
     });
-  };
+  });
 }
