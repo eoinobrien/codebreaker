@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Instructions } from '.';
-import { Key, PegColor } from 'models';
 
 export default {
   title: 'Components/Instructions',

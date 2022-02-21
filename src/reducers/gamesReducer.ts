@@ -1,5 +1,5 @@
 import { encodeGameSettings, keyIsCorrectGuess, keysFromGuess } from 'logic';
-import { Game, GameSettings, PegColor } from 'models';
+import { Game, PegColor } from 'models';
 import { GlobalActions } from './globalReducer';
 import { ActionMap } from './helpers';
 

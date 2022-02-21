@@ -55,7 +55,7 @@ export const GameRoute = () => {
       type: GameTypes.LoadGame,
       payload: { game },
     });
-  }, [searchParams, dispatch]);
+  }, [searchParams, state.games.games, dispatch]);
 
   useEffect(() => {
     if (location.pathname === '/') {
@@ -87,19 +87,19 @@ export const GameRoute = () => {
   ]);
 
   useEffect(() => {
+    const saveGameState = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      dispatch({
+        type: GameTypes.SaveGame,
+        payload: { game: state.games.currentGame },
+      });
+    };
+
     window.addEventListener('beforeunload', saveGameState);
     return () => {
       window.removeEventListener('beforeunload', saveGameState);
     };
-  }, []);
-
-  const saveGameState = (e: BeforeUnloadEvent) => {
-    e.preventDefault();
-    dispatch({
-      type: GameTypes.SaveGame,
-      payload: { game: state.games.currentGame },
-    });
-  };
+  }, [state.games.currentGame, dispatch]);
 
   return (
     <Game

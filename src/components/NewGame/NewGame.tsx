@@ -1,18 +1,15 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'components/Button';
 import { Incrementor } from 'components/Incrementor';
 import { Switch } from 'components/Switch';
 import Form from 'components/Form';
-import { Game, GameSettings, PegColorsArray } from 'models';
-import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
-import { GameTypes } from 'reducers/gamesReducer';
+import { GameSettings, PegColorsArray } from 'models';
 import { BASE64_ALPHABET, createCode, DEFAULT_GAME_SETTINGS, encodeGameSettings } from 'logic';
 import styles from './NewGame.module.css';
 
 export const NewGame = () => {
   const navigate = useNavigate();
-  const { dispatch } = useContext(GlobalReducerContext);
 
   const [gameSettings, setGameSettings] = useState<GameSettings>(
     DEFAULT_GAME_SETTINGS,
