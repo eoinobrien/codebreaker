@@ -18,7 +18,7 @@ export const GuessPegRow = ({
   keys = [],
   numberOfPegs,
   showIcons,
-  currentGuess = false
+  currentGuess = false,
 }: GuessPegRowProps) => {
   const guessPegRowRef = useRef<HTMLDivElement>(null);
   var guessPegRowClass = classnames(styles.guessPegRow, {
@@ -27,13 +27,16 @@ export const GuessPegRow = ({
 
   useEffect(() => {
     if (currentGuess) {
-      guessPegRowRef.current?.scrollIntoView({ behavior: "smooth" });
+      guessPegRowRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
     }
   }, [code, currentGuess]);
 
   return (
     <div className={guessPegRowClass} ref={guessPegRowRef}>
-      <PegRow code={code} numberOfPegs={numberOfPegs} showIcons={showIcons}/>
+      <PegRow code={code} numberOfPegs={numberOfPegs} showIcons={showIcons} />
       <KeyGrid keys={keys} numberOfPegs={numberOfPegs} />
     </div>
   );

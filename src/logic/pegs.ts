@@ -21,7 +21,7 @@ getPegStyling.set(PegColor.Green, {
   iconColor: '#051005',
 });
 getPegStyling.set(PegColor.Yellow, {
-  color: '#FFC107',
+  color: '#FFEB3B',
   borderColor: '#F57F17',
   icon: 'BsFillTriangleFill',
   iconColor: '#713705',
