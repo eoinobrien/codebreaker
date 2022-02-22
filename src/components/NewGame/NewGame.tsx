@@ -42,7 +42,7 @@ export const NewGame = () => {
         <Incrementor
           value={gameSettings.numberOfPegs}
           min={1}
-          max={10}
+          max={8}
           onChange={(newNumber) =>
             setGameSettings({ ...gameSettings, numberOfPegs: newNumber })
           }
