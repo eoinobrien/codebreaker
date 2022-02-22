@@ -7,10 +7,11 @@ import styles from './Modal.module.css';
 interface ModalProps {
   header: string;
   children: ReactNode;
+  width?: string | number;
   onDismiss: () => void;
 }
 
-export const Modal = ({ header, children, onDismiss }: ModalProps) => {
+export const Modal = ({ header, children, width, onDismiss }: ModalProps) => {
   var modalClasses = classnames(styles.modal, {
     [styles.show]: true,
   });
@@ -46,7 +47,7 @@ export const Modal = ({ header, children, onDismiss }: ModalProps) => {
 
   return (
     <div className={modalClasses} onClick={onModalBackgroundClick}>
-      <div className={styles.modalContent}>
+      <div className={styles.modalContent} style={{width: width}}>
         <div className={styles.header}>
           <h1>{header}</h1>
           <IconButton Icon={BsX} onClick={onCloseModalClick} />

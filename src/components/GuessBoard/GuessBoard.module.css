@@ -1,5 +1,5 @@
 .guessBoard {
     display: flex;
     flex-direction: column-reverse;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }

@@ -10,7 +10,7 @@ import { GuessBoard } from 'components/GuessBoard';
 import { IconButton } from 'components/IconButton';
 import { Keyboard } from 'components/Keyboard';
 import { PegRow } from 'components/PegRow';
-import Menu from 'components/Menu';
+import { Menu } from 'components/Menu';
 import { Guess, PegColor, PegColorsArray } from 'models';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { GameTypes } from 'reducers/gamesReducer';
@@ -58,8 +58,8 @@ export const Game = ({
               payload: {
                 game: {
                   code: createCode(DEFAULT_GAME_SETTINGS),
-                  currentGuess:[],
-                  gameComplete:false,
+                  currentGuess: [],
+                  gameComplete: false,
                   guesses: [],
                   settings: DEFAULT_GAME_SETTINGS,
                 },
@@ -67,7 +67,7 @@ export const Game = ({
             })
           }
         />
-        <Menu.Menu alignRight>
+        <Menu>
           <Link to={`/new`} state={{ backgroundLocation: location }}>
             <BsPatchPlus className={styles.menuIcon} />
             Advanced New Game
@@ -80,7 +80,7 @@ export const Game = ({
             <BsGear className={styles.menuIcon} />
             Settings
           </Link>
-        </Menu.Menu>
+        </Menu>
       </div>
       <div className={styles.guessBoard}>
         <GuessBoard

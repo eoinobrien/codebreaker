@@ -1,0 +1,51 @@
+.menu {
+    display: flex;
+}
+
+.menuList {
+    padding: 0;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.menuItem {
+    list-style: none;
+    border-bottom: var(--section-divider-border) 0.2em solid;
+}
+
+.menuItem:last-child {
+    border-bottom: none;
+}
+
+.menuItem a,
+.menuItem p {
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    color: var(--color) !important; /* TODO: Fix the CSS maths so this isn't needed */
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--background);
+}
+
+.menuItem:first-child a,
+.menuItem:first-child p {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.menuItem:last-child a,
+.menuItem:last-child p {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.menuItem a:hover,
+.menuItem p:hover {
+    filter: brightness(85%);
+}
+
+.menuItem a:active,
+.menuItem p:active {
+    filter: brightness(75%);
+}

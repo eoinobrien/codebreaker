@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Game } from 'components/Game';
 import { ShowIconsState } from 'reducers/settingsReducer';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
@@ -15,6 +15,7 @@ import * as Models from 'models';
 
 export const GameRoute = () => {
   const { state, dispatch } = useContext(GlobalReducerContext);
+  const navigate = useNavigate();
   let location = useLocation();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -100,6 +101,14 @@ export const GameRoute = () => {
       window.removeEventListener('beforeunload', saveGameState);
     };
   }, [state.games.currentGame, dispatch]);
+
+  useEffect(() => {
+    if (!state.settings.instructionsShown) {
+      navigate('/how-to-play', {
+        state: { backgroundLocation: location },
+      });
+    }
+  }, [location, navigate, state.settings.instructionsShown]);
 
   return (
     <Game

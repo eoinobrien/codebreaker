@@ -4,6 +4,7 @@ import { ActionMap } from './helpers';
 export enum SettingsTypes {
   SetShowIcons = 'SET_SHOW_ICONS',
   SetColorScheme = 'SET_COLOR_SCHEME',
+  SetInstructionsShown = 'SET_INSTRUCTIONS_SHOWN',
 }
 
 export enum ShowIconsState {
@@ -20,6 +21,7 @@ export enum ColorSchemeState {
 export type SettingsStateType = {
   showIcons: ShowIconsState;
   colorScheme: ColorSchemeState;
+  instructionsShown: boolean;
 };
 
 type SettingsPayload = {
@@ -29,6 +31,9 @@ type SettingsPayload = {
   [SettingsTypes.SetColorScheme]: {
     colorScheme: ColorSchemeState;
   };
+  [SettingsTypes.SetInstructionsShown]: {
+    shown: boolean;
+  }
 };
 
 export type SettingsActions =
@@ -44,6 +49,9 @@ export const settingsReducer = (
       return state;
     case SettingsTypes.SetColorScheme:
       state.colorScheme = action.payload.colorScheme;
+      return state;
+    case SettingsTypes.SetInstructionsShown:
+      state.instructionsShown = action.payload.shown;
       return state;
     default:
       return state;

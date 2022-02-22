@@ -1,16 +1,15 @@
 import { IconButton } from 'components/IconButton';
+import { Modal } from 'components/Modal';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import listenForOutsideClick from 'utils/listenForOutsideClick';
-import { Dropdown } from '../Dropdown';
 import styles from './Menu.module.css';
 
 interface MenuProps {
   children: ReactNode[];
-  alignRight?: boolean;
 }
 
-export const Menu = ({ children, alignRight }: MenuProps) => {
+export const Menu = ({ children }: MenuProps) => {
   const menuRef = useRef(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [listening, setListening] = useState<boolean>(false);
@@ -29,12 +28,19 @@ export const Menu = ({ children, alignRight }: MenuProps) => {
         onClick={toggle}
         width="fit-content"
       />
-      <Dropdown
-        items={children}
-        alignRight={alignRight}
-        open={isOpen}
-        closeCallback={() => setIsOpen(false)}
-      />
+      {isOpen && (
+        <Modal header={'Menu'} onDismiss={() => setIsOpen(false)} width="40rem">
+          <ul className={styles.menuList}>
+            {children.map((item, index) => {
+              return (
+                <li className={styles.menuItem} key={index}>
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
+        </Modal>
+      )}
     </div>
   );
 };

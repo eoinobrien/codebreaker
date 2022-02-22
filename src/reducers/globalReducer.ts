@@ -17,6 +17,7 @@ export const initialState = {
   settings: {
     showIcons: ShowIconsState.Hide,
     colorScheme: ColorSchemeState.SystemDefault,
+    instructionsShown: false,
   },
   games: {
     currentGame: {
