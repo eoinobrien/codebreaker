@@ -54,3 +54,32 @@ test('keysFromGuess code is one color and matches guess. Returns 4 RightColorRig
     Key.RightColorRightSlot,
   ]);
 });
+
+test('keysFromGuess code is 4 colors that match guess but wrong spot. Returns 4 RightColorWrongSlot', () => {
+  let code = [PegColor.Red, PegColor.Yellow, PegColor.Blue, PegColor.Blue];
+  let guess = [PegColor.Blue, PegColor.Blue, PegColor.Red, PegColor.Yellow];
+
+  expect(keysFromGuess(code, guess)).toStrictEqual([
+    Key.RightColorWrongSlot,
+    Key.RightColorWrongSlot,
+    Key.RightColorWrongSlot,
+    Key.RightColorWrongSlot,
+  ]);
+});
+
+test('keysFromGuess code is two colors that match guess but wrong spot. Returns 2 RightColorWrongSlot', () => {
+  let code = [PegColor.Red, PegColor.Blue];
+  let guess = [PegColor.Blue, PegColor.Red];
+
+  expect(keysFromGuess(code, guess)).toStrictEqual([
+    Key.RightColorWrongSlot,
+    Key.RightColorWrongSlot,
+  ]);
+});
+
+test('keysFromGuess guess has two of same colors, one matches code. Returns 1 RightColorRightSlot', () => {
+  let code = [PegColor.Red, PegColor.Blue];
+  let guess = [PegColor.Blue, PegColor.Blue];
+
+  expect(keysFromGuess(code, guess)).toStrictEqual([Key.RightColorRightSlot]);
+});

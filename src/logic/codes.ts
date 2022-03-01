@@ -20,30 +20,62 @@ function randomPegColor(colors: PegColor[]): PegColor {
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
+type PegCountObject = {
+  indexes: number[];
+  rightColorRightSlot: number;
+  rightColorWrongSlot: number;
+};
+
 export function keysFromGuess(code: PegColor[], guess: PegColor[]): Key[] {
-  let keys: Key[] = [];
-  let consumedIndexes: number[] = [];
+  let pegDetails = new Map<PegColor, PegCountObject>();
 
   code.forEach((codePeg, codeIndex) => {
-    let keyResult: Key | undefined;
+    let pegCountObject = pegDetails.get(codePeg) ?? {
+      indexes: [],
+      rightColorRightSlot: 0,
+      rightColorWrongSlot: 0,
+    };
+    pegCountObject.indexes.push(codeIndex);
+    pegDetails.set(codePeg, pegCountObject);
+  });
 
-    guess.every((guessPeg, guessIndex) => {
-      if (codePeg === guessPeg) {
-        if (codeIndex === guessIndex) {
-          keyResult = Key.RightColorRightSlot;
-          consumedIndexes.push(guessIndex);
-          return false;
-        } else if (consumedIndexes.indexOf(guessIndex) === -1) {
-          keyResult = Key.RightColorWrongSlot;
-        }
+  guess.forEach((guessPeg, guessIndex) => {
+    // guessPeg exists in Code
+    if (pegDetails.has(guessPeg)) {
+      let pegCountObject = pegDetails.get(guessPeg) ?? {
+        indexes: [],
+        rightColorRightSlot: 0,
+        rightColorWrongSlot: 0,
+      };
 
-        consumedIndexes.push(guessIndex);
+      // If guessPeg index matches code index
+      if (pegCountObject.indexes.indexOf(guessIndex) === -1) {
+        pegCountObject.rightColorWrongSlot++;
+      } else {
+        pegCountObject.rightColorRightSlot++;
       }
 
-      return true; // keep the loop going
-    });
+      pegDetails.set(guessPeg, pegCountObject);
+    }
+  });
 
-    keyResult !== undefined && keys.push(keyResult);
+  let keys: Key[] = [];
+
+  pegDetails.forEach((value) => {
+    keys.push(
+      ...createArrayOfObject(
+        Key.RightColorRightSlot,
+        value.rightColorRightSlot,
+      ),
+    );
+
+    let remainingIndexes = value.indexes.length - value.rightColorRightSlot;
+    keys.push(
+      ...createArrayOfObject(
+        Key.RightColorWrongSlot,
+        Math.min(value.rightColorWrongSlot, remainingIndexes),
+      ),
+    );
   });
 
   keys.sort((a, b) => a - b);
