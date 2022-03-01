@@ -83,3 +83,10 @@ test('keysFromGuess guess has two of same colors, one matches code. Returns 1 Ri
 
   expect(keysFromGuess(code, guess)).toStrictEqual([Key.RightColorRightSlot]);
 });
+
+test('keysFromGuess code has one duplicated color. Guess returns correct 1 RightSlot, 1 WrongSlot,', () => {
+  let code = [PegColor.Black, PegColor.Green, PegColor.Blue, PegColor.Green];
+  let guess = [PegColor.Green, PegColor.Green, PegColor.Red, PegColor.White];
+
+  expect(keysFromGuess(code, guess)).toStrictEqual([Key.RightColorRightSlot, Key.RightColorWrongSlot]);
+});
