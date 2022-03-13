@@ -1,5 +1,5 @@
 import { encodeGameSettings, keyIsCorrectGuess, keysFromGuess } from 'logic';
-import { Game, PegColor } from 'models';
+import { Game, GameState, PegColor } from 'models';
 import { GlobalActions } from './globalReducer';
 import { ActionMap } from './helpers';
 
@@ -10,12 +10,11 @@ export enum GameTypes {
   AddGuess = 'ADD_GUESS',
   Backspace = 'BACKSPACE_GUESS',
   Enter = 'ENTER_GUESS',
-  CompleteGame = 'COMPLETE_GAME',
 }
 
 export type GamesStateType = {
   currentGame: Game;
-  games: { [code: string]: Game };
+  pastGames: { [code: string]: Game };
 };
 
 type GamesPayload = {
@@ -28,7 +27,6 @@ type GamesPayload = {
   [GameTypes.AddGuess]: { colors: PegColor[] };
   [GameTypes.Backspace]: { colors: PegColor[] };
   [GameTypes.Enter]: {};
-  [GameTypes.CompleteGame]: {};
 };
 
 export type GamesActions =
@@ -41,7 +39,7 @@ export const gamesReducer = (
   switch (action.type) {
     case GameTypes.LoadGame:
       if (state.currentGame.guesses.length > 0) {
-        state.games[
+        state.pastGames[
           encodeGameSettings(state.currentGame.code, state.currentGame.settings)
         ] = state.currentGame;
       }
@@ -51,9 +49,12 @@ export const gamesReducer = (
       return state;
     case GameTypes.SaveGame:
       if (action.payload.game.guesses.length > 0) {
-        state.games[
-          encodeGameSettings(action.payload.game.code, action.payload.game.settings)
-        ] = state.currentGame;
+        state.pastGames[
+          encodeGameSettings(
+            action.payload.game.code,
+            action.payload.game.settings,
+          )
+        ] = action.payload.game;
       }
       return state;
     case GameTypes.AddGuess:
@@ -83,16 +84,17 @@ export const gamesReducer = (
             state.currentGame.settings.numberOfPegs,
           )
         ) {
-          state.currentGame.gameComplete = true;
+          state.currentGame.gameState = keyIsCorrectGuess(
+            state.currentGame.guesses[state.currentGame.guesses.length - 1]
+              ?.keys ?? [],
+            state.currentGame.settings.numberOfPegs,
+          )
+            ? GameState.Win
+            : GameState.Loss;
         }
 
         state.currentGame.currentGuess = [];
       }
-      return state;
-    case GameTypes.CompleteGame:
-      state.games[
-        encodeGameSettings(state.currentGame.code, state.currentGame.settings)
-      ] = state.currentGame;
       return state;
     default:
       return state;

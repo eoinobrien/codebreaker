@@ -10,6 +10,8 @@ import { NewGame } from 'components/NewGame';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { ColorSchemeState } from 'reducers/settingsReducer';
 import styles from './App.module.css';
+import { EndGame } from 'components/EndGame';
+import { GameState } from 'models';
 
 function App() {
   let { state } = useContext(GlobalReducerContext);
@@ -20,6 +22,13 @@ function App() {
     light: state.settings.colorScheme === ColorSchemeState.Light,
     dark: state.settings.colorScheme === ColorSchemeState.Dark,
   });
+
+  const endGameHeader =
+    state.games.currentGame.gameState === GameState.Win
+      ? 'You Win'
+      : state.games.currentGame.gameState === GameState.Loss
+      ? 'You Lose'
+      : 'Game Ongoing';
 
   return (
     <div className={appClasses}>
@@ -50,6 +59,14 @@ function App() {
               </RouterModal>
             }
           />
+          <Route
+            path="end"
+            element={
+              <RouterModal header={endGameHeader}>
+                <EndGame />
+              </RouterModal>
+            }
+          />
         </Route>
       </Routes>
 
@@ -77,6 +94,14 @@ function App() {
             element={
               <RouterModal header="New Game">
                 <NewGame />
+              </RouterModal>
+            }
+          />
+          <Route
+            path="end"
+            element={
+              <RouterModal header={endGameHeader}>
+                <EndGame />
               </RouterModal>
             }
           />

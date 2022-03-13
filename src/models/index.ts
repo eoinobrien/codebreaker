@@ -34,6 +34,12 @@ export enum Key {
   RightColorWrongSlot,
 }
 
+export enum GameState {
+  Ongoing,
+  Win,
+  Loss
+}
+
 export type GameSettings = {
   numberOfColors: number;
   numberOfPegs: number;
@@ -49,7 +55,7 @@ export type Guess = {
 export type Game = {
   code: PegColor[];
   currentGuess: PegColor[];
-  gameComplete: boolean;
+  gameState: GameState;
   guesses: Guess[];
   settings: GameSettings;
 };

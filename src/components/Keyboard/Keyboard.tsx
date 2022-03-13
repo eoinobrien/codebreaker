@@ -41,6 +41,14 @@ export const Keyboard = ({ colors, showIcons }: KeyboardProps) => {
     };
   }, [keyboardEventFunction]);
 
+  const handleEnter = () => {
+    dispatch({ type: GameTypes.Enter, payload: {} });
+    dispatch({
+      type: GameTypes.SaveGame,
+      payload: { game: state.games.currentGame },
+    });
+  };
+
   return (
     <div className={styles.keyboard}>
       <h1 className={styles.duplicateString}>
@@ -111,7 +119,7 @@ export const Keyboard = ({ colors, showIcons }: KeyboardProps) => {
         <PegButton
           color={PegColor.KeyboardEnter}
           ariaLabel="Enter"
-          onClick={() => dispatch({ type: GameTypes.Enter, payload: {} })}
+          onClick={handleEnter}
           showIcon
         />
       </div>

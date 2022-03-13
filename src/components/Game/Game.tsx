@@ -11,7 +11,7 @@ import { IconButton } from 'components/IconButton';
 import { Keyboard } from 'components/Keyboard';
 import { PegRow } from 'components/PegRow';
 import { Menu } from 'components/Menu';
-import { Guess, PegColor, PegColorsArray } from 'models';
+import { GameState, Guess, PegColor, PegColorsArray } from 'models';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { GameTypes } from 'reducers/gamesReducer';
 import { createCode, DEFAULT_GAME_SETTINGS } from 'logic';
@@ -19,7 +19,7 @@ import styles from './Game.module.css';
 
 interface GameProps {
   code: PegColor[];
-  gameComplete: boolean;
+  gameState: GameState;
   numberOfPegs: number;
   totalNumberOfGuesses: number;
   numberOfColors: number;
@@ -31,7 +31,7 @@ interface GameProps {
 
 export const Game = ({
   code,
-  gameComplete,
+  gameState,
   numberOfPegs,
   totalNumberOfGuesses,
   numberOfColors,
@@ -46,7 +46,7 @@ export const Game = ({
       <div className={styles.codeRow}>
         <PegRow
           code={code}
-          hideCode={!gameComplete}
+          hideCode={!gameState}
           numberOfPegs={numberOfPegs}
           showIcons={showIcons}
         />
@@ -59,7 +59,7 @@ export const Game = ({
                 game: {
                   code: createCode(DEFAULT_GAME_SETTINGS),
                   currentGuess: [],
-                  gameComplete: false,
+                  gameState: GameState.Ongoing,
                   guesses: [],
                   settings: DEFAULT_GAME_SETTINGS,
                 },
@@ -88,7 +88,7 @@ export const Game = ({
           guesses={guesses}
           numberOfPegs={numberOfPegs}
           totalNumberOfGuesses={totalNumberOfGuesses}
-          gameComplete={gameComplete}
+          gameState={gameState}
           showIcons={showIcons}
         />
       </div>

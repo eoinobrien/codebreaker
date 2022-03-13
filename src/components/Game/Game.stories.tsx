@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Key, PegColor } from 'models';
+import { GameState, Key, PegColor } from 'models';
 import { Game } from './Game';
 
 export default {
@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof Game> = (args) => <Game {...args} />;
 export const Empty = Template.bind({});
 Empty.args = {
   code: [PegColor.Red, PegColor.Blue, PegColor.Green, PegColor.Yellow],
-  gameComplete: false,
+  gameState: GameState.Ongoing,
   numberOfPegs: 4,
   totalNumberOfGuesses: 10,
   numberOfColors: 8,

@@ -1,4 +1,5 @@
 import { createCode, DEFAULT_GAME_SETTINGS } from 'logic';
+import { GameState } from 'models';
 import { GamesActions, gamesReducer, GamesStateType } from './gamesReducer';
 import {
   ColorSchemeState,
@@ -8,12 +9,16 @@ import {
   ShowIconsState,
 } from './settingsReducer';
 
+export const CURRENT_VERSION_NUMBER = 1;
+
 export type StateType = {
+  version: number,
   settings: SettingsStateType;
   games: GamesStateType;
 };
 
 export const initialState = {
+  version: CURRENT_VERSION_NUMBER,
   settings: {
     showIcons: ShowIconsState.Hide,
     colorScheme: ColorSchemeState.SystemDefault,
@@ -23,20 +28,21 @@ export const initialState = {
     currentGame: {
       code: createCode(DEFAULT_GAME_SETTINGS),
       currentGuess: [],
-      gameComplete: false,
+      gameState: GameState.Ongoing,
       guesses: [],
       settings: DEFAULT_GAME_SETTINGS,
     },
-    games: {},
+    pastGames: {},
   },
 };
 
 export type GlobalActions = SettingsActions | GamesActions;
 
 export const globalReducer = (
-  { settings, games }: StateType,
+  { version, settings, games }: StateType,
   action: GlobalActions,
 ) => ({
+  version: version,
   settings: settingsReducer(settings, action),
   games: gamesReducer(games, action),
 });

@@ -1,0 +1,39 @@
+.endGame {
+    display: flex;
+    flex-direction: column;
+}
+
+.codeRow {
+    flex-direction: row;
+}
+
+.endGame h1 {
+    font-size: 3rem;
+}
+
+.endGame h2 {
+    font-size: 2rem;
+}
+
+.endGame p {
+    font-size: 1.6rem;
+}
+
+.buttonDiv {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.button:first-child {
+    margin-right: 2rem;
+}
+
+@media (width <= 35rem) {
+    .buttonDiv {
+        flex-direction: column;
+    }
+
+    .button:last-child {
+        margin-top: 2rem;
+    }
+}

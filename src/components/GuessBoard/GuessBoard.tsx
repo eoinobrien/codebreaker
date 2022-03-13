@@ -1,5 +1,5 @@
 import { createArrayOfObject } from 'logic';
-import { Guess, PegColor } from 'models';
+import { GameState, Guess, PegColor } from 'models';
 import { GuessPegRow } from 'components/GuessPegRow';
 import styles from './GuessBoard.module.css';
 
@@ -8,7 +8,7 @@ interface GuessBoardProps {
   guesses: Guess[];
   numberOfPegs: number;
   totalNumberOfGuesses: number;
-  gameComplete: boolean;
+  gameState: GameState;
   showIcons: boolean;
 }
 
@@ -17,12 +17,12 @@ export const GuessBoard = ({
   guesses,
   numberOfPegs,
   totalNumberOfGuesses,
-  gameComplete,
+  gameState,
   showIcons,
 }: GuessBoardProps) => {
   let remainingGuessesIndexes = createArrayOfObject(
     0,
-    totalNumberOfGuesses - guesses.length - (gameComplete ? 0 : 1),
+    totalNumberOfGuesses - guesses.length - (gameState !== GameState.Ongoing ? 0 : 1),
   );
 
   return (
@@ -37,7 +37,7 @@ export const GuessBoard = ({
       ))}
 
       {/* Current Guess */}
-      {!gameComplete && (
+      {!gameState && (
         <GuessPegRow
           key={guesses.length}
           numberOfPegs={numberOfPegs}

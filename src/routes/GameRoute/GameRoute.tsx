@@ -1,9 +1,10 @@
 import { useContext, useEffect } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { Game } from 'components/Game';
+import * as Component from 'components/Game';
 import { ShowIconsState } from 'reducers/settingsReducer';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { GameTypes } from 'reducers/gamesReducer';
+import { Game, GameState } from 'models';
 import {
   BASE64_ALPHABET,
   createCode,
@@ -11,7 +12,6 @@ import {
   DEFAULT_GAME_SETTINGS,
   encodeGameSettings,
 } from 'logic';
-import * as Models from 'models';
 
 export const GameRoute = () => {
   const { state, dispatch } = useContext(GlobalReducerContext);
@@ -22,11 +22,11 @@ export const GameRoute = () => {
 
   useEffect(() => {
     const paramGameSettings = searchParams.get('code');
-    let game: Models.Game;
+    let game: Game;
 
     if (paramGameSettings) {
       const encodedGameSettings = paramGameSettings.substring(1);
-      game = state.games.games[encodedGameSettings];
+      game = state.games.pastGames[encodedGameSettings];
 
       if (!game) {
         console.warn(
@@ -37,7 +37,7 @@ export const GameRoute = () => {
         game = {
           code: code,
           currentGuess: [],
-          gameComplete: false,
+          gameState: GameState.Ongoing,
           guesses: [],
           settings: settings,
         };
@@ -46,7 +46,7 @@ export const GameRoute = () => {
       game = {
         code: createCode(DEFAULT_GAME_SETTINGS),
         currentGuess: [],
-        gameComplete: false,
+        gameState: GameState.Ongoing,
         guesses: [],
         settings: DEFAULT_GAME_SETTINGS,
       };
@@ -56,30 +56,29 @@ export const GameRoute = () => {
       type: GameTypes.LoadGame,
       payload: { game },
     });
-  }, [searchParams, state.games.games, dispatch]);
+  }, [searchParams, state.games.pastGames, dispatch]);
 
   useEffect(() => {
-    if (location.pathname === '/') {
-      const encodedGameSettings = encodeGameSettings(
-        state.games.currentGame.code,
-        state.games.currentGame.settings,
-      );
+    // if (location.pathname === '/') {
+    const encodedGameSettings = encodeGameSettings(
+      state.games.currentGame.code,
+      state.games.currentGame.settings,
+    );
 
-      const paramCode = searchParams.get('code');
-      if (
-        !paramCode ||
-        (paramCode && paramCode.substring(1) !== encodedGameSettings)
-      ) {
-        const invalidEncodedGameSettings = `${
-          BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]
-        }${encodedGameSettings}`;
+    const paramCode = searchParams.get('code');
+    if (
+      !paramCode ||
+      (paramCode && paramCode.substring(1) !== encodedGameSettings)
+    ) {
+      const invalidEncodedGameSettings = `${
+        BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]
+      }${encodedGameSettings}`;
 
-        // If the URL is not root (e.g. in a modal), don't change the URL.
-        setSearchParams({
-          code: invalidEncodedGameSettings,
-        });
-      }
+      setSearchParams({
+        code: invalidEncodedGameSettings,
+      });
     }
+    // }
   }, [
     location.pathname,
     state.games.currentGame,
@@ -88,32 +87,25 @@ export const GameRoute = () => {
   ]);
 
   useEffect(() => {
-    const saveGameState = (e: BeforeUnloadEvent) => {
-      e.preventDefault();
-      dispatch({
-        type: GameTypes.SaveGame,
-        payload: { game: state.games.currentGame },
-      });
-    };
-
-    window.addEventListener('beforeunload', saveGameState);
-    return () => {
-      window.removeEventListener('beforeunload', saveGameState);
-    };
-  }, [state.games.currentGame, dispatch]);
-
-  useEffect(() => {
     if (!state.settings.instructionsShown) {
-      navigate('/how-to-play', {
+      navigate(`/how-to-play?code=${searchParams.get('code')}`, {
         state: { backgroundLocation: location },
       });
     }
   }, [location, navigate, state.settings.instructionsShown]);
 
+  useEffect(() => {
+    if (state.games.currentGame.gameState !== GameState.Ongoing) {
+      navigate(`/end?code=${searchParams.get('code')}`, {
+        state: { backgroundLocation: location },
+      });
+    }
+  }, [location, navigate, state.games.currentGame.gameState]);
+
   return (
-    <Game
+    <Component.Game
       code={state.games.currentGame.code}
-      gameComplete={state.games.currentGame.gameComplete}
+      gameState={state.games.currentGame.gameState}
       numberOfPegs={state.games.currentGame.settings.numberOfPegs}
       totalNumberOfGuesses={
         state.games.currentGame.settings.totalNumberOfGuesses
