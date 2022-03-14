@@ -82,23 +82,21 @@ export const Game = ({
           </Link>
         </Menu>
       </div>
-      <div className={styles.gameAndKeyboard}>
-        <div className={styles.guessBoard}>
-          <GuessBoard
-            currentGuess={currentGuess}
-            guesses={guesses}
-            numberOfPegs={numberOfPegs}
-            totalNumberOfGuesses={totalNumberOfGuesses}
-            gameState={gameState}
-            showIcons={showIcons}
-          />
-        </div>
-        <div className={styles.keyboard}>
-          <Keyboard
-            colors={PegColorsArray.slice(0, numberOfColors)}
-            showIcons={showIcons}
-          />
-        </div>
+      <div className={styles.guessBoard}>
+        <GuessBoard
+          currentGuess={currentGuess}
+          guesses={guesses}
+          numberOfPegs={numberOfPegs}
+          totalNumberOfGuesses={totalNumberOfGuesses}
+          gameState={gameState}
+          showIcons={showIcons}
+        />
+      </div>
+      <div className={styles.keyboard}>
+        <Keyboard
+          colors={PegColorsArray.slice(0, numberOfColors)}
+          showIcons={showIcons}
+        />
       </div>
     </div>
   );

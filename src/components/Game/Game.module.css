@@ -24,10 +24,12 @@
     overflow-y: auto;
     flex-grow: 1;
     flex-shrink: 1;
+    height: calc(100% - calc(16.5rem -7.4rem));
 }
 
 .keyboard {
     background: var(--background);
+    height: 16.5rem;
 }
 
 .gameAndKeyboard {
