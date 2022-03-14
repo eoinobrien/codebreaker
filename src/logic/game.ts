@@ -16,6 +16,7 @@ export const DEFAULT_GAME_SETTINGS: GameSettings = {
   numberOfPegs: 4,
   totalNumberOfGuesses: 10,
   allowDuplicates: false,
+  endScreenShown: false,
 };
 
 export function createGameSettingsCompressed(

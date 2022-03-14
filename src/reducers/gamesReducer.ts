@@ -10,6 +10,8 @@ export enum GameTypes {
   AddGuess = 'ADD_GUESS',
   Backspace = 'BACKSPACE_GUESS',
   Enter = 'ENTER_GUESS',
+
+  EndScreenShown = 'END_SCREEN_SHOWN',
 }
 
 export type GamesStateType = {
@@ -27,6 +29,7 @@ type GamesPayload = {
   [GameTypes.AddGuess]: { colors: PegColor[] };
   [GameTypes.Backspace]: { colors: PegColor[] };
   [GameTypes.Enter]: {};
+  [GameTypes.EndScreenShown]: { endScreenShownState: boolean };
 };
 
 export type GamesActions =
@@ -95,6 +98,9 @@ export const gamesReducer = (
 
         state.currentGame.currentGuess = [];
       }
+      return state;
+    case GameTypes.EndScreenShown:
+      state.currentGame.settings.endScreenShown = action.payload.endScreenShownState;
       return state;
     default:
       return state;

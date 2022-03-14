@@ -21,7 +21,12 @@
 
 .buttonDiv {
     display: flex;
-    margin-top: 2rem;
+    margin-top: 1rem;
+}
+
+.hr {
+    width: 60%;
+    border: 0.15rem solid var(--section-divider-border);
 }
 
 @media (width <= 35rem) {

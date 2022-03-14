@@ -45,6 +45,7 @@ export type GameSettings = {
   numberOfPegs: number;
   totalNumberOfGuesses: number;
   allowDuplicates: boolean;
+  endScreenShown?: boolean;
 };
 
 export type Guess = {

@@ -4,9 +4,14 @@ import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { Button } from 'components/Button';
 import { KeyRow } from 'components/KeyRow';
 import { PegRow } from 'components/PegRow';
-import { createBrokenEncodedGameSettings, encodeGameSettings } from 'logic';
-import { Game, GameState, Key } from 'models';
+import {
+  createBrokenEncodedGameSettings,
+  createCode,
+  encodeGameSettings,
+} from 'logic';
+import { Game, GameSettings, GameState, Key } from 'models';
 import styles from './EndGame.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const KEY_EMOJIS = ['🔴', '⚪', '⚫'];
 
@@ -43,7 +48,16 @@ https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
 };
 
 export const EndGame = () => {
+  const navigate = useNavigate();
   let { state } = useContext(GlobalReducerContext);
+
+  const createNewGame = (gameSettings: GameSettings) => {
+    navigate(
+      `/?code=${createBrokenEncodedGameSettings(
+        encodeGameSettings(createCode(gameSettings), gameSettings),
+      )}`,
+    );
+  };
 
   return (
     <div className={styles.endGame}>
@@ -63,7 +77,7 @@ export const EndGame = () => {
               showIcons={state.settings.showIcons === ShowIconsState.Show}
             />
           </div>
-          <hr />
+          <hr className={styles.hr} />
           <div>
             {state.games.currentGame.guesses
               .map((g) => g.keys)
@@ -81,6 +95,15 @@ export const EndGame = () => {
               className={styles.button}
             >
               Share Result
+            </Button>
+          </div>
+          <div className={styles.buttonDiv}>
+            <Button
+              onClick={() => createNewGame(state.games.currentGame.settings)}
+              className={styles.button}
+              secondary
+            >
+              New Game
             </Button>
           </div>
         </>

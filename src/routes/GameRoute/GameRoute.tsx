@@ -89,8 +89,10 @@ export const GameRoute = () => {
   useEffect(() => {
     if (
       state.games.currentGame.gameState !== GameState.Ongoing &&
-      location.pathname.indexOf('end') === -1
+      location.pathname.indexOf('end') === -1 &&
+      !state.games.currentGame.settings.endScreenShown
     ) {
+      dispatch({ type: GameTypes.EndScreenShown, payload: { endScreenShownState: true } });
       navigate(`/end${location.search}`, {
         state: { backgroundLocation: location },
       });
