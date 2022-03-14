@@ -4,7 +4,8 @@
   background: var(--background);
   color: var(--color);
 
-  height: 100%;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .app a {
