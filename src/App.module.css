@@ -4,9 +4,7 @@
   background: var(--background);
   color: var(--color);
 
-  max-height: 100vh;
-  max-height: calc(var(--vh, 1vh) * 100);
-  max-height: min-content;
+  max-height: 100%;
 }
 
 .app a {
