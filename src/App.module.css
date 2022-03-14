@@ -5,7 +5,6 @@
   color: var(--color);
 
   max-height: 100vh;
-  max-height: calc(100 * var(--vh, 1vh));
 }
 
 .app a {

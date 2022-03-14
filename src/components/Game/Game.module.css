@@ -24,7 +24,7 @@
     overflow-y: auto;
     flex-grow: 1;
     flex-shrink: 1;
-    height: calc(100% - calc(16.5rem -7.4rem));
+    height: calc(calc(100 * var(--vh, 1vh)) - calc(16.5rem -7.4rem));
 }
 
 .keyboard {
