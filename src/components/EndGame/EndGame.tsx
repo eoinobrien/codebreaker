@@ -33,7 +33,8 @@ export const convertKeysToEmojis = (keys: Key[][], numberOfPegs: number) => {
 
 export const EndGame = () => {
   const navigate = useNavigate();
-  const [clipboardButton, setClipboardButton] = useState<string>(COPY_CLIPBOARD_TEXT);
+  const [clipboardButton, setClipboardButton] =
+    useState<string>(COPY_CLIPBOARD_TEXT);
   let { state } = useContext(GlobalReducerContext);
 
   const createNewGame = (gameSettings: GameSettings) => {
@@ -49,21 +50,21 @@ export const EndGame = () => {
       `Codebreaker ${
         game.gameState === GameState.Loss ? 'X' : game.guesses.length
       }/${game.settings.totalNumberOfGuesses}
-  
-  ${convertKeysToEmojis(
-    game.guesses.map((g) => g.keys),
-    game.settings.numberOfPegs,
-  )}
-  
-  https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
-    encodeGameSettings(game.code, game.settings),
-  )}`,
+
+${convertKeysToEmojis(
+  game.guesses.map((g) => g.keys),
+  game.settings.numberOfPegs,
+)}
+
+https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
+        encodeGameSettings(game.code, game.settings),
+      )}`,
     );
 
     setClipboardButton('Copied to clipboard!');
     setTimeout(() => {
       setClipboardButton(COPY_CLIPBOARD_TEXT);
-    }, 2000)
+    }, 2000);
   };
 
   return (
