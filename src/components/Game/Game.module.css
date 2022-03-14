@@ -1,5 +1,5 @@
 .game {
-    height: 100vh;
+    height: calc(100 * var(--vh, 1vh));
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -24,7 +24,7 @@
     overflow-y: auto;
     flex-grow: 1;
     flex-shrink: 1;
-    height: calc((100 * var(--vh, 1vh)) - (16.5rem + 7.4rem));
+    max-height: calc((100 * var(--vh, 1vh)) - (16.5rem + 7.4rem));
 }
 
 .keyboard {
