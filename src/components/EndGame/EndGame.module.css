@@ -24,10 +24,6 @@
     margin-top: 2rem;
 }
 
-.button:first-child {
-    margin-right: 2rem;
-}
-
 @media (width <= 35rem) {
     .buttonDiv {
         flex-direction: column;

@@ -19,7 +19,7 @@ export const Settings = () => {
 
   return (
     <div className={styles.settings}>
-      <Form.Group label="Show unique icons to distinguish colors on pegs:">
+      <Form.Group id="showIcons" label="Show unique icons to distinguish colors on pegs:">
         <Switch
           id="showIcons"
           value={state.settings.showIcons}
@@ -36,7 +36,7 @@ export const Settings = () => {
           onChange={(newValue) => dispatch({type: SettingsTypes.SetShowIcons, payload: { showIcons: newValue } })}
         />
       </Form.Group>
-      <Form.Group label="Preferred Color Scheme">
+      <Form.Group id="colorScheme" label="Preferred Color Scheme">
         <Switch
           id="colorScheme"
           value={state.settings.colorScheme}

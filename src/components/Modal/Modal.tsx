@@ -47,12 +47,13 @@ export const Modal = ({ header, children, width, onDismiss }: ModalProps) => {
 
   return (
     <div className={modalClasses} onClick={onModalBackgroundClick}>
-      <div className={styles.modalContent} style={{width: width}}>
+      <div className={styles.modalContent} style={{ width: width }}>
         <div className={styles.header}>
+          <div className={styles.headerSpacer}></div>
           <h1>{header}</h1>
           <IconButton Icon={BsX} onClick={onCloseModalClick} />
         </div>
-        {children}
+        <div className={styles.modalChild}>{children}</div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { GameTypes } from 'reducers/gamesReducer';
 import { Game, GameState } from 'models';
 import {
-  BASE64_ALPHABET,
+  createBrokenEncodedGameSettings,
   createCode,
   decodeGameSettings,
   DEFAULT_GAME_SETTINGS,
@@ -59,48 +59,43 @@ export const GameRoute = () => {
   }, [searchParams, state.games.pastGames, dispatch]);
 
   useEffect(() => {
-    // if (location.pathname === '/') {
-    const encodedGameSettings = encodeGameSettings(
-      state.games.currentGame.code,
-      state.games.currentGame.settings,
-    );
+    let locationState = location.state as { backgroundLocation?: Location };
+    if (!locationState?.backgroundLocation) {
+      const encodedGameSettings = encodeGameSettings(
+        state.games.currentGame.code,
+        state.games.currentGame.settings,
+      );
 
-    const paramCode = searchParams.get('code');
-    if (
-      !paramCode ||
-      (paramCode && paramCode.substring(1) !== encodedGameSettings)
-    ) {
-      const invalidEncodedGameSettings = `${
-        BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]
-      }${encodedGameSettings}`;
-
-      setSearchParams({
-        code: invalidEncodedGameSettings,
-      });
+      const paramCode = searchParams.get('code');
+      if (
+        !paramCode ||
+        (paramCode && paramCode.substring(1) !== encodedGameSettings)
+      ) {
+        setSearchParams({
+          code: createBrokenEncodedGameSettings(encodedGameSettings),
+        });
+      }
     }
-    // }
-  }, [
-    location.pathname,
-    state.games.currentGame,
-    searchParams,
-    setSearchParams,
-  ]);
+  }, [location.state, state.games.currentGame, searchParams, setSearchParams]);
 
   useEffect(() => {
     if (!state.settings.instructionsShown) {
-      navigate(`/how-to-play?code=${searchParams.get('code')}`, {
+      navigate(`/how-to-play`, {
         state: { backgroundLocation: location },
       });
     }
-  }, [location, navigate, state.settings.instructionsShown]);
+  }, [location, navigate, state.settings.instructionsShown, searchParams]);
 
   useEffect(() => {
-    if (state.games.currentGame.gameState !== GameState.Ongoing) {
-      navigate(`/end?code=${searchParams.get('code')}`, {
+    if (
+      state.games.currentGame.gameState !== GameState.Ongoing &&
+      location.pathname.indexOf('end') === -1
+    ) {
+      navigate(`/end${location.search}`, {
         state: { backgroundLocation: location },
       });
     }
-  }, [location, navigate, state.games.currentGame.gameState]);
+  }, [location, navigate, state.games.currentGame.gameState, searchParams]);
 
   return (
     <Component.Game

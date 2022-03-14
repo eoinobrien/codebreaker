@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof Group>;
 
 const SimpleInput: ComponentStory<typeof Group> = (args) => (
-  <Group label={args.label}>
+  <Group id="simple" label={args.label}>
     <input type="text" />
   </Group>
 );
@@ -20,7 +20,7 @@ Input.args = {
 };
 
 const Increment: ComponentStory<typeof Group> = (args) => (
-  <Group label={args.label}>
+  <Group id="increment" label={args.label}>
     <Incrementor value={5} onChange={(newValue: number) => alert(newValue)}/>
   </Group>
 );

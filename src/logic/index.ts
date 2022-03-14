@@ -5,6 +5,7 @@ import {
   keyIsCorrectGuess,
 } from './codes';
 import {
+  createBrokenEncodedGameSettings,
   encodeGameSettings,
   decodeGameSettings,
   BASE64_ALPHABET,
@@ -15,6 +16,7 @@ import { getPegStyling } from './pegs';
 
 export {
   createArrayOfObject,
+  createBrokenEncodedGameSettings,
   createCode,
   keysFromGuess,
   keyIsCorrectGuess,

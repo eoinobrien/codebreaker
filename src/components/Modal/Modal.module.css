@@ -27,7 +27,6 @@
 
 .modalContent {
     background: var(--background);
-    padding: 1rem 2rem 2rem 2rem;
     width: 60rem;
     max-width: 100%;
     height: fit-content;
@@ -38,10 +37,21 @@
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+}
+
+.headerSpacer {
+    width: 5rem;
 }
 
 .header h1 {
     font-size: 3rem;
     margin: 0;
-    text-align: left;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.modalChild {
+    margin: 1rem;
 }

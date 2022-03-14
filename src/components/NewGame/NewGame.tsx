@@ -5,7 +5,12 @@ import { Incrementor } from 'components/Incrementor';
 import { Switch } from 'components/Switch';
 import Form from 'components/Form';
 import { GameSettings, PegColorsArray } from 'models';
-import { BASE64_ALPHABET, createCode, DEFAULT_GAME_SETTINGS, encodeGameSettings } from 'logic';
+import {
+  createBrokenEncodedGameSettings,
+  createCode,
+  DEFAULT_GAME_SETTINGS,
+  encodeGameSettings,
+} from 'logic';
 import styles from './NewGame.module.css';
 
 export const NewGame = () => {
@@ -16,19 +21,16 @@ export const NewGame = () => {
   );
 
   const createGame = () => {
-    const invalidEncodedGameSettings = `${
-      BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]
-    }${encodeGameSettings(
-      createCode(gameSettings),
-      gameSettings,
-    )}`;
-
-    navigate(`/?code=${invalidEncodedGameSettings}`);
+    navigate(
+      `/?code=${createBrokenEncodedGameSettings(
+        encodeGameSettings(createCode(gameSettings), gameSettings),
+      )}`,
+    );
   };
 
   return (
     <div className={styles.newGame}>
-      <Form.Group label="Number of colors to choose from:">
+      <Form.Group id="numberOfColors" label="Number of colors to choose from:">
         <Incrementor
           value={gameSettings.numberOfColors}
           min={1}
@@ -38,7 +40,7 @@ export const NewGame = () => {
           }
         />
       </Form.Group>
-      <Form.Group label="Number of pegs in code:">
+      <Form.Group id="numberOfPegs" label="Number of pegs in code:">
         <Incrementor
           value={gameSettings.numberOfPegs}
           min={1}
@@ -48,7 +50,7 @@ export const NewGame = () => {
           }
         />
       </Form.Group>
-      <Form.Group label="Number of allowed guesses:">
+      <Form.Group id="totalNumberOfGuesses" label="Number of allowed guesses:">
         <Incrementor
           value={gameSettings.totalNumberOfGuesses}
           min={1}
@@ -61,7 +63,7 @@ export const NewGame = () => {
           }
         />
       </Form.Group>
-      <Form.Group label="Allowed duplicates in secret code:">
+      <Form.Group id="allowDuplicates" label="Allowed duplicates in secret code:">
         <Switch
           id="allowDuplicates"
           value={gameSettings.allowDuplicates ? 1 : 0}

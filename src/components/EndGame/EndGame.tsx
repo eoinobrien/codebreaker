@@ -4,7 +4,7 @@ import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { Button } from 'components/Button';
 import { KeyRow } from 'components/KeyRow';
 import { PegRow } from 'components/PegRow';
-import { BASE64_ALPHABET, encodeGameSettings } from 'logic';
+import { createBrokenEncodedGameSettings, encodeGameSettings } from 'logic';
 import { Game, GameState, Key } from 'models';
 import styles from './EndGame.module.css';
 
@@ -36,9 +36,9 @@ ${convertKeysToEmojis(
   game.settings.numberOfPegs,
 )}
 
-https://codebreaker.eoin.co/?code=${
-      BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]
-    }${encodeGameSettings(game.code, game.settings)}`,
+https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
+      encodeGameSettings(game.code, game.settings),
+    )}`,
   );
 };
 

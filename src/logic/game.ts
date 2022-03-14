@@ -129,3 +129,11 @@ export function decodeGameSettings(encodedSettings: string): {
 
   return reverseGameSettingsCompressed(decodedData);
 }
+
+export function createBrokenEncodedGameSettings(
+  encodedGameSettings: string,
+): string {
+  return `${
+    BASE64_ALPHABET[Math.floor(Math.random() * BASE64_ALPHABET.length)]
+  }${encodedGameSettings}`;
+}

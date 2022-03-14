@@ -19,7 +19,7 @@
 }
 
 .button:disabled {
-    filter: brightness(110%);
+    filter: brightness(60%);
 }
 
 .secondary {
