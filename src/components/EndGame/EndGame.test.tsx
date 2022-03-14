@@ -1,5 +1,5 @@
 import { Key } from 'models';
-import { convertKeysToEmojis, copyToClipboard } from './EndGame';
+import { convertKeysToEmojis } from './EndGame';
 
 test('convertKeysToEmojis returns correct Emojis for one row of keys', () => {
   let keys = [[Key.RightColorRightSlot, Key.RightColorWrongSlot]];

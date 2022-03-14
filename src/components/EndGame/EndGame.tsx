@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ShowIconsState } from 'reducers/settingsReducer';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { Button } from 'components/Button';
@@ -14,6 +14,7 @@ import styles from './EndGame.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const KEY_EMOJIS = ['🔴', '⚪', '⚫'];
+const COPY_CLIPBOARD_TEXT = 'Share Result';
 
 export const convertKeysToEmojis = (keys: Key[][], numberOfPegs: number) => {
   return keys
@@ -30,25 +31,9 @@ export const convertKeysToEmojis = (keys: Key[][], numberOfPegs: number) => {
     .join('\n');
 };
 
-export const copyToClipboard = (game: Game) => {
-  navigator.clipboard.writeText(
-    `Codebreaker ${
-      game.gameState === GameState.Loss ? 'X' : game.guesses.length
-    }/${game.settings.totalNumberOfGuesses}
-
-${convertKeysToEmojis(
-  game.guesses.map((g) => g.keys),
-  game.settings.numberOfPegs,
-)}
-
-https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
-      encodeGameSettings(game.code, game.settings),
-    )}`,
-  );
-};
-
 export const EndGame = () => {
   const navigate = useNavigate();
+  const [clipboardButton, setClipboardButton] = useState<string>(COPY_CLIPBOARD_TEXT);
   let { state } = useContext(GlobalReducerContext);
 
   const createNewGame = (gameSettings: GameSettings) => {
@@ -57,6 +42,28 @@ export const EndGame = () => {
         encodeGameSettings(createCode(gameSettings), gameSettings),
       )}`,
     );
+  };
+
+  const copyToClipboard = (game: Game) => {
+    navigator.clipboard.writeText(
+      `Codebreaker ${
+        game.gameState === GameState.Loss ? 'X' : game.guesses.length
+      }/${game.settings.totalNumberOfGuesses}
+  
+  ${convertKeysToEmojis(
+    game.guesses.map((g) => g.keys),
+    game.settings.numberOfPegs,
+  )}
+  
+  https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
+    encodeGameSettings(game.code, game.settings),
+  )}`,
+    );
+
+    setClipboardButton('Copied to clipboard!');
+    setTimeout(() => {
+      setClipboardButton(COPY_CLIPBOARD_TEXT);
+    }, 2000)
   };
 
   return (
@@ -94,7 +101,7 @@ export const EndGame = () => {
               onClick={() => copyToClipboard(state.games.currentGame)}
               className={styles.button}
             >
-              Share Result
+              {clipboardButton}
             </Button>
           </div>
           <div className={styles.buttonDiv}>
