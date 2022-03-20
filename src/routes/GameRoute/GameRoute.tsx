@@ -79,7 +79,10 @@ export const GameRoute = () => {
   }, [location.state, state.games.currentGame, searchParams, setSearchParams]);
 
   useEffect(() => {
-    if (!state.settings.instructionsShown) {
+    if (
+      !state.settings.instructionsShown &&
+      location.pathname.indexOf('how-to-play') === -1
+    ) {
       navigate(`/how-to-play`, {
         state: { backgroundLocation: location },
       });
@@ -92,7 +95,10 @@ export const GameRoute = () => {
       location.pathname.indexOf('end') === -1 &&
       !state.games.currentGame.settings.endScreenShown
     ) {
-      dispatch({ type: GameTypes.EndScreenShown, payload: { endScreenShownState: true } });
+      dispatch({
+        type: GameTypes.EndScreenShown,
+        payload: { endScreenShownState: true },
+      });
       navigate(`/end${location.search}`, {
         state: { backgroundLocation: location },
       });
