@@ -1,0 +1,23 @@
+.group {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+
+@media (width <= 35rem) {
+    .group {
+        flex-direction: column;
+    }
+
+    .spacer {
+        display: none;
+    }
+}
+
+.label {
+    margin-right: 1rem;
+}
+
+.spacer {
+    flex-grow: 1;
+}

@@ -10,13 +10,15 @@
     font-weight: bold;
 }
 
-.incrementor div {
+.incrementor .value {
     padding: 1rem;
-    margin: 0 2rem;
+    margin: 0 1rem;
+    min-width: 4.5rem;
 }
 
 .button {
-    width: 15rem;
+    width: 10rem;
+    border: none;
 }
 
 .hideLabel {

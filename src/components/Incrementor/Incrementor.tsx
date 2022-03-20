@@ -21,7 +21,7 @@ export const Incrementor = ({
         <FiMinus />
         <span className={styles.hideLabel}>Decrease</span>
       </Button>
-      <div>{value}</div>
+      <div className={styles.value}>{value}</div>
       <Button onClick={() => onChange(value + 1)} disabled={value >= max} className={styles.button}>
         <FiPlus />
         <span className={styles.hideLabel}>Increase</span>

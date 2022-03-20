@@ -1,11 +1,11 @@
 import { PegColor } from 'models';
 import { PegButton } from 'components/PegButton';
-import styles from './Keyboard.module.css';
 import { useCallback, useContext, useEffect } from 'react';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { GameTypes } from 'reducers/gamesReducer';
 import { backspace, pushGuess } from 'logic';
 import { useTranslation } from 'react-i18next';
+import styles from './Keyboard.module.css';
 
 interface KeyboardProps {
   colors: PegColor[];

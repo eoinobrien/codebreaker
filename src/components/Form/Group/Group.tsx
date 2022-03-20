@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import styles from './Group.module.css';
 
 interface GroupProps {
   label?: string;
@@ -8,11 +9,12 @@ interface GroupProps {
 
 export const Group = ({ label, children, id }: GroupProps) => {
   return (
-    <div>
-      <label htmlFor={id}>
+    <div className={styles.group}>
+      <label htmlFor={id} className={styles.label}>
         <h2>{label}</h2>
       </label>
-      <div id={id}>
+      <div className={styles.spacer}></div>
+      <div id={id} className={styles.children}>
         {children}
       </div>
     </div>
