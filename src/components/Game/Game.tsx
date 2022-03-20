@@ -6,6 +6,7 @@ import {
   BsPatchPlus,
   BsPatchQuestion,
 } from 'react-icons/bs';
+import { useTranslation } from 'react-i18next';
 import { GuessBoard } from 'components/GuessBoard';
 import { IconButton } from 'components/IconButton';
 import { Keyboard } from 'components/Keyboard';
@@ -41,6 +42,8 @@ export const Game = ({
   location,
 }: GameProps) => {
   const { dispatch } = useContext(GlobalReducerContext);
+  const { t } = useTranslation();
+  
   return (
     <div className={styles.game}>
       <div className={styles.codeRow}>
@@ -70,15 +73,15 @@ export const Game = ({
         <Menu>
           <Link to={`/new`} state={{ backgroundLocation: location }}>
             <BsPatchPlus className={styles.menuIcon} />
-            Advanced New Game
+            {t('advancedNewGame')}
           </Link>
           <Link to={`/how-to-play`} state={{ backgroundLocation: location }}>
             <BsPatchQuestion className={styles.menuIcon} />
-            How to Play
+            {t('howToPlay')}
           </Link>
           <Link to={`/settings`} state={{ backgroundLocation: location }}>
             <BsGear className={styles.menuIcon} />
-            Settings
+            {t('settings')}
           </Link>
         </Menu>
       </div>

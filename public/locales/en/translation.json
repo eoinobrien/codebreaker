@@ -1,0 +1,45 @@
+{
+  "newGame": "New Game",
+  "advancedNewGame": "Advanced New Game",
+  "howToPlay": "How to Play",
+  "settings": "Settings",
+  "instructions": "Instructions",
+  "menu": "Menu",
+
+  "newGameModal": {
+    "numberOfColors": "Number of colors",
+    "numberOfPegs": "Code length",
+    "totalNumberOfGuesses": "Number of guesses",
+    "allowDuplicates": "Allow duplicate colors",
+    "noYesArray": ["No", "Yes"],
+    "reset": "Reset to Default",
+    "createGame": "Create Game"
+  },
+  "instructionsModal": [
+    "The goal of Mastermind is to crack the secret code.",
+    "You do this by entering a guess that you think the secret code might be.",
+    "After each guess you will be given a decryption key to help you crack the code.",
+    "Each item in decryption key stands for one of the pegs in your guess.",
+    "If a key is Red, ",
+    " it means that one of the pegs in your guess is both in the secret code and in the correct place.",
+    "While a White key ",
+    " means that the one of your guesses is in the code but is in the incorrect place.",
+    "After each guess you will learn more information about the secret code.",
+    "Using these keys, keep guessing until you have cracked the code."
+  ],
+  "settingsModal": {
+    "showIcons": "Show unique icons to distinguish colors on pegs",
+    "showIconsLabelsArray": ["Show icons", "Do not show icons"],
+    "colorScheme": "Preferred Color Scheme",
+    "colorSchemeArray": ["Light", "Dark", "System Theme"],
+    "ownerText": "A small game created by <2>Eoin O'Brien</2>."
+  },
+  "keyboard": {
+    "noDuplicates": "Code does not include duplicate colors",
+    "duplicatesAllowed": "Code may include duplicate colors",
+    "backspace": "Backspace",
+    "enter": "Enter"
+  },
+
+  "clipboard": {}
+}

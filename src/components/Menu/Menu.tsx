@@ -1,6 +1,7 @@
 import { IconButton } from 'components/IconButton';
 import { Modal } from 'components/Modal';
 import { ReactNode, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import listenForOutsideClick from 'utils/listenForOutsideClick';
 import styles from './Menu.module.css';
@@ -10,6 +11,7 @@ interface MenuProps {
 }
 
 export const Menu = ({ children }: MenuProps) => {
+  const { t } = useTranslation();
   const menuRef = useRef(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [listening, setListening] = useState<boolean>(false);
@@ -29,7 +31,7 @@ export const Menu = ({ children }: MenuProps) => {
         width="fit-content"
       />
       {isOpen && (
-        <Modal header={'Menu'} onDismiss={() => setIsOpen(false)} width="40rem">
+        <Modal header={t('menu')} onDismiss={() => setIsOpen(false)} width="40rem">
           <ul className={styles.menuList}>
             {children.map((item, index) => {
               return (

@@ -12,6 +12,7 @@ import {
 import { Game, GameSettings, GameState, Key } from 'models';
 import styles from './EndGame.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const KEY_EMOJIS = ['🔴', '⚪', '⚫'];
 const COPY_CLIPBOARD_TEXT = 'Share Result';
@@ -36,6 +37,7 @@ export const EndGame = () => {
   const [clipboardButton, setClipboardButton] =
     useState<string>(COPY_CLIPBOARD_TEXT);
   let { state } = useContext(GlobalReducerContext);
+  const { t } = useTranslation();
 
   const createNewGame = (gameSettings: GameSettings) => {
     navigate(
@@ -111,7 +113,7 @@ https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
               className={styles.button}
               secondary
             >
-              New Game
+              {t('newGame')}
             </Button>
           </div>
         </>

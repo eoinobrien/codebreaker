@@ -5,6 +5,7 @@ import { useCallback, useContext, useEffect } from 'react';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { GameTypes } from 'reducers/gamesReducer';
 import { backspace, pushGuess } from 'logic';
+import { useTranslation } from 'react-i18next';
 
 interface KeyboardProps {
   colors: PegColor[];
@@ -13,6 +14,7 @@ interface KeyboardProps {
 
 export const Keyboard = ({ colors, showIcons }: KeyboardProps) => {
   const { state, dispatch } = useContext(GlobalReducerContext);
+  const { t } = useTranslation();
   const halfWayIndex = Math.ceil(colors.length / 2);
 
   const firstHalfOfColors = colors.slice(0, halfWayIndex);
@@ -53,8 +55,8 @@ export const Keyboard = ({ colors, showIcons }: KeyboardProps) => {
     <div className={styles.keyboard}>
       <h1 className={styles.duplicateString}>
         {state.games.currentGame.settings.allowDuplicates
-          ? 'Code can potentially include duplicate colors'
-          : 'Code does not include duplicate colors'}
+          ? t('keyboard.duplicatesAllowed')
+          : t('keyboard.noDuplicates')}
       </h1>
       <div className={styles.keyboardLine}>
         {firstHalfOfColors.map((color, index) => {
@@ -82,7 +84,7 @@ export const Keyboard = ({ colors, showIcons }: KeyboardProps) => {
 
         <PegButton
           color={PegColor.KeyboardBackspace}
-          ariaLabel="Backspace"
+          ariaLabel={t('keyboard.backspace')}
           onClick={() =>
             dispatch({
               type: GameTypes.Backspace,
@@ -118,7 +120,7 @@ export const Keyboard = ({ colors, showIcons }: KeyboardProps) => {
 
         <PegButton
           color={PegColor.KeyboardEnter}
-          ariaLabel="Enter"
+          ariaLabel={t('keyboard.enter')}
           onClick={handleEnter}
           showIcon
         />

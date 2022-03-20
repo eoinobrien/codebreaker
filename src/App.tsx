@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 import { GameRoute } from 'routes/GameRoute';
 import { Home } from 'routes/Home';
@@ -7,14 +8,15 @@ import { RouterModal } from 'components/RouterModal';
 import { Settings } from 'components/Settings';
 import { Instructions } from 'components/Instructions';
 import { NewGame } from 'components/NewGame';
+import { EndGame } from 'components/EndGame';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { ColorSchemeState } from 'reducers/settingsReducer';
-import styles from './App.module.css';
-import { EndGame } from 'components/EndGame';
 import { GameState } from 'models';
+import styles from './App.module.css';
 
 function App() {
   let { state } = useContext(GlobalReducerContext);
+  const { t } = useTranslation();
   let location = useLocation();
   let locationState = location.state as { backgroundLocation?: Location };
 
@@ -38,7 +40,7 @@ function App() {
           <Route
             path="settings"
             element={
-              <RouterModal header="Settings">
+              <RouterModal header={t('settings')}>
                 <Settings />
               </RouterModal>
             }
@@ -46,7 +48,7 @@ function App() {
           <Route
             path="how-to-play"
             element={
-              <RouterModal header="Your Instructions">
+              <RouterModal header={t('instructions')}>
                 <Instructions />
               </RouterModal>
             }
@@ -54,7 +56,7 @@ function App() {
           <Route
             path="new"
             element={
-              <RouterModal header="New Game">
+              <RouterModal header={t('newGame')}>
                 <NewGame />
               </RouterModal>
             }
@@ -76,7 +78,7 @@ function App() {
           <Route
             path="settings"
             element={
-              <RouterModal header="Settings">
+              <RouterModal header={t('settings')}>
                 <Settings />
               </RouterModal>
             }
@@ -84,7 +86,7 @@ function App() {
           <Route
             path="how-to-play"
             element={
-              <RouterModal header="Your Instructions">
+              <RouterModal header={t('instructions')}>
                 <Instructions />
               </RouterModal>
             }
@@ -92,7 +94,7 @@ function App() {
           <Route
             path="new"
             element={
-              <RouterModal header="New Game">
+              <RouterModal header={t('newGame')}>
                 <NewGame />
               </RouterModal>
             }

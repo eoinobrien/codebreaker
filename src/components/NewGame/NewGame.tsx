@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from 'components/Button';
 import { Incrementor } from 'components/Incrementor';
 import { Switch } from 'components/Switch';
@@ -15,6 +16,7 @@ import styles from './NewGame.module.css';
 
 export const NewGame = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [gameSettings, setGameSettings] = useState<GameSettings>(
     DEFAULT_GAME_SETTINGS,
@@ -30,7 +32,7 @@ export const NewGame = () => {
 
   return (
     <div className={styles.newGame}>
-      <Form.Group id="numberOfColors" label="Number of colors to choose from:">
+      <Form.Group id="numberOfColors" label={t('newGameModal.numberOfColors')}>
         <Incrementor
           value={gameSettings.numberOfColors}
           min={1}
@@ -40,7 +42,7 @@ export const NewGame = () => {
           }
         />
       </Form.Group>
-      <Form.Group id="numberOfPegs" label="Number of pegs in code:">
+      <Form.Group id="numberOfPegs" label={t('newGameModal.numberOfPegs')}>
         <Incrementor
           value={gameSettings.numberOfPegs}
           min={1}
@@ -50,7 +52,10 @@ export const NewGame = () => {
           }
         />
       </Form.Group>
-      <Form.Group id="totalNumberOfGuesses" label="Number of allowed guesses:">
+      <Form.Group
+        id="totalNumberOfGuesses"
+        label={t('newGameModal.totalNumberOfGuesses')}
+      >
         <Incrementor
           value={gameSettings.totalNumberOfGuesses}
           min={1}
@@ -63,11 +68,17 @@ export const NewGame = () => {
           }
         />
       </Form.Group>
-      <Form.Group id="allowDuplicates" label="Allowed duplicates in secret code:">
+      <Form.Group
+        id="allowDuplicates"
+        label={t('newGameModal.allowDuplicates')}
+      >
         <Switch
           id="allowDuplicates"
           value={gameSettings.allowDuplicates ? 1 : 0}
-          options={['No', 'Yes']}
+          options={[
+            t('newGameModal.noYesArray.0'),
+            t('newGameModal.noYesArray.1'),
+          ]}
           shortLabels={true}
           onChange={(newValue) =>
             setGameSettings({
@@ -83,11 +94,11 @@ export const NewGame = () => {
           secondary
           className={styles.button}
         >
-          Reset to default
+          {t('newGameModal.reset')}
         </Button>
 
         <Button onClick={createGame} className={styles.button}>
-          Create Game
+          {t('newGameModal.createGame')}
         </Button>
       </div>
     </div>
