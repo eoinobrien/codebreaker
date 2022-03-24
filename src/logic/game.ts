@@ -12,7 +12,7 @@ export const BASE64_ALPHABET: string =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 export const DEFAULT_GAME_SETTINGS: GameSettings = {
-  numberOfColors: 8,
+  numberOfColors: 6,
   numberOfPegs: 4,
   totalNumberOfGuesses: 10,
   allowDuplicates: false,
