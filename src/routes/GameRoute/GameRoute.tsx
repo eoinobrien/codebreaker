@@ -21,8 +21,14 @@ export const GameRoute = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const paramGameSettings = searchParams.get('code');
+    let paramGameSettings = searchParams.get('code');
     let game: Game;
+
+    if (!paramGameSettings) {
+      let locationState = location.state as { backgroundLocation?: Location };
+
+      paramGameSettings = locationState.backgroundLocation?.search.substring(6) ?? paramGameSettings;
+    }
 
     if (paramGameSettings) {
       const encodedGameSettings = paramGameSettings.substring(1);

@@ -46,6 +46,7 @@ export type GameSettings = {
   totalNumberOfGuesses: number;
   allowDuplicates: boolean;
   endScreenShown?: boolean;
+  isDaily: boolean;
 };
 
 export type Guess = {

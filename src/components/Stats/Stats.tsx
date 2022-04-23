@@ -1,8 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ShowIconsState } from 'reducers/settingsReducer';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { Button } from 'components/Button';
-import { KeyRow } from 'components/KeyRow';
 import { PegRow } from 'components/PegRow';
 import {
   createBrokenEncodedGameSettings,
@@ -10,12 +9,12 @@ import {
   encodeGameSettings,
 } from 'logic';
 import { Game, GameSettings, GameState, Key } from 'models';
-import styles from './EndGame.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { calculateTimeLeft, TimeLeft } from 'utils/tomorrowTimer';
+import styles from './Stats.module.css';
 
 const KEY_EMOJIS = ['🔴', '⚪', '⚫'];
-const COPY_CLIPBOARD_TEXT = 'Share Result';
 
 export const convertKeysToEmojis = (keys: Key[][], numberOfPegs: number) => {
   return keys
@@ -32,12 +31,32 @@ export const convertKeysToEmojis = (keys: Key[][], numberOfPegs: number) => {
     .join('\n');
 };
 
-export const EndGame = () => {
-  const navigate = useNavigate();
-  const [clipboardButton, setClipboardButton] =
-    useState<string>(COPY_CLIPBOARD_TEXT);
-  let { state } = useContext(GlobalReducerContext);
+const getShareableGameUrl = (game: Game) => {
+  if (game.settings.isDaily) {
+    return 'https://codebreaker.eoin.co/daily';
+  }
+
+  return `https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
+    encodeGameSettings(game.code, game.settings),
+  )}`;
+};
+
+export const Stats = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [clipboardButton, setClipboardButton] = useState<string>(
+    t('shareButton.share'),
+  );
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
+  let { state } = useContext(GlobalReducerContext);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  });
 
   const createNewGame = (gameSettings: GameSettings) => {
     navigate(
@@ -58,14 +77,12 @@ ${convertKeysToEmojis(
   game.settings.numberOfPegs,
 )}
 
-https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
-        encodeGameSettings(game.code, game.settings),
-      )}`,
+${getShareableGameUrl(game)}`,
     );
 
-    setClipboardButton('Copied to clipboard!');
+    setClipboardButton(t('shareButton.copied'));
     setTimeout(() => {
-      setClipboardButton(COPY_CLIPBOARD_TEXT);
+      setClipboardButton(t('shareButton.share'));
     }, 2000);
   };
 
@@ -89,16 +106,9 @@ https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
           </div>
           <hr className={styles.hr} />
           <div>
-            {state.games.currentGame.guesses
-              .map((g) => g.keys)
-              .map((k, index) => (
-                <KeyRow
-                  key={index}
-                  keys={k}
-                  numberOfPegs={state.games.currentGame.settings.numberOfPegs}
-                />
-              ))}
+            <h2>Next daily: {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}</h2>
           </div>
+
           <div className={styles.buttonDiv}>
             <Button
               onClick={() => copyToClipboard(state.games.currentGame)}
@@ -106,8 +116,6 @@ https://codebreaker.eoin.co/?code=${createBrokenEncodedGameSettings(
             >
               {clipboardButton}
             </Button>
-          </div>
-          <div className={styles.buttonDiv}>
             <Button
               onClick={() => createNewGame(state.games.currentGame.settings)}
               className={styles.button}

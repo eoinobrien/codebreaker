@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 import { GameRoute } from 'routes/GameRoute';
@@ -8,11 +8,12 @@ import { RouterModal } from 'components/RouterModal';
 import { Settings } from 'components/Settings';
 import { Instructions } from 'components/Instructions';
 import { NewGame } from 'components/NewGame';
-import { EndGame } from 'components/EndGame';
+import { Stats } from 'components/Stats';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 import { ColorSchemeState } from 'reducers/settingsReducer';
 import { GameState } from 'models';
 import styles from './App.module.css';
+import { getDailyGameForDate } from 'utils/dailyGames';
 
 function App() {
   let { state } = useContext(GlobalReducerContext);
@@ -37,6 +38,15 @@ function App() {
       <Routes location={locationState?.backgroundLocation || location}>
         <Route path="/" element={<Home />}>
           <Route index element={<GameRoute />} />
+          <Route
+            path="daily"
+            element={
+              <Navigate
+                replace
+                to={`/?code=${getDailyGameForDate(new Date())}`}
+              />
+            }
+          />
           <Route
             path="settings"
             element={
@@ -65,7 +75,7 @@ function App() {
             path="end"
             element={
               <RouterModal header={endGameHeader}>
-                <EndGame />
+                <Stats />
               </RouterModal>
             }
           />
@@ -103,7 +113,7 @@ function App() {
             path="end"
             element={
               <RouterModal header={endGameHeader}>
-                <EndGame />
+                <Stats />
               </RouterModal>
             }
           />

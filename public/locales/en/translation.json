@@ -1,11 +1,14 @@
 {
-  "newGame": "New Game",
-  "advancedNewGame": "Advanced New Game",
-  "howToPlay": "How to Play",
+  "newGame": "Practice game",
+  "advancedNewGame": "Advanced new game",
+  "howToPlay": "How to play",
   "settings": "Settings",
   "instructions": "Instructions",
   "menu": "Menu",
-
+  "shareButton": {
+    "share": "Share",
+    "copied": "Copied!"
+  },
   "newGameModal": {
     "numberOfColors": "Number of colors",
     "numberOfPegs": "Code length",

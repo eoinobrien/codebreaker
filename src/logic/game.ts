@@ -1,3 +1,4 @@
+import { FOCUSABLE_SELECTOR } from '@testing-library/user-event/dist/utils';
 import { Buffer } from 'buffer';
 import { GameSettings, PegColor } from 'models';
 import { createCode } from './codes';
@@ -6,6 +7,7 @@ const NUMBER_OF_COLORS: number = 8;
 const NUMBER_OF_PEGS: number = 4;
 const TOTAL_NUMBER_OF_GUESSES: number = 10;
 const ALLOW_DUPLICATES: number = 0; // false
+const IS_DAILY: number = 0; // false
 const SEPARATOR: string = ';';
 
 export const BASE64_ALPHABET: string =
@@ -17,6 +19,7 @@ export const DEFAULT_GAME_SETTINGS: GameSettings = {
   totalNumberOfGuesses: 10,
   allowDuplicates: false,
   endScreenShown: false,
+  isDaily: false,
 };
 
 export function createGameSettingsCompressed(
@@ -52,6 +55,12 @@ export function createGameSettingsCompressed(
     'd',
     compressed,
   );
+  compressed = createComponentString(
+    game.isDaily ? 1 : 0,
+    IS_DAILY,
+    'y',
+    compressed,
+  );
 
   return compressed.join(SEPARATOR);
 }
@@ -72,6 +81,10 @@ export function reverseGameSettingsCompressed(settingsString: string): {
       (findSetting(nonCodeSettings, 'd') ?? ALLOW_DUPLICATES) === 1
         ? true
         : false,
+    isDaily:
+    (findSetting(nonCodeSettings, 'y') ?? IS_DAILY) === 1
+      ? true
+      : false,
   };
 
   let code = createCode(settings);

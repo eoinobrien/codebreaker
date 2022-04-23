@@ -13,6 +13,7 @@ test('encodeGameSettings with defaults returns correct value', () => {
     numberOfPegs: 4,
     totalNumberOfGuesses: 10,
     allowDuplicates: false,
+    isDaily: false,
   };
 
   let encodedString: string = 'MCwxLDIsMw==';
@@ -28,6 +29,7 @@ test('encodeGameSettings with non defaults returns correct value', () => {
     numberOfPegs: 5,
     totalNumberOfGuesses: 11,
     allowDuplicates: true,
+    isDaily: false,
   };
 
   let encodedString: string = 'MCwxLDIsMztjNjtuNTtnMTE7ZDE=';
@@ -43,6 +45,7 @@ test('create/reverseGameSettingsCompressed with defaults, return just code', () 
     numberOfPegs: 4,
     totalNumberOfGuesses: 10,
     allowDuplicates: false,
+    isDaily: false,
   };
 
   let compressedString: string = '0,1,2,3';
@@ -61,6 +64,7 @@ test('create/reverseGameSettingsCompressed with all non defaults, return everyth
     numberOfPegs: 5,
     totalNumberOfGuesses: 11,
     allowDuplicates: true,
+    isDaily: false,
   };
 
   let compressedString: string = '0,1,2,3;c6;n5;g11;d1';
@@ -79,9 +83,29 @@ test('create/reverseGameSettingsCompressed with one non defaults, return code an
     numberOfPegs: 5,
     totalNumberOfGuesses: 10,
     allowDuplicates: false,
+    isDaily: false,
   };
 
   let compressedString: string = '0,1,2,3;n5';
+
+  expect(createGameSettingsCompressed(code, settings)).toBe(compressedString);
+  expect(reverseGameSettingsCompressed(compressedString)).toStrictEqual({
+    code,
+    settings,
+  });
+});
+
+test('create/reverseGameSettingsCompressed with one non defaults and daily, return code and pegs', () => {
+  let code = [PegColor.Red, PegColor.Green, PegColor.Yellow, PegColor.Blue];
+  let settings: GameSettings = {
+    numberOfColors: 8,
+    numberOfPegs: 5,
+    totalNumberOfGuesses: 10,
+    allowDuplicates: false,
+    isDaily: true,
+  };
+
+  let compressedString: string = '0,1,2,3;n5;y';
 
   expect(createGameSettingsCompressed(code, settings)).toBe(compressedString);
   expect(reverseGameSettingsCompressed(compressedString)).toStrictEqual({

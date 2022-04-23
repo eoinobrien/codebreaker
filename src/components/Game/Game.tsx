@@ -1,7 +1,8 @@
 import { useContext } from 'react';
-import { Link, Location } from 'react-router-dom';
+import { Link, Location, useNavigate } from 'react-router-dom';
 import {
   BsFillPlusSquareFill,
+  BsFillShareFill,
   BsGear,
   BsPatchPlus,
   BsPatchQuestion,
@@ -42,11 +43,18 @@ export const Game = ({
   location,
 }: GameProps) => {
   const { dispatch } = useContext(GlobalReducerContext);
+  const navigate = useNavigate();
   const { t } = useTranslation();
-  
+
   return (
     <div className={styles.game}>
       <div className={styles.codeRow}>
+        <IconButton
+          Icon={BsFillShareFill}
+          onClick={() =>
+            navigate('/end', { state: { backgroundLocation: location } })
+          }
+        />
         <PegRow
           code={code}
           hideCode={!gameState}

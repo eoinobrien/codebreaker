@@ -4,12 +4,12 @@ import { DEFAULT_GAME_SETTINGS } from 'logic';
 import { GameState, Key, PegColor } from 'models';
 import { GlobalReducerContext } from 'providers/GlobalReducerContextProvider';
 
-import { EndGame } from '.';
+import { Stats } from '.';
 import { ShowIconsState } from 'reducers/settingsReducer';
 
 export default {
   title: 'Components/EndGame',
-  component: EndGame,
+  component: Stats,
   decorators: [
     withReactContext({
       Context: GlobalReducerContext,
@@ -46,8 +46,8 @@ export default {
       },
     }),
   ],
-} as ComponentMeta<typeof EndGame>;
+} as ComponentMeta<typeof Stats>;
 
-const Template: ComponentStory<typeof EndGame> = () => <EndGame />;
+const Template: ComponentStory<typeof Stats> = () => <Stats />;
 
 export const A = Template.bind({});
