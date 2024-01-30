@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import styles from './Home.module.css';
-import createCodes from './test';
+// import createCodes from './test';
 
 export const Home = () => {
   return (
     <div className={styles.home}>
-      {/* <Outlet /> */}
+      <Outlet />
       {/* If you need to create new Daily codes */}
-      <div>
+      {/* <div>
         {'"' + createCodes().join('","') + '"'}
-      </div>
+      </div> */}
     </div>
   );
 };
