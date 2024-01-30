@@ -1,4 +1,3 @@
-import { FOCUSABLE_SELECTOR } from '@testing-library/user-event/dist/utils';
 import { Buffer } from 'buffer';
 import { GameSettings, PegColor } from 'models';
 import { createCode } from './codes';

@@ -5,12 +5,11 @@ import createCodes from './test';
 export const Home = () => {
   return (
     <div className={styles.home}>
-      <Outlet />
-      {/* 
-      If you need to create new Daily codes
+      {/* <Outlet /> */}
+      {/* If you need to create new Daily codes */}
       <div>
         {'"' + createCodes().join('","') + '"'}
-      </div> */}
+      </div>
     </div>
   );
 };

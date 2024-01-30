@@ -27,7 +27,7 @@ export const GameRoute = () => {
     if (!paramGameSettings) {
       let locationState = location.state as { backgroundLocation?: Location };
 
-      paramGameSettings = locationState.backgroundLocation?.search.substring(6) ?? paramGameSettings;
+      paramGameSettings = locationState?.backgroundLocation?.search.substring(6) ?? paramGameSettings;
     }
 
     if (paramGameSettings) {
@@ -62,7 +62,7 @@ export const GameRoute = () => {
       type: GameTypes.LoadGame,
       payload: { game },
     });
-  }, [searchParams, state.games.pastGames, dispatch]);
+  }, [searchParams, state.games.pastGames, location.state, dispatch]);
 
   useEffect(() => {
     let locationState = location.state as { backgroundLocation?: Location };
@@ -109,7 +109,7 @@ export const GameRoute = () => {
         state: { backgroundLocation: location },
       });
     }
-  }, [location, navigate, state.games.currentGame.gameState, searchParams]);
+  }, [location, navigate, state.games.currentGame.gameState, state.games.currentGame.settings.endScreenShown, searchParams, dispatch]);
 
   return (
     <Component.Game
