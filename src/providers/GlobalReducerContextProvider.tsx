@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch } from 'react';
+import React, { createContext, Dispatch, ReactNode } from 'react';
 import {
   GlobalActions,
   globalReducer,
@@ -14,8 +14,14 @@ type Settings = {
 
 const GlobalReducerContext = createContext<Settings>({} as Settings);
 
-const GlobalReducerContextProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useLocallyPersistedReducer(globalReducer, initialState, 'codebreaker');
+const GlobalReducerContextProvider: React.FC<{
+  children: ReactNode | ReactNode[];
+}> = ({ children }) => {
+  const [state, dispatch] = useLocallyPersistedReducer(
+    globalReducer,
+    initialState,
+    'codebreaker',
+  );
 
   return (
     <GlobalReducerContext.Provider value={{ state, dispatch }}>

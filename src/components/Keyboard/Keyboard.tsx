@@ -21,11 +21,11 @@ export const Keyboard = ({ colors, showIcons }: KeyboardProps) => {
   const secondHalfOfColors = colors.slice(halfWayIndex);
 
   const keyboardEventFunction = useCallback(
-    (event) => {
-      if (event.keyCode === 13) {
+    (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
         dispatch({ type: GameTypes.Enter, payload: {} });
       }
-      if (event.keyCode === 8) {
+      if (event.key === "Backspace") {
         dispatch({
           type: GameTypes.Backspace,
           payload: { colors: backspace(state.games.currentGame.currentGuess) },

@@ -17,8 +17,8 @@ export const Modal = ({ header, children, width, onDismiss }: ModalProps) => {
   });
 
   const escFunction = useCallback(
-    (event) => {
-      if (event.keyCode === 27) {
+    (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
         onDismiss();
       }
     },
