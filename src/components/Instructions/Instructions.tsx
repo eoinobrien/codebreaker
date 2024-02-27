@@ -17,7 +17,7 @@ export const Instructions = () => {
       type: SettingsTypes.SetInstructionsShown,
       payload: { shown: true },
     });
-  }, [dispatch]);
+  }, [  ]);
 
   const secretCode: PegColor[] = [
     PegColor.Black,
