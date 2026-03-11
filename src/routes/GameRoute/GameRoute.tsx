@@ -62,7 +62,7 @@ export const GameRoute = () => {
       type: GameTypes.LoadGame,
       payload: { game },
     });
-  }, [searchParams, state.games.pastGames, location.state]);
+  }, [searchParams, state.games.pastGames, location.state, dispatch]);
 
   useEffect(() => {
     let locationState = location.state as { backgroundLocation?: Location };
@@ -109,7 +109,7 @@ export const GameRoute = () => {
         state: { backgroundLocation: location },
       });
     }
-  }, [location, navigate, state.games.currentGame.gameState, state.games.currentGame.settings.endScreenShown, searchParams]);
+  }, [location, navigate, state.games.currentGame.gameState, state.games.currentGame.settings.endScreenShown, searchParams, dispatch]);
 
   return (
     <Component.Game
